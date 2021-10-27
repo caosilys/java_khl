@@ -21,3 +21,5 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# 내용수정 - Commit(수정내용저장) - Push(온라인 언데이트) - Pull (로컬 업데이트)
