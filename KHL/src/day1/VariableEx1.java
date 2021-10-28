@@ -18,9 +18,5 @@ public class VariableEx1 {
 		
 		boolean a = true;
 		
-		
-		
-		
-			
 	}
 }
