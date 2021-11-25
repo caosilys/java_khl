@@ -4,7 +4,7 @@
 
 -- 과일가게 데이터베이스 생성 쿼리 작성
 
--- create database fruit_khl;
+create database fruit_khl;
 use fruit_khl;
 
 CREATE TABLE `fruit` (

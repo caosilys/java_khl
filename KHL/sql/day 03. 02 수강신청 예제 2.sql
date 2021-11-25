@@ -33,7 +33,7 @@ where su_title = '컴퓨터 개론' and su_class_num = 3;
 -- 이순신 교수님이 강의하는 강의 수
 select count(*) from lecture
 	join professor
-    on le_pr_num = pr_num where pr_namr = '이순신';
+    on le_pr_num = pr_num where pr_name = '이순신';
     
 select count(*) from lecture 
 join (select * from professor where pr_name='이순신') as t on pr_num = le_pr_num;
