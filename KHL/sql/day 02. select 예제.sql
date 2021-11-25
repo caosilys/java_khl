@@ -1,7 +1,6 @@
 -- select문 기본 예제
 select * from student;
-select * from university_jik.student;
-select * from `university_jik`.`student`;
+
 select st_num, st_id, st_pw, st_name, st_reg_num from student;
 
 select * from student where st_num = 2021123005;
