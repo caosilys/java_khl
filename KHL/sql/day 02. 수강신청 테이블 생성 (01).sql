@@ -1,5 +1,6 @@
-SELECT * FROM univercity.subject;-- 1. university_khl DB 생성, 있으면 삭제 후 생성
-DROP SCHEMA IF EXISTS `university_jik`;
+
+-- 1. university_khl DB 생성, 있으면 삭제 후 생성
+DROP SCHEMA IF EXISTS `university_khl`;
 CREATE SCHEMA `university_khl`;
 
 -- 2. university_khl DB 선택
