@@ -39,7 +39,7 @@
 	- 예매리스트번호(기본키), 에매번호(외래), 좌석번호(외래)
 */
 
-create database cgv;
+-- create database cgv;
 use cgv;
 
 DROP TABLE IF EXISTS `movie`;
@@ -100,14 +100,13 @@ CREATE TABLE `theater` (
 );
 
 DROP TABLE IF EXISTS `seat`;
-
 CREATE TABLE `seat` (
-	`st_num`	int	NOT NULL,
+	`st_num`	int NOT NULL AUTO_INCREMENT,
 	`st_name`	char(3)	NULL,
 	`th_num`	int	NOT NULL,
 	`st_room_num`	int	NULL,
-	`st_state`	varchar(50)	NULL,
-	`st_type`	varchar(50)	NULL
+	`st_state`	varchar(50)	NULL	DEFAULT '사용가능',
+	`st_type`	varchar(50)	NULL	DEFAULT '일반'
 );
 
 DROP TABLE IF EXISTS `schedule`;
@@ -119,10 +118,9 @@ CREATE TABLE `schedule` (
 	`sc_date`	date	NULL,
 	`sc_time`	varchar(50)	NULL,
 	`sc_room_num`	int	NULL,
-	`sc_option`	varchar	NULL,
+	`sc_option`	varchar(50)	NULL,
 	`sc_total_seat`	int	NULL,
-	`sc_seat`	int	NULL,
-	`Field`	VARCHAR(255)	NULL
+	`sc_seat`	int	NULL
 );
 
 DROP TABLE IF EXISTS `member`;

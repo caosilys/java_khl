@@ -64,8 +64,8 @@ CREATE TABLE `address` (
 
 CREATE TABLE `order` (
 	`or_num`	varchar(15)	NOT NULL,
-	`Key`	VARCHAR(255)	NOT NULL,
-	`or_me_id`	varchar(20)	NOT NULL,
+   	`or_me_id`	varchar(20)	NOT NULL,
+	`or_pw`	VARCHAR(255)	NOT NULL,
 	`or_op_num`	int	NOT NULL,
 	`or_date`	datetime	NULL,
 	`or_amount`	int	NULL,
