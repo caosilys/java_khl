@@ -40,6 +40,7 @@
 */
 
 -- create database cgv;
+-- create database cgv;
 use cgv;
 
 DROP TABLE IF EXISTS `movie`;
@@ -100,10 +101,11 @@ CREATE TABLE `theater` (
 );
 
 DROP TABLE IF EXISTS `seat`;
+
 CREATE TABLE `seat` (
-	`st_num`	int NOT NULL AUTO_INCREMENT,
+	`st_num`	int	NOT NULL auto_increment primary key,
 	`st_name`	char(3)	NULL,
-	`th_num`	int	NOT NULL,
+	`st_th_num`	int	NOT NULL,
 	`st_room_num`	int	NULL,
 	`st_state`	varchar(50)	NULL	DEFAULT '사용가능',
 	`st_type`	varchar(50)	NULL	DEFAULT '일반'
@@ -113,12 +115,12 @@ DROP TABLE IF EXISTS `schedule`;
 
 CREATE TABLE `schedule` (
 	`sc_num`	int	NOT NULL,
-	`mo_num`	int	NOT NULL,
-	`th_num`	int	NOT NULL,
+	`sc_mo_num`	int	NOT NULL,
+	`sc_th_num`	int	NOT NULL,
 	`sc_date`	date	NULL,
 	`sc_time`	varchar(50)	NULL,
 	`sc_room_num`	int	NULL,
-	`sc_option`	varchar(50)	NULL,
+	`sc_option`	varchar(50)	NOT NULL,
 	`sc_total_seat`	int	NULL,
 	`sc_seat`	int	NULL
 );
@@ -134,16 +136,16 @@ DROP TABLE IF EXISTS `ticketing`;
 
 CREATE TABLE `ticketing` (
 	`ti_num`	int	NOT NULL,
-	`me_id`	varchar(50)	NOT NULL,
-	`sc_num`	int	NOT NULL
+	`ti_me_id`	varchar(50)	NOT NULL,
+	`ti_sc_num`	int	NOT NULL
 );
 
 DROP TABLE IF EXISTS `ticketing_list`;
 
 CREATE TABLE `ticketing_list` (
 	`tl_num`	int	NOT NULL,
-	`ti_num`	int	NOT NULL,
-	`st_num`	int	NOT NULL
+	`tl_ti_num`	int	NOT NULL,
+	`tl_st_num`	int	NOT NULL
 );
 
 ALTER TABLE `movie` ADD CONSTRAINT `PK_MOVIE` PRIMARY KEY (
@@ -168,10 +170,6 @@ ALTER TABLE `participation` ADD CONSTRAINT `PK_PARTICIPATION` PRIMARY KEY (
 
 ALTER TABLE `theater` ADD CONSTRAINT `PK_THEATER` PRIMARY KEY (
 	`th_num`
-);
-
-ALTER TABLE `seat` ADD CONSTRAINT `PK_SEAT` PRIMARY KEY (
-	`st_num`
 );
 
 ALTER TABLE `schedule` ADD CONSTRAINT `PK_SCHEDULE` PRIMARY KEY (
@@ -219,52 +217,55 @@ REFERENCES `character` (
 );
 
 ALTER TABLE `seat` ADD CONSTRAINT `FK_theater_TO_seat_1` FOREIGN KEY (
-	`th_num`
+	`st_th_num`
 )
 REFERENCES `theater` (
 	`th_num`
 );
 
 ALTER TABLE `schedule` ADD CONSTRAINT `FK_movie_TO_schedule_1` FOREIGN KEY (
-	`mo_num`
+	`sc_mo_num`
 )
 REFERENCES `movie` (
 	`mo_num`
 );
 
 ALTER TABLE `schedule` ADD CONSTRAINT `FK_theater_TO_schedule_1` FOREIGN KEY (
-	`th_num`
+	`sc_th_num`
 )
 REFERENCES `theater` (
 	`th_num`
 );
 
 ALTER TABLE `ticketing` ADD CONSTRAINT `FK_member_TO_ticketing_1` FOREIGN KEY (
-	`me_id`
+	`ti_me_id`
 )
 REFERENCES `member` (
 	`me_id`
 );
 
 ALTER TABLE `ticketing` ADD CONSTRAINT `FK_schedule_TO_ticketing_1` FOREIGN KEY (
-	`sc_num`
+	`ti_sc_num`
 )
 REFERENCES `schedule` (
 	`sc_num`
 );
 
 ALTER TABLE `ticketing_list` ADD CONSTRAINT `FK_ticketing_TO_ticketing_list_1` FOREIGN KEY (
-	`ti_num`
+	`tl_ti_num`
 )
 REFERENCES `ticketing` (
 	`ti_num`
 );
 
 ALTER TABLE `ticketing_list` ADD CONSTRAINT `FK_seat_TO_ticketing_list_1` FOREIGN KEY (
-	`st_num`
+	`tl_st_num`
 )
 REFERENCES `seat` (
 	`st_num`
 );
+
+
+
 
 
