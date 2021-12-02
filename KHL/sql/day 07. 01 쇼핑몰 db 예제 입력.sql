@@ -1,7 +1,7 @@
 -- 카테고리 추가
 
 -- use shoppingmall;
--- 카테고리 추가
+-- -- 카테고리 추가
 -- insert into category (ca_main, ca_sub)
 -- 	values ('아우터','점퍼'), ('아우터','코트'), ('상의','티셔츠'), 
 --     ('상의','블라우스/셔츠'), ('하의','데님'), ('하의','팬츠'),
@@ -39,11 +39,11 @@
 select * from shoppingmall.option;
 
 -- abc123 회원이 아크 폭스터 패딩을 화이트 s사이즈 1개 구매
-select * from shoppingmall.order;
-insert into `order` 
-(or_num, or_me_id, or_op_num, or_date, or_amount, or_total_price, or_state)
-values ('2021HNT001', 'abc123', 1, now(), 1, 159000, '결재완료');
-update `option` set op_stock = op_stock-1 where op_num = 1;
+
+-- insert into `order` 
+-- (or_num, or_me_id, or_op_num, or_date, or_amount, or_total_price, or_state)
+-- values ('2021HNT001', 'abc123', 1, now(), 1, 159000, '결재완료');
+-- update `option` set op_stock = op_stock-1 where op_num = 1;
 
 -- 아우터인 모든 제품을 확인하는 쿼리
 select gd_name as '아우터인 제품' from `goods`
