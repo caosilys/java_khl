@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- a 태그 : 많이 사용됨 
+      링크 기능 - 클릭하면 다른 페이지로 이용
+      싱커 기능 - 클릭하면 캍은 페이지 내에서 특정 위치로 이동됨
+                  이동하고자 하는 위치에 id속성 부려
+                  a href="#id" 적용
+
+      속성
+        href : 이동하려는 곳
+        url주소(링크) / #id명 (싱커)
+        기본 글자색은 파란색, 방문한 사이트는 보라색
+        download : 다운로드 속성을 부여하면 클릭시 다운로드가 됨(이미지 등)
+                target : 다른 페이지로 이동할 때 화면을 어떻게 할건지
+          _self : 기본값 / 현재창 
+          _blank : 새창
+          _parent : 부모 창
+          _top : 최고조상 창
+        tel : 전화걸기 href="tel:전화번호" -> 모바일의 경우 해당번호로 전화걸기 실행
+        mailto : 메일보내기 href="mailto:메일주소" -> 메일보내기
+        
+  -->
+
+  <a href="http://www.naver.com">네이버로 향하는 비행기</a>
+  <a href="http://www.daum.net">다음으로 향하는 비행기</a>
+  <br>
+  <a target="_blank" href="https://www.google.com/search?q=%EC%9D%80%ED%95%98&sxsrf=AOaemvIqAgETMiJr-adW0olRwQAViLj6ug:1638497090765&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjDr72oxcb0AhV0NKYKHVW3Bv0Q_AUoAXoECAEQAw&biw=1166&bih=712&dpr=1.25">
+    <img src="../image/testimage.jpg" alt="">
+  </a>
+  <br>
+  <a href="#umji" >
+    <input type="button" value="엄지로 이동">
+  </a>
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+  <a href="../image/testimage3.jpg" download="">
+    무지 다운받기
+    <br>
+  </a>
+  <img src="../image/testimage3.jpg" id="umji" alt="무지없당">
+</html>

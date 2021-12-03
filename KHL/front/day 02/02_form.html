@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<!-- form 태그속성 
+  action : 데이터를 보낼 주소
+  method : 전송방법
+    - get : url에 ?뒤에 전송할정보를 표기하여 전송
+            게시글과 같이 중요하지 않은정보를 전송할 떄 사용
+    - post : 데이터를 사용자가 보이자 않게 전송
+             섹터라는 곳에 데이터를 담아전송
+             중요한 정보를 전송할 때 사용.
+    - enctype
+-->
+
+<body>
+  <form action="" method='get'>
+    get으로 전송
+    <input type="text" name="id">
+    <input type="password" name="pw">
+    <input type="submit" value="전송">
+  </form>
+ 
+  <form action="" method='post'>
+    post로 전송
+    <input type="text" name="id2">
+    <input type="password" name="pw2">
+    <input type="submit" value="전송">
+  </form>  
+
+  <!-- 파일 전송시에는 post 사용. get은 파일 이름만 보냄 -->
+  <!-- 첨부파일 전송시 enctype를 사용 -->
+  <form action="01_tabinderx.html" method='post' enctype="multipart/form-data">
+    파일 post로 전송
+    <input type="file" name="file1" id="">
+    <input type="submit" value="전송">
+  </form>
+  <form action="" method='get'>
+    파일 get으로 전송
+    <input type="file" name="file2" id="">
+    <input type="submit" value="전송">
+  </form>
+
+
+</body>
+</html>
