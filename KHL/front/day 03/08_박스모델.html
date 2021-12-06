@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+		.box1{
+			box-sizing: content-box;
+			width: 100px;
+			height: 100px;
+			background-color: red;
+      border: 1px solid black;
+      padding-top: 10px;
+      padding-right: 20px;
+      padding-bottom: 30px;
+      padding-left: 40px;
+		}
+		.box2{
+			box-sizing: border-box;
+			width: 100px;
+			height: 100px;
+			background-color: #0f0;
+      border: 1px solid black;
+      padding: 10px 20px 30px 40px;
+		}
+    .box3{
+      width: 100px;
+			height: 100px;
+			background-color: blue;
+      margin-top:0px;
+      margin-left: -10px;
+    }
+    .box4{
+      width: 100px;
+			height: 100px;
+			background-color: yellow;
+      margin: 0 auto;
+    }
+	</style>
+</head>
+
+<body>
+	<div class="box1"></div>
+	<div class="box2"></div>
+  <span class="box1">1</span>
+	<span class="box2">2</span>
+	<br>
+	<input type="text" class="box1">
+	<input type="text" class="box2">
+  <div class="box3"></div>
+  <div class="box4"></div>
+</body>
+<!-- 
+  박스모델
+    HTML 태그는 사각형 박스로 다룸
+    내용, 여백(밖여백 margin, 안 여백 padding), 테두리(border)로 구성
+ -->
+ <!-- 
+   컨텐츠 관련 속성
+    box-sizing
+      기본은 content-box
+      content-box : 가로 세로를 계산할 떄 내용을 기준으로 계산
+      border-box : 가로 세로를 계산할때 내용+padding+테두리를 합한 값으로 계산
+    width : 가로 / 세로 : height
+    block 태그에 가로를 지정하면 지정한 가로를 제외한 나머지가 margin-right으로 할당됨
+    inline 태그들은 width,height 태그가 적용이 안됨
+
+    패딩관련 속성
+      padding-top,padding-bottom,padding-right,padding-left
+      padding : 위부터 시계방향으로 4가지 패딩을 부여하는 속성
+              : 4개 위 오른쪽 아래 왼쪽
+              : 3개 위 양옆 아래
+              : 2개 위아래 양옆
+              : 1개 모두
+      패딩의 배격색은 컨탠츠의 배경색을 따라감
+
+    마진관련속성
+      margin-top,margin-bottom,margin-right,margin-left
+      margin : 위부터 시계방향으로 4가지 패딩을 부여하는 속성
+      margin : 0 auto 
+             : 4개 위 오른쪽 아래 왼쪽
+             : 3개 위 양옆 아래
+             : 2개 위아래 양옆
+             : 1개 모두
+        컨텐츠의 부모를 기준으로 가로로 가운데 정렬할 때 사용
+      마진의 배경색은 투명. 부모의 배경색을 따라가게됨
+ -->
+    
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .inline{
+       width: 100px; height: 100px; background-color: yellow; margin-top: 10px;
+       display: inline;
+    }
+    .block{
+        width: 100px; height: 100px; background-color: yellow; margin-top: 10px;
+        display: block;
+    }
+    .inline-block{
+        width: 100px; height: 100px; background-color: yellow; margin-top: 10px;
+        display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="inline"> 인라인 </div>
+  <span class="block"> 블록</span>
+  <div class="inline-block"> 인라인 블록 </div>
+  <div class="inline-block"> 인라인 블록 </div>
+</body>
+
+<!-- 
+  배치관련 속성
+    display
+      inline
+        현재 라인에서 시작, width heigh로 크기조정 불가능
+        margin-top, margin-bottom 조절 불가능
+      block 
+        새 라인에서 시작, width height로 크기 조정, padding border margin 조절가능, 
+        기본적으로 옆에 다른요소 배치 불가능 
+      inline-block
+        현재라인에서 시작, width height로 크기 조정, padding border margin 조절가능
+        옆에 다른요소 배치 가능
+    
+    position 박스배치 방법을 설정하는 속성
+      공통 - top bottom right left를 이용하여 위치를 조정
+      staitc : 기본값으로 웹페이지에 입력한 순서대로 나타냅
+      relative : 기본위치를 기준으로 상대적으로 배치 / 
+      absolute : 웹페이지 특정 위치에 고정 
+      fixed : 웹브라우저 특정 위치에 고정 (위로가기 버튼 등)
+
+ -->  
+</html>

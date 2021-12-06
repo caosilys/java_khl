@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 적용 우선 순위</title>
+  <style>
+		p{
+			color: green !important;
+		}
+		/* id가 red인 요소에 글자색을 파랑으로 지정하는 스타일을 작성해보세요. */
+		#red{
+			color: red;
+		}
+		.p{
+			font-size: 20px;
+		}
+		.box.blue{
+			font-size: 50px;
+		}
+		body > .box{
+			font-size: 100px;
+		}
+		.blue{
+			background-color: blue;
+		}
+		.box{
+			background-color: yellow;
+		}
+    
+  </style>
+</head>
+
+<body>
+  <p id="red" class="box p blue"> 헬로우우 </p>  
+</body>
+</html>
+<!-- 
+  부모의 속성보다 본인의 속성을 우선함
+  id :100, class:10, tag:1 점으로 계산해서 점수가 높은 스타일이 적용
+  우선순위 점수가 같으면 스타일 위치상 제일 아래있는 스타일이 적용
+  !important가 있으면 우선순위와 상관없이 무조건 우석적으로 적용
+ -->

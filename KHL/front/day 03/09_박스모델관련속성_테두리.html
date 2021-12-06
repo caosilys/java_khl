@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>테두리 속성</title>
+
+  <style>
+    .box1{
+      height: 20px;
+      border-top-color: red;
+      border-top-width: 1px;
+      border-top-style: solid;
+    }
+    .box2{
+      height: 20px;
+      border-color: red blue green yellow;
+      border-width: 1px 2px 3px 4px;
+      border-style: solid dotted dashed groove;
+    }
+    
+    .box3{
+      height: 80px;
+      border-right-color: red;
+      border-width: 10px;
+      border-right-width: 20px;
+      border-style: solid;
+      border-right-style: dotted;
+    }
+
+    .box4{
+      height: 80px;
+      border-style: solid dotted;
+      border-color: black red;
+      border-width: 10px 20px;
+    }
+
+    .box5{
+      height: 100px;
+      width: 100px;
+      border: 5px solid red;
+      border-radius: 50px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box1"></div>
+  <div class="box2"></div>
+  <br>
+  <div class="box3"></div>
+  <!-- 
+    위  :10px, solid 검은색
+    오른쪽 : 20px, dotted 빨간색
+    아래 : 10px, solid 검은색
+    왼쪽 : 10px, solid 검은색 
+   -->
+   <br>
+   <div class="box4"></div>
+     <!-- 
+    위  :10px, solid 검은색
+    오른쪽 : 20px, dotted 빨간색
+    아래 : 10px, solid 검은색
+    왼쪽 : 20px, dotted 빨간색 
+   -->
+   <div class="box5"></div>
+</body>
+<!-- 
+  테두리관련 속성
+    border-top-width, border-right-width, border-bottom-width, border-left-width
+    테두리 두께를 지정하는 속성
+    border-width : 위부터 시계방향으로 한번에 지정하는 속성
+    boder-style : 테두리 종류지정, 위부터 시계방향
+    border-top-color, border-right-color, border-bottom-color, border-left-color
+    테두리 색상을 지정
+    bordor-color : 테두리 색상지정, 위부터 시계방향
+    bordor : 테두리 색상, 두께, 종류 지정. 순서무관 / 모든 테두리가 같을때 사용
+    border-radius : 둥근 테두리를 만드는 속성, 왼쪽 위 점부터 시계방향, 크기를 입력
+ -->
+</html>

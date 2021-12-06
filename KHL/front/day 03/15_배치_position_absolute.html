@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container{
+      height: 500; background: yellow;
+    }
+    .box{
+      width: 100px; height: 100px;
+      text-align: center; font-size: 30px;
+      background: red; color: white; display: inline-block;
+      position: relative;
+    }
+    .box:nth-child(1):hover{
+      background-color: green; top: 30px;
+    }
+    .box:nth-child(2){
+      background-color: green; top: 30px;
+    }
+    .box:nth-child(3){
+      margin-top: 30px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">H</div>
+    <div class="box">E</div>
+    <div class="box">L</div>
+    <div class="box">L</div>
+    <div class="box">O</div>
+    <div>1234567890123123123123123</div>
+  </div>
+
+</body>
+
+<!-- 
+  배치관련 속성
+    
+    position 박스배치 방법을 설정하는 속성
+      공통 - top bottom right left를 이용하여 위치를 조정
+      staitc : 기본값으로 웹페이지에 입력한 순서대로 나타냅
+      relative : 기본위치를 기준으로 상대적으로 배치
+      absolute : 웹페이지 특정 위치에 고정
+                 조상중에 position이 relative 인 조상이 없으면 브라우저가 기준점이됨
+      fixed : 웹브라우저 특정 위치에 고정 (위로가기 버튼 등)
+            
+
+ -->  
+</html>
