@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+		.box{
+			position: absolute; width: 100px; height: 200px; border: 1px solid black;
+			top: 0; left: 0; text-align: center; line-height: 200px;
+			font-size: 30px; font-weight: bold; background: white;
+			z-index: 5;
+		}
+		.box2{	top: 50px;	left: 50px; z-index: 4;}
+		.box3{	top: 100px;	left: 100px;z-index: 3;}
+		.box4{	top: 150px;	left: 150px;z-index: 2;}
+		.box5{	top: 200px;	left: 200px;z-index: 1;}
+	</style>
+</head>
+<body>
+	<div class="box box1">1</div>
+	<div class="box box2">2</div>
+	<div class="box box3">3</div>
+	<div class="box box4">4</div>
+	<div class="box box5">5</div>
+  
+</body>
+	<!-- 
+		z-index
+			요소들이 겹칠 때 누구를 위로 올리고, 누구를 아래로 내릴지 결정해주는 속성
+			기본적으로 코드 위치상 아래있는 요소들이 위로 올라감
+			기본값은 1
+			숫자가 높을수록 위로 올라간다
+			position이 static 요소 A와 postion이 absolute인 요소 B가 겹치면 
+			A의 z-index의 값과 상관없이 B가 위로 배치
+      이를 해결하기 위해 A의 position을 relative로 수정
+			
+      사촌관계요소(부모가 다른 요소)에서 겹칠때에는 본인 요소의 z-index보다 조상들 중 형제 관계에 있는 요소들의 z-index가 중요
+      두 조상 요소들이 position이 relative이어야 함
+	 -->
+</html>

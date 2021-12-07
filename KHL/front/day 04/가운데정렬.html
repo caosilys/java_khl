@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>냐옹이 가운데넣기</title>
+  <style>
+    .box1{border: red 3px solid; padding: 10px;}
+    .box1-1 , .box1-2, .box1-3{
+      border: blue 3px solid; height: 500px; width: auto; float: left;
+      box-sizing: border-box;
+    }
+    .img{
+      width: 300px; margin: 0 auto; 
+    }
+    .box1-2{
+      width: auto; height: auto;
+      border:none; margin-left: 10px;
+    }
+    .box1-3{
+      border-color: yellow; float: right; 
+    }
+    .box1::after{
+      clear: both; content: ''; display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="box1">
+    <div class="box1-1"></div>
+    <img src="../image/cat.jfif" alt="" srcset="" class="box1-2">
+    <div class="box1-3"></div>
+  </div>
+</body>
+</html>

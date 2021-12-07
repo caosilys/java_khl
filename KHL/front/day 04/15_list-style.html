@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+		li{ background: yellow;}
+		ul{
+			background: #0f0;
+			list-style-type: square; list-style-position: inside;
+		}
+		ol{ list-style-image: url(../image/cat.jfif); list-style-position: inside;}
+		.list-none{ list-style: none;}
+	</style>
+</head>
+<body>
+	<h1>커피메뉴</h1>
+	<ul>
+		<li>아메리카노</li>
+		<li>에소프레소</li>
+		<li>카라멜마키아또</li>
+	</ul>
+	<ol>
+		<li>아메리카노</li>
+		<li>에소프레소</li>
+		<li>카라멜마키아또</li>
+	</ol>
+	<ol class="list-none">
+		<li>아메리카노</li>
+		<li>에소프레소</li>
+		<li>카라멜마키아또</li>
+	</ol>
+</body>
+	<!-- 
+		list-style-type : 마커를 설정 # * 등등
+			disc | armenian | circle | cjk-ideographic | decimal | georgian | lower-alpha | lower-roman | square | upper-alpha | upper-roman | none
+  		
+		list-style-position : 마커의 위치, 리스트 안/밖, 기본값은 밖(outside)
+  		inside | outside
+		list-style 
+  		list-style-type , list-style-image, list-style-position를 한번에 쓰는 단축 속성
+	 -->
+</html>

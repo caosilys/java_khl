@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box1, .box2 {background: yellow; padding: 10px;}
+    .box1-1, .box1-2{height: 300px; width: 30%; background: green; display: inline-block;}
+
+    .box2::after{
+			clear: both; content: ''; display: block;
+		}
+    .box2-1, .box2-2{height: 300px; width: 30%; background: green; float: left;}
+    .box2-2{float: right;}
+  </style>
+</head>
+
+<body>
+  <div class="box1">
+    <div class="box1-1"></div>
+    <div class="box1-2"></div>
+  </div>
+
+  <div class="box2">
+    <div class="box2-1"></div>
+    <div class="box2-2"></div>
+  </div>
+</body>
+<!-- 
+  float
+    요소를 배치할 때 사용
+    값은 left right
+    추가 작업을 하지 않으면 부모가 높이를 계산하지 못함
+    float 속성을 적용한 부모 요소에 다음 코드를 추가해야함
+      부모선택자::after{
+        content : ''; clear : both; display: block;
+      }
+
+    absolute와 fixed 없이컨텐츠를 왼쪽, 오른쪽 정렬할 수 있다
+    float 속성을 지정하면 display가 inline-bolck처럼 처리가 됨
+    
+  calc()
+  단위가 다른 값들을 계산하는 함수
+  연산자 앞 뒤로 공백을 넣어야 함
+ -->
+</html>
