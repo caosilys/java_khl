@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+	<style>
+		@keyframes scale-text {
+			0%{			font-size: 20px;		}
+			100%{		font-size: 50px;		}
+		}
+		.box{
+			font-size: 20px; font-weight: bold;
+			animation-name: scale-text; animation-duration: 2s; 
+			animation-iteration-count: infinite;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		꽝
+	</div>
+  
+</body>
+<!-- 
+  animation
+    적용방법
+      1.@keyframes 로 애니메이션을 등록
+      (시간비율은 0~100%까지, from(0%) to(100%))
+      @keyframes 애니메이명 {
+        시간비율 : {
+          속성명 : 값;
+        }
+        시간비율 : {
+          속성명 : 값;
+        }
+      }
+
+      2. 원하는 요소의 css에 애니메이션을 적용
+      선택자{
+        animatoin-name : 애니메이션명;
+        animation-duration : 정수s (애니메이션 실행 시간)
+        animation-iteration-count : 정수 또는 infinite 애니메이션 반복 횟수
+      }
+      
+ -->
+</html>

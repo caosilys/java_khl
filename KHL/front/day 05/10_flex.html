@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+		.box{
+			display: flex;
+		}
+		.inner-box, .inner-box2{
+			height: 50px; border: 1px solid black; text-align: center; 
+			line-height: 50px; width: 100%;
+		}
+    .inner-box2 { width: 30px;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="inner-box">1</div>
+		<div class="inner-box">2</div>
+		<div class="inner-box">3</div>
+	</div>
+  <div class="box">
+		<div class="inner-box2">1</div>
+		<div class="inner-box2">2</div>
+		<div class="inner-box2">3</div>
+	</div>
+</body>
+<!-- 
+  display:flex
+    부모요소안에 자식 요소들의 가로길이 합이 부모요소보다 작으면 그대로 배치
+    부모요소안에 자식 요소들의 가로길이 합이 부모요소보다 크면 비율에 맞게 배치
+ -->
+</html>

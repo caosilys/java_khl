@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+	<style>
+		@keyframes scale-text {
+			0%{ font-size: 20px;	}
+			50%{ font-size: 50px; }
+      100%{ font-size: 20px; }
+		}
+		.box{
+			font-size: 20px; font-weight: bold;
+			animation-name: scale-text; animation-duration: 4s; 
+			animation-iteration-count: infinite;
+      position: absolute; z-index: 2;
+		}
+
+    @keyframes driving {
+			0%{ left : 0%; z-index: 1;}
+			50%{ left: calc(100% - 50px - 2px);z-index: 3; }
+      100%{ left: 0%; z-index: 3}
+		}
+    .car{
+      width: 50px; height: 50px; border: 2px black dotted; background-color: blue;
+      position:absolute;
+      animation-name: driving; animation-duration: 4s; 
+			animation-iteration-count: infinite;
+    }
+	</style>
+</head>
+<body>
+	<div class="box">
+		자동차 갑니다
+	</div>
+  
+  <div class="car">Car</div>
+  
+</body>
+</html>

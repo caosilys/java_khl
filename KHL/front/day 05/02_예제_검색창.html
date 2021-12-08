@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* *{margin: 0px; padding: 0px; box-sizing: border-box;}
+    .box{
+      border: red 2px solid;
+      width: 300px; height: 80px;
+      content: ''; clear: both; display: block;
+      box-sizing: border-box;
+    }
+
+    .btn{
+      float:right; width: 50px; height: 100%;
+    }
+    */
+    /* 통상적으로 margin에 %는 사용하지 않음 */
+    /*.tb{
+      border: none;
+      margin: 8px 0px 8px 5px;
+      width: 80%; height: 80%;
+    }
+    .tb:focus{
+      outline: dotted;
+    } */
+
+		.form-search{ height: 50px; position: relative;}
+		.box{ height: 50px; box-sizing: border-box; border: 2px solid red; }
+		.tb{
+			height: 30px; font-size: 28px; position: absolute; border: none;
+			top: calc(50% - 15px - 2px); left: 10px; width: calc(100% - 70px)
+		}
+
+    .btn{
+      height: 50px; box-sizing: border-box; border: 2px solid blue; width: 50px;
+      position: absolute; right: 0; top: 0; background: blue; color: white;
+    }
+    .tb:focus{
+      outline: none;
+    }
+
+  </style>
+</head>
+<body>
+  <form action="" class="form-search">
+    <div class="box">
+      <input type="text" class="tb" name="" id="">
+      <input type="button" class="btn" type="submit" value="검색">
+    </div>
+  </form>
+
+</body>
+<!-- 
+  outline
+    
+-->
+</html>

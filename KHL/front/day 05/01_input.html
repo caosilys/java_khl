@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+   <!-- input 태그를 꾸미는 예제  -->
+  <style>
+    input[type=text]{
+      color: red; border: none; width: 200px; height: 50px;
+    }
+    /* input 태그의 placeholder에 스타일을 적용할 때 사용 */
+    input[type=text]::placeholder{
+      color: green;
+    }
+    /* input창을 클릭했을때 테두리가 굵어지는 것을 막아줌 */
+    input[type=text]:focus{
+      outline: none;
+    }
+    input[type=text]:hover{
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+
+<br>  <input type="text" placeholder="입력창">
+<br>  <input type="password" name="" id="">
+
+</body>
+</html>

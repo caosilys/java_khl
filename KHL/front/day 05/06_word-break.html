@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+	<style>
+		div{ border: 1px solid black; margin-bottom: 10px;}
+		.box1{ word-break: normal;}
+		.box2{ word-break: break-all;}
+		.box3{ word-break: keep-all;}
+	</style>
+</head>
+<body>
+	<div class="box1">
+		abcdefghikjklmopqrstuvwxyz abcdefghikjklmopqrstuvwxyz
+		가나다 라마바사 아자차카 타파하 가나다 라마바사 아자차카 타파하 
+	</div>
+	<div class="box2">
+		abcdefghikjklmopqrstuvwxyz abcdefghikjklmopqrstuvwxyz
+		가나다 라마바사 아자차카 타파하 가나다 라마바사 아자차카 타파하 
+	</div>
+	<div class="box3">
+		abcdefghikjklmopqrstuvwxyz abcdefghikjklmopqrstuvwxyz
+		가나다 라마바사 아자차카 타파하 가나다 라마바사 아자차카 타파하 
+	</div>
+</body>
+<!-- 
+  word-break : 라인이 바뀔 때 긴 단어를 어떻게 처리할지를 설정
+    mormal : 기본값 기본 줄 바꿈 규칙을 이용
+    break-all : 오버플로우를 방치하기 위해 두 문자 사이에 줄바꿈이 발생할 수 있다. (한중일 rext 제외)
+    keep-all 
+ -->
+</html>
