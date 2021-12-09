@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+	<style>
+		.box{
+			width: 1000px; height: 50px; background: red;
+		}
+		@media screen and (max-width:820px) {
+			.box{ width: 400px;}
+		}
+		@media (min-width:820px) and (max-width:1020px) {
+			.box{ width: 800px;}
+		}
+		
+	</style>
+</head>
+<body>
+<div class="box"> </div>  
+</body>
+</html>
+<!-- 
+	반응형 : 스마트 기기에 맞게 화면크기가 조절되도록 하는 것
+ 		@media 를 이용하면 반응형 적용
+
+		@media [only|not] mediatype and (속성:값){
+			선택자{
+
+			}
+		}
+
+		mediatype 종류
+			all, aural(음성합성장치), braille(점자표시장치), handheld(손크기 작은 스크린)
+			print(인쇄용도), screen(스크린), projection(프로젝터), tv(음성+영상 동시출력장치)
+			embrossed(페이지에 인쇄된 점자)
+ -->

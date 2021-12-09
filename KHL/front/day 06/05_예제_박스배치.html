@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box;}
+    div{border: 2px red solid;}
+    .title{
+      width: 1190px; height: 80px; margin: 0 auto;
+    }
+    .sub_title{
+      min-width: 1190px; height: 80px; background-color: blue;
+    }
+    .box1{
+      width: 1190px; background-color: green; margin: 0 auto;
+      padding: 20px 30px;
+    }
+    .box1-1{
+      width: 750px; height: 500px; background-color: yellow;
+      float: left;
+    }
+    .box1-2{
+      width: 350px; height: 500px; background-color: skyblue;
+      float: right;
+    }
+    .box1::after{
+      clear: both; content: ''; display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title"></div>
+  </header>
+  <div class="sub_title"></div>
+  <div class="box1">
+    <div class="box1-1"></div>
+    <div class="box1-2"></div>
+  </div>
+</body>
+</html>

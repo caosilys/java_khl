@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+		.box{ 
+			width: 100px; height: 50px; line-height: 50px; background: yellow;
+			border: 1px solid black; text-align: center;
+		}
+		.box2{ transform: translate(100px, 0px);}
+		.box3{ transform: scale(2,1.1);}
+		.box4{ transform: rotate(-45deg);}
+	</style>
+</head>
+<body>
+	<div class="box box1">안녕하세요.</div>
+	<div class="box box2">안녕하세요.</div>
+	<div class="box box3">안녕하세요.</div>
+	<div class="box box4">안녕하세요.</div>
+  
+</body>
+<!-- 
+  transform
+    요소를 회전, 확대 등 다양하게 변화시켜주는 속성
+    선택자{
+      transform : 변환함수();
+    }
+
+    변환함수
+      translate(x,y), translateX(x), translateY(y) : x,y 축으로 요소를 이동
+      scale(w,h), scaleX(n), scaleY(n) : 요소의 폭과 높이를 확대
+      rotate(angle) : 각도만큼 회전
+      skew(x-angle, y-angle), skewX(angle), akewY(angle) : 기울임
+ -->
+</html>

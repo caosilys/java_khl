@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+      *{margin: 0px; padding: 0px;}
+
+      @media screen and (min-width: 801px) {
+        .menubox{
+          width: 800px; height: 80px; box-sizing: border-box;
+          display: flex;          
+        }
+        .menubox>a{
+          width: 25%; height: 100%; 
+          border: 2px red solid; border-right: none;
+          margin: 0 auto; padding-top: 20px;
+          background-color: yellow; box-sizing: border-box;
+          text-align: center;  text-decoration: none;
+        }
+        .menubox>:last-child{
+          border-right: 2px red solid;
+        }
+      }
+
+
+      @media screen and (max-width: 800px) {
+        .menubox{
+          width: 80px; height: 500px; box-sizing: border-box;
+        }
+        .menubox>a{
+          width: 100%; height: 25%; 
+          border: 2px red solid; border-bottom: none;
+          margin: 0 auto; padding-top: 50px;
+          background-color: yellow; box-sizing: border-box;
+          font-size: 20px; text-decoration: none;
+          text-align: center; display: block; 
+        }
+        .menubox>:last-child{
+          border-bottom: 2px red solid;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="menubox">
+      <a href="#">한식</a>
+      <a href="#">양식</a>
+      <a href="#">중식</a>
+      <a href="#">일식</a>
+    </div>
+  </body>
+</html>
