@@ -1,47 +1,192 @@
 @charset "utf-8";
 
-*{
-  padding: 0; margin: 0; list-style: none; text-decoration: none; color: black;
+*{ 
+	padding: 0; margin: 0; list-style: none; text-decoration: none; color: #000;
 }
 /* 공통 */
 .container{
-  width: 1190px; margin: 0 auto; padding: 0px 30px; box-sizing: border-box;
+	width: 1190px; margin: 0 auto; padding: 0 30px; box-sizing: border-box;
 }
 .container-fluid{
-  min-width: 1190px;
+	min-width: 1190px;
 }
+.menu-container::after{
+	content: ''; clear: both; display: block;
+}
+
 /* 네이버 웨일 박스 */
-.whale-box{
-  min-width: 1190px; height: 49px; background-color: grey;
+.whale-box{ 
+	height: 49px; background: #f3f1ff;
 }
-/* 네이버 검색 박스 */
+/* 네이버 검색창 박스 */
 .search-box{
-  height: 160px; position: relative;
+	height: 160px; position: relative; 
 }
-  .logo-box{
-    width: 222px; height: 52px;
-    position: absolute; top: calc(50% - 32px); left: -9px; 
-  }
-  .logo{
-    display: block; width: 100%; height: 100%;
-  	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
-  	background-size: 444px 439px;
-  	background-position: 0 -158px;
-  }
-  .search-input-box{
-    width: 568px; height: 56px; background: skyblue;
-    position: absolute; top: calc(50% - 28px); left: 268px;
-  }
+.logo-box{
+	width: 222px; height: 52px; 
+	position: absolute; top: calc(50% - 32px); overflow: hidden; left: 21px;
+}
+.logo{
+	display: block; width: 100%; height: 100%;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px;
+	background-position: 0 -158px;
+}
+.search-input-box{
+	width: 586px; height: 56px; 
+	position: absolute; top: calc(50% - 28px); left: 268px;
+}
+.search-input-container-box{
+	width: 100%; height: 100%; box-sizing: border-box; border: 2px solid #19ce60;
+}
+.search-btn{
+	width: 56px; height: 56px; background: #19ce60; border: none;
+	cursor: pointer; position: absolute; right: 0; top: 0;
+}
+.search-input-container{
+	height: 100%; width: 474px; padding: 14px 15px;
+	box-sizing: border-box;
+}
+.search-input{
+	height: 100%; width: 100%; border: none; font-size: 24px;
+}
+.search-input:focus{
+	outline: none;
+}
 
-/* 네이버 메뉴박스 */
+/* 중간 메뉴 박스 */
 .menu-box{
-  min-width: 1190px; height: 52px; background-color: green;
+	height: 52px; border-top: 1px solid #e4e8eb;
+	box-shadow: 0 1px 3px 0 rgb(0 0 0 / 12%);
 }
-/* 네이버 컨텐츠 박스 */
-.contents-box{
-  min-height: 1000px;  background-color: blue
+.menu-container-box{
+	height: 100%;
 }
-.footer-box{
-  height: 423px;  background-color: plum;
+.menu-container{
+	padding: 11px 0; float: left; height: 100%; box-sizing: border-box;
+}
+.menu-container .green-menu-box,
+.menu-container .black-menu-box{
+	float: left;
 }
 
+.menu-container .green-menu-box .menu-item,
+.menu-container .black-menu-box .menu-item{
+	float: left; margin-left: 12px;
+}
+.menu-container .green-menu-box .menu-item:first-child{
+	margin-left: 0;
+}
+.menu-container .green-menu-box .menu-link,
+.menu-container .black-menu-box .menu-link{
+	color: #03c75a; font-weight: bold; font-size: 15px; line-height: 30px;
+}
+.menu-container .black-menu-box .menu-link{
+	color: #000;
+}
+.menu-container .icon-mail{
+	display: inline-block; width: 21px; height: 21px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: -420px -279px;
+	margin: 3px 9px 0 0; vertical-align: top;
+}
+.menu-container .icon-shopping,
+.menu-container .icon-shopping-live{
+	display: block; width: 24px; height: 20px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: -420px -232px;
+	margin-top: 5px;
+}
+.menu-container .icon-shopping-live{
+	width: 54px; background-position: -202px -306px;
+}
+.menu-container .icon-tv{
+	display: inline-block; width: 12px; height: 14px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: -256px -212px;
+	margin: 9px 2px 0 0; vertical-align: top;
+}
+
+.menu-container .btn-more{
+	float: left; line-height: 30px; margin-left: 17px; font-size: 13px;
+	color: #202020;
+}
+.menu-container .btn-more::after{
+	display: inline-block; width: 11px; height: 7px; margin-left: 7px;
+	vertical-align: 2px;
+	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+	background-size: 444px 439px; background-position: -83px -296px;
+	content: '';
+}
+.menu-container .btn-more:hover{
+	text-decoration: underline;
+}
+
+/* 컨텐츠 박스 */
+.contents-box{
+	min-height: 1000px; background: #00f; padding: 20px 30px;
+}
+.contents-box::after{
+	clear: both; content: ''; display: block;
+}
+.contents-l-box{
+	width: 750px; height: 1000px;  float: left;
+}
+.contents-l-box1{
+	height: 135px; margin-bottom: 12px; background: whitesmoke;
+}
+.contents-l-box2{
+	height: 367px; background: whitesmoke;
+}
+.contents-r-box{
+	width: 350px; height: 1000px;  float: right;
+}
+
+/* 오른쪽 첫번째 컨텐츠 */
+.contents-r-box1{
+	height: 135px; margin-bottom: 12px; background: whitesmoke;
+	padding: 16px 16px 12px 17px; box-sizing: border-box;
+}
+.contents-r-box1 .title{
+	height: 16px; margin-bottom: 11px; background-color: red;
+	font-size: 12px; line-height: 16px;
+}
+.contents-r-box1 .login-link{
+	height: 48px; background-color: #19ce60; display: block; text-align: center;
+	padding-top: 12px;  font-weight: bold;
+}
+.contents-r-box1 .login-link .naver{
+	font-size: 20px; color: #fff;
+}
+.contents-r-box1 .login-link .login{
+	font-size: 16px; vertical-align: 1px; color: #fff;
+}
+
+
+.contents-r-box2{
+	height: 49px; background: whitesmoke; position: relative;
+}
+.contents-r-box2 > .btn-box{
+	width: 47px;	height: 24px; 
+	position: absolute; top: 11px; right: 10px;
+}
+.contents-r-box2 > .btn-box > .prev-btn,
+.contents-r-box2 > .btn-box > .next-btn{
+	width: 24px; height: 24px; box-sizing: border-box; border: 1px solid #e4e8eb;
+	border: 1px solid red;
+	display: block; float: left; text-align: center; 
+}
+.contents-r-box2 > .btn-box > .next-btn{
+	margin-left: -1px;
+}
+.contents-r-box2 > .btn-box i{
+	font-size: 20px; color: gray; line-height: 23px;
+}
+.contents-r-box2 > .btn-box > .prev-btn:hover i,
+.contents-r-box2 > .btn-box > .next-btn:hover i{
+	color: red;
+}
+/* 푸터 박스 */
+.footer-box{
+	height: 423px; background: plum;
+}

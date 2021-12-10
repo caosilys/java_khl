@@ -1,85 +1,108 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    *{margin: 0; padding: 0; box-sizing: border-box;}
-
-    div{
-      width: 1190px; margin: 0 auto; margin-bottom: 20px;
-      border: none;
-    }
-    .box1{ 
-      min-width: 1190px; height: 49px;
-      background-color: red;
-    }
-    .box2
-    {
-      height: 160px;
-    }
-      .logo{
-        border:none;
-        width: 222px; height: 52px; margin-right: 46px; 
-        display
-        : inline-block; margin-top: 40px;
-      }
-        .logoimg{
-          display: block; width: 100%; height: 100%;
-        	background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
-        	background-size: 444px 439px;
-        	background-position: 0 -158px;
-        }
-      .search{
-        width: 586px; height: 56px; background-color:orange; 
-        display: inline-block;
-      }
-        .search-box{
-          width: 474px; height: 56px; border: 2px #19ce60 solid;
-          position: relative; margin-left: 0px;
-        }
-          .search-input{
-            border: none; position:absolute;
-            width: 444px; height: 24px; top: 15px;
-          }
-          .search-btn{
-            width: 56px; height: 56px;
-          }
-    .box3{
-      width: 100%; height: 52px;
-      background-color: yellow;
-    }
-    .box4{
-      min-height: 1000px;
-      background-color: green;
-    }
-    .box5{
-      height: 423px;
-      background-color:blue;
-    }
-
-
-  </style>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>NAVER</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<link rel="stylesheet" href="naver.css">
 </head>
-
 <body>
-  <div class="box1"></div>
-  <div class="box2">
-    <div class="logo">
-      <a href="#" class="logoimg"></a>
-    </div>
-    <div class="search">
-      <div class="search-box">
-        <input type="text" class="search-input"></input>
-        <div class="search-btn"></div>
-      </div>
-    </div>
-  </div>
-  <div class="box3"></div>
-  <div class="box4"></div>
-  <div class="box5"></div>
-
+	<div class="whale-box container-fluid"></div>
+	<div class="search-box container">
+		<div class="logo-box">
+			<a href="#" class="logo"></a>
+		</div>
+		<div class="search-input-box">
+			<form class="search-input-container-box">
+				<div class="search-input-container">
+					<input type="text" class="search-input">
+				</div>
+				<button class="search-btn"></button>
+			</form>
+		</div>
+	</div>
+	<div class="menu-box container-fluid">
+		<div class="menu-container-box container">
+			<!-- 메일~ 더보기전까지 메뉴 -->
+			<div class="menu-container">
+				<ul class="green-menu-box menu">
+					<li class="menu-item">
+						<a href="#" class="menu-link"><i class="icon-mail"></i>메일</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">카페</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">블로그</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">지식iN</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link"><i class="icon-shopping"></i></a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link"><i class="icon-shopping-live"></i></a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">Pay</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link"><i class="icon-tv"></i>TV</a>
+					</li>
+				</ul>
+				<ul class="black-menu-box menu">
+					<li class="menu-item">
+						<a href="#" class="menu-link">사전</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">뉴스</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">증권</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">부동산</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">지도</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">VIBE</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">책</a>
+					</li>
+					<li class="menu-item">
+						<a href="#" class="menu-link">웹툰</a>
+					</li>
+				</ul>
+				<a href="#" class="btn-more">더보기</a>
+			</div>
+		</div>
+	</div>
+	<div class="contents-box container">
+		<div class="contents-l-box">
+			<div class="contents-l-box1">안녕</div>
+			<div class="contents-l-box2"></div>
+		</div>
+		<div class="contents-r-box">
+			<div class="contents-r-box1">
+				<div class="title">네이버를 더 안전하고 편리하게 이용하세요</div>
+				<a href="#" class="login-link">
+					<span class="naver">NAVER</span>
+					<span class="login">로그인</span>
+				</a>
+			</div>
+			<div class="contents-r-box2">
+				<div class="btn-box">
+					<a href="#" class="prev-btn"><i class="fas fa-angle-left"></i></a>
+					<a href="#" class="next-btn"><i class="fas fa-angle-right"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="footer-box container"></footer>
 </body>
 </html>
