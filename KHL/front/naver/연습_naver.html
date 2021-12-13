@@ -6,10 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    *{margin: 0; padding: 0; list-style: none;}
-    a{text-decoration: none;}
+    *{margin: 0; padding: 0; list-style: none; color: #000;}
+    a, a:link, a:visited{text-decoration: none;}
     .container{box-sizing: border-box;}
     div{ width: 1190px; margin: 0 auto; border: none;}
+    .after::after{content: ''; clear: both; display: block; }
     .icon{
       display: inline-block; vertical-align: middle;
       background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
@@ -19,8 +20,7 @@
       min-width: 1190px; height: 49px;
       background-color: ghostwhite;
     }
-    .box2
-    {
+    .box2{
       height: 160px;
     }
       .logo{
@@ -102,8 +102,6 @@
             }
           .favorite-menu>li>a{color:black; font-size: 13px; font-weight: 900; text-align: center;} 
           .favorite-menu>li:nth-child(4){width: 45px;}
-
-          
         .btn-more{
         	float: left; line-height: 30px; font-size: 13px;
         	color: #202020; margin: 10px 7px 0px 7px;
@@ -123,14 +121,130 @@
       min-height: 1000px; background-color: blue;
     }
      .left-contents-box{
-       margin: 20px 0px 20px 30px; width: 750px; height: 1000px; background-color: green; float: left;
+       margin: 20px 0px 20px 30px; width: 750px; height: 1000px; background-color: #f7f9fa; float: left;
      }
       .top-advertisement{
         width: 100%; height: 135px; background-color: honeydew; margin-bottom: 12px;
       }
       .news-box{
-        width: 100%; height: 367px; background-color: honeydew;
+        width: 100%; height: 367px;
       }
+        .news-header{
+          background-color: #f7f9fa; border: 1px solid #dae1e6;
+          width: 750px; height: 49px;
+          position: relative; line-height: 24px; box-sizing: border-box;
+    
+        }
+          .news-issue{
+            margin-top: 15px; float: left; width: fit-content; height: 24px;
+            overflow: hidden; font-size: 13px;
+          }
+            .news-issue-name{
+              max-width: 89px; float: left; margin-left: 10px; display: block;
+            }
+            .news-issue-title{
+              text-overflow: ellipsis; overflow: hidden; white-space: nowrap;
+              width: 310px;  float: left;
+            }
+          .news-direct{
+            float: right;  width: 198px; height: 24px; margin-top: 15px;
+            display: flex;
+          }
+            .news-direct-naver{
+             float: left; color: blue;
+            }
+            .news-direct>a, .news-direct>a:visited{
+             margin: 0 4px 0 7px; font-size: 15px; font-weight: bold;
+            }
+
+        .news-title{
+           width: 750px; height: 56px; padding: 22px 0 16px;
+           line-height: 18px; box-sizing: border-box; position: relative;
+           font-size: 14px;
+        }
+          .news-sort{ margin-left: 10px; float: left; }
+            .news-stand:before {
+            display: inline-block; width: 27px; height: 24px;
+            background-position: 0 -396px; background-repeat: no-repeat;
+            vertical-align: top; content: ''; margin: -6px 1px 0 0;
+            background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+            background-size: 444px 439px;
+            }
+            .news-stand:after{
+              display: inline-block; width: 7px; height: 11px;
+              background-position: -410px -213px; background-repeat: no-repeat;
+              vertical-align: -1px; content: ''; margin-left: 6px;
+              background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+              background-size: 444px 439px;
+            }
+
+              .btn-sort-all::before{
+                content: ''; display: inline-block; width: 4px; height: 4px;
+                border-radius: 50%; margin: 0 8px 0 6px;
+                background-color: red;
+              }
+              .btn-sort-all{
+                font-weight: bold;
+              }
+          .news-set{ float: right;}
+            .news-set-box{padding: 0 9px;}
+              .news-set-list{
+                display: inline-block; width: 14px; height: 13px;
+                background-position: -154px -337px;
+                background-repeat: no-repeat;
+                vertical-align: top; opacity: 1;
+                }
+              .news-set-grid{
+                display: inline-block; width: 13px; height: 13px; 
+                background-position: -185px -337px;
+                background-repeat: no-repeat;
+                vertical-align: top; opacity: 1;
+              }
+              .news-set-option{
+                display: inline-block; width: 15px; height: 15px;
+                background-position: -47px -396px;
+                background-repeat: no-repeat;
+                vertical-align: top; opacity: 1;
+                filter: alpha(opacity=70); margin: -1px 0 1px;
+              }
+
+        .news-body{
+          overflow: hidden; width: 750px; height: 262px;          
+        }
+          .news-body-box1, .news-body-box2{
+            width: 750px; height: 262px;
+            box-sizing: border-box; border: 1px #e4e8eb solid; 
+          }
+          .grid{
+            width: calc(100% / 6); height: 25%; float: left;
+            box-sizing: border-box;   text-align: center;
+            border: 1px #e4e8eb solid; 
+          }
+          .thumb-box{ 
+          	height: 65px; width: 100%; position: relative;
+          }
+
+          .thumb{
+          	padding: 21px 0 20px; display: block; text-align: center;
+          }
+
+          .popup-wrap{
+            width: 100%; box-sizing: border-box;
+            position: absolute; left: 0; right: 0; top: -1px; bottom: 1px;
+          	background-color: #f7f9fa; font-size: 0;
+          	padding: 19px 0 18px; text-align: center;
+          	display: none; 
+          }
+          .grid:hover .popup-wrap{
+          	display: block; 
+          }
+          .btn-popup{
+          	display:inline-block ; padding: 7px 8px 5px; background: #fff;
+          	border: 1px solid #dae1e6; 
+          	font-size: 12px; line-height: 16px; color: #505050;
+          }
+          
+
 
      .right-contents-box{
        margin: 20px 30px 20px 0px; width: 350px; height: 1000px; background-color: green; float: right;
@@ -148,15 +262,15 @@
           width: 100%; height: 48px; background-color: #19ce60; display: block;
           box-sizing: border-box;
           font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-          font-weight: 800;  color: white;
+          font-weight: 800;  
           text-align: center; line-height: 48px;
         }
           .go-login>:nth-child(1){
-            font-size: 18px;
+            font-size: 18px; color: white;
           }
           .go-login>:nth-child(2)
           {
-            font-size: 13px;
+            font-size: 13px; color: white;
           }
 
         .search-join-box{
@@ -251,8 +365,126 @@
   </div>
   <div class="box4 container">
     <div class="left-contents-box">
-      <div class="top-advertisement"></div>
-      <div class="news-box"></div>
+      <div class="top-advertisement">
+        <a href="https://apply.iscu.ac.kr/"><img src="https://ssl.pstatic.net/tveta/libs/1360/1360990/fd8049a253faa1dd3fdc_20211210114100623.jpg" width="750" height="135"></a>
+      </div>
+      <div class="news-box">
+        <div class="news-header">
+          <ul class="news-issue">
+            <li class="after">
+              <div class="news-issue-name">닌텐도 뉴스</div>
+              <a href="#" class="news-issue-title">[속보] 모크나이퍼 잎날가르기 데미지 증가 / 기본 이동속도 상향 패치 예정</a>
+            </li>
+            <li class="after">
+              <div class="news-issue-name">DNF TV</div>
+              <a href="#" class="news-issue-title">신규 직업은 버퍼? 남거너 버퍼 사전정보 공개</a>
+            </li>
+          </ul>
+          <div class="news-direct">
+            <a href="https://news.naver.com/" class="news-direct-naver">네이버</a>
+            <a href="https://entertain.naver.com/home" class="news-direct-act">연애</a>
+            <a href="https://sports.news.naver.com/index" class="news-direct-sports">스포츠</a>
+            <a href="https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=101" class="news-direct-iconomi">경제</a>
+          </div>
+        </div>
+        <div class="news-title after">
+          <span class="news-sort">
+            <a href="#" class="news-stand">뉴스스탠드</a> 
+            <a href="#" class="btn-sort">구독한 언록사</a>
+            <a href="#" class="btn-sort-all">전체언론사</a>
+          </span>
+          <span class="news-set">
+            <a href="#" class="news-set-box">
+              <i href="#" class="news-set-list icon"></i>
+            </a>
+            <a href="#" class="news-set-box">
+              <i href="#" class="news-set-grid icon"></i>
+            </a>
+            <a href="#" class="news-set-box">
+              <i href="#" class="news-set-option icon"></i>
+            </a>
+          </span>
+        </div>
+        <div class="news-body">
+          <div class="news-body-box1">
+            <div class="grid grid1-1">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-2">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-3">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-4">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-5">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-6">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-7"></div><div class="grid grid1-8"></div><div class="grid grid1-9"></div><div class="grid grid1-10"></div><div class="grid grid1-11"></div><div class="grid grid1-12"></div>
+            <div class="grid grid1-13"></div><div class="grid grid1-14"></div><div class="grid grid1-15"></div><div class="grid grid1-16"></div><div class="grid grid1-17"></div><div class="grid grid1-18"></div>
+            <div class="grid grid1-19"></div><div class="grid grid1-20"></div><div class="grid grid1-21"></div><div class="grid grid1-22"></div><div class="grid grid1-23"></div><div class="grid grid1-24"></div>
+          </div>
+          <div class="news-body-box2">
+            <div class="grid grid2-1"></div><div class="grid grid2-2"></div><div class="grid grid2-3"></div><div class="grid grid2-4"></div><div class="grid grid2-5"></div><div class="grid grid2-6"></div>
+            <div class="grid grid2-7"></div><div class="grid grid2-8"></div><div class="grid grid2-9"></div><div class="grid grid2-10"></div><div class="grid grid2-11"></div><div class="grid grid2-12"></div>
+            <div class="grid grid2-13"></div><div class="grid grid2-14"></div><div class="grid grid2-15"></div><div class="grid grid2-16"></div><div class="grid grid2-17"></div><div class="grid grid2-18"></div>
+            <div class="grid grid2-19"></div><div class="grid grid2-20"></div><div class="grid grid2-21"></div><div class="grid grid2-22"></div><div class="grid grid2-23"></div><div class="grid grid2-24"></div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="right-contents-box">
       <div class="login-box">
