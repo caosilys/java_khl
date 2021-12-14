@@ -118,7 +118,7 @@
         }
 
     .box4{
-      min-height: 1000px; background-color: blue;
+      min-height: 1000px;
     }
      .left-contents-box{
        margin: 20px 0px 20px 30px; width: 750px; height: 1000px; background-color: #f7f9fa; float: left;
@@ -223,7 +223,6 @@
           .thumb-box{ 
           	height: 65px; width: 100%; position: relative;
           }
-
           .thumb{
           	padding: 21px 0 20px; display: block; text-align: center;
           }
@@ -243,11 +242,87 @@
           	border: 1px solid #dae1e6; 
           	font-size: 12px; line-height: 16px; color: #505050;
           }
-          
 
+      .theme-box{
+        width: 100%; padding: 35px 0 27px; position: relative;
+      }
+        .theme-introduce{
+         width:100%; padding-bottom: 17px; 
+         position: relative; display: flex;
+        }
+          
+          .theme-introduce-title>span:nth-child(1){
+              font-size: 14px; font-weight: bold;
+          }
+          .theme-introduce-title>span:nth-child(2){
+              font-size: 12px; color: gray;
+          }
+          
+          .theme-introduce-info{position: relative; right: -186px;}
+          .theme-introduce-info>span:nth-child(1){
+            font-weight: bold; font-size: 12px;
+          }
+          .theme-introduce-info>span:nth-child(2){
+            color: gray; font-size: 12px;
+          }
+          .theme-introduce-info>a::before{
+            background-image: url(https://s.pstatic.net/static/www/img/uit/2021/sp_main_5f355c.png);
+            background-size: 444px 439px;
+            display: inline-block;     width: 11px;    height: 11px;
+            background-position: -213px -337px;     background-repeat: no-repeat;
+            content: '';    margin-right: 4px;
+            vertical-align: -1px;  opacity: .7;
+          }
+          .theme-introduce-info>a{
+            color: #505050; font-size: 12px; margin-left: 14px;
+          }
+        
+        .theme-list{
+          width: 100%; height: 49px; overflow: hidden; box-sizing: border-box;
+          border: 1px gray solid;
+
+        }
+          .theme-list-wrap{
+           position: relative; width: 400%;
+           margin-left: -750px;
+          }
+          .theme-list-wrap>li{
+            float: left; width: calc(100% / 8 / 4); height: 49px;
+            text-align: center; line-height: 49px; box-sizing: border-box;
+            border-right: 1px gray solid;
+          }
+          .theme-list-wrap>li>a{
+            width: 100%; height: 100%; display: block;
+          }
+
+          .theme-list-wrap>li:nth-child(8n){
+             border-right: none;
+          }
+
+
+          /* theme-list 의 각 요소들에 hover시 색변환을 주기위한 css */
+          .hover-red:hover     { color: red;}
+          .hover-orange:hover  { color: orange;}
+          .hover-yellow:hover  { color: yellow;}
+          .hover-green:hover   { color: green;}
+          .hover-blue:hover    { color: blue;}
+          .hover-indigo:hover  { color: indigo;}
+          .hover-purple:hover  { color: purple;}
+          
+          .theme-box .btn_left,
+          .theme-box .btn_right{
+            border-radius: 20px; position: absolute; top: 85px;
+            border: 1px white solid;
+          }
+          .theme-box .btn_left{
+            left: -10px; box-shadow: 2px 2px 2px gray;
+          }
+          .theme-box .btn_right{
+            right: -10px; box-shadow: 2px 2px 2px gray;
+          }
 
      .right-contents-box{
-       margin: 20px 30px 20px 0px; width: 350px; height: 1000px; background-color: green; float: right;
+       margin: 20px 30px 20px 0px; width: 350px; height: 1000px; float: right;
      }
       .login-box{
         width: 100%; height: 135px; background-color: #e4e8eb; margin-bottom: 12px;
@@ -257,7 +332,6 @@
         .login-message{
           width: 100%; height: 16px; font-size: 12px; margin-bottom: 11px;
         }
-        
         .go-login{
           width: 100%; height: 48px; background-color: #19ce60; display: block;
           box-sizing: border-box;
@@ -268,13 +342,11 @@
           .go-login>:nth-child(1){
             font-size: 18px; color: white;
           }
-          .go-login>:nth-child(2)
-          {
+          .go-login>:nth-child(2){
             font-size: 13px; color: white;
           }
-
         .search-join-box{
-          width: 100%; background-color: white;
+          width: 100%;
           margin-top: 14px; box-sizing: border-box;
         }
           .img-lock{
@@ -287,20 +359,42 @@
             font-size: 12px; 
           }
 
-
       .issue-box{
         width: 100%; height: 49px; background-color: honeydew; position: relative;
-        box-sizing: border-box; padding: 11px;
+        box-sizing: border-box; overflow: hidden; border: 1px solid #dae1e6;
+        margin: 12px 0; 
+
       }
+        .issue-wrap{
+          width: calc(340px * 3); height: 100%;
+          
+        }
+          .issue-wrap>a{
+            width: 270px; height: 100%; float: left; margin: 11px; margin-right: 81px;
+            padding-top: 3px; font-size: 13px;
+          }
+            .issue-wrap>a>i{
+              float: left; height: 18px;
+              padding: 0 7px; margin-right: 8px;
+              border: 1px solid #202020; border-radius: 10px;
+              font-size: 11px; line-height: 18px;
+              color: #202020; font-weight: 700;
+              vertical-align: top;
+            }
+
         .issue-btn-box{
           width: 47px; height: 24px; background-color: brown; 
-          float: right; box-sizing: border-box;
+          box-sizing: border-box; position: absolute; top: 11px; right: 11px;
+          
         }
           .btn_left{
             width: 24px; height: 24px; float: left;
           }
           .btn_right{
             width: 24px; height: 24px; float: right; margin-left: -1px;
+          }
+          .btn_left:hover, .btn_right:hover{
+          font-weight: bold; cursor: pointer;
           }
 
     .box5{
@@ -473,16 +567,519 @@
                 </div>
               </div>
             </div>
-            <div class="grid grid1-7"></div><div class="grid grid1-8"></div><div class="grid grid1-9"></div><div class="grid grid1-10"></div><div class="grid grid1-11"></div><div class="grid grid1-12"></div>
-            <div class="grid grid1-13"></div><div class="grid grid1-14"></div><div class="grid grid1-15"></div><div class="grid grid1-16"></div><div class="grid grid1-17"></div><div class="grid grid1-18"></div>
-            <div class="grid grid1-19"></div><div class="grid grid1-20"></div><div class="grid grid1-21"></div><div class="grid grid1-22"></div><div class="grid grid1-23"></div><div class="grid grid1-24"></div>
+            <div class="grid grid1-7">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-8">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-9">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-10">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-11">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-12">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-13">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-14">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-15">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-16">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-17">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-18">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-19">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-20">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-21">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-22">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-23">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid1-24">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="news-body-box2">
-            <div class="grid grid2-1"></div><div class="grid grid2-2"></div><div class="grid grid2-3"></div><div class="grid grid2-4"></div><div class="grid grid2-5"></div><div class="grid grid2-6"></div>
-            <div class="grid grid2-7"></div><div class="grid grid2-8"></div><div class="grid grid2-9"></div><div class="grid grid2-10"></div><div class="grid grid2-11"></div><div class="grid grid2-12"></div>
-            <div class="grid grid2-13"></div><div class="grid grid2-14"></div><div class="grid grid2-15"></div><div class="grid grid2-16"></div><div class="grid grid2-17"></div><div class="grid grid2-18"></div>
-            <div class="grid grid2-19"></div><div class="grid grid2-20"></div><div class="grid grid2-21"></div><div class="grid grid2-22"></div><div class="grid grid2-23"></div><div class="grid grid2-24"></div>
+            <div class="grid grid2-1">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-2">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-3">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-4">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-5">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-6">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-7">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-8">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-9">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-10">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-11">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-12">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-13">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-14">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-15">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-16">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-17">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-18">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-19">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-20">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-21">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-22">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-23">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid2-24">
+              <div class="thumb-box">
+                <a href="#" class="thumb">
+                  <img height="20" src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/366.png" alt="언론사명">
+                </a>
+                <div class="popup-wrap">
+                  <a href="#" class="btn-popup">구독</a>
+                  <a href="#" class="btn-popup">기사보기</a>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+      <div class="theme-box">
+        <div class="theme-introduce">
+          <div class="theme-introduce-title">
+            <span>오늘 읽을만한 글</span>
+            <span>주제별로 분류된 다양한 글 모음</span>
+          </div>
+          <div class="theme-introduce-info">
+            <span>1,762</span>
+            <span>개의 글</span>
+            <a href="#" >관심주제 설정</a>
+          </div>
+        </div>
+        <input type="button" class="btn_left" value="<" >
+        <input type="button" class="btn_right" value=">" >
+        <div class="theme-list">
+          <ul class="theme-list-wrap">
+            <li><a href="#" class="hover-red">엔터</a></li>
+            <li><a href="#" class="hover-yellow">스포츠</a></li>
+            <li><a href="#" class="hover-blue">자동차</a></li> 
+            <li><a href="#" class="hover-green">웹툰</a></li>
+            <li><a href="#" class="hover-red">경제M</a></li> 
+            <li><a href="#" class="hover-purple">레시피</a></li>
+            <li><a href="#" class="hover-orange">게임</a></li> 
+            <li><a href="#" class="hover-blue">영화</a></li>
+            <li><a href="#" class="hover-yellow">JOB&</a></li> 
+            <li><a href="#" class="hover-green">테크</a></li>
+            <li><a href="#" class="hover-indigo">여행+</a></li> 
+            <li><a href="#" class="hover-orange">과학</a></li>
+            <li><a href="#" class="hover-red">리빙</a></li> 
+            <li><a href="#" class="hover-blue">건강</a></li>
+            <li><a href="#" class="hover-yellow">비지니스</a></li> 
+            <li><a href="#" class="hover-purple">연애-결혼</a></li>
+            <li><a href="#" class="hover-green">책방</a></li> 
+            <li><a href="#" class="hover-indigo">부모i</a></li>
+            <li><a href="#" class="hover-red">법률</a></li> 
+            <li><a href="#" class="hover-blue">패션뷰티</a></li>
+            <li><a href="#" class="hover-orange">동물공감</a></li> 
+            <li><a href="#" class="hover-purple">디자인</a></li>
+            <li><a href="#" class="hover-yellow">중국</a></li> 
+            <li><a href="#" class="hover-indigo">FARM</a></li>
+            <li><a href="#" class="hover-green">공연전시</a></li> 
+            <li><a href="#" class="hover-orange">함께N</a></li>
+          </ul>
+        </div>
+        <div class="theme-contents">
+
         </div>
       </div>
     </div>
@@ -500,10 +1097,28 @@
         </div>
         </div>
       <div class="issue-box">
+        <div class="issue-wrap">
+          <a href="#" class="issue-1">
+            <i>이슈</i>
+            <span>코로나바이러스감염증-19 현황</span>
+            <!-- <img src="../image/issue-1.png" alt=""> -->
+          </a>
+          <a href="#" class="issue-2">
+            <!-- <img src="../image/issue-2.png" alt=""> -->
+          </a>
+          <a href="#" class="issue-3">
+            <!-- <img src="../image/issue-3.png" alt=""> -->
+          </a>
+        </div>
         <div class="issue-btn-box">
           <input type="button" class="btn_left" value="<">
           <input type="button" class="btn_right" value=">">
         </div>
+      </div>
+      <div class="right-advertisement">
+        <a href="https://store.sony.co.kr/event/detail/1227">
+          <img src="https://ssl.pstatic.net/tveta/libs/1368/1368151/9e0364bfd0bf866bd985_20211201181808900.jpg" width="350" height="200px">
+        </a>
       </div>      
     </div>
   </div>
