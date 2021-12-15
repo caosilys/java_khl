@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="//code.jquery.com/jquery-3.4.1.js"></script>
+
+</head>
+<body>
+  <button id=btnClick>클릭</button>
+  <button class="btn">버튼 클릭</button>
+  <button class="btn">버튼 클릭</button>
+  <button class="btn">버튼 클릭</button>
+  <button class="btn">버튼 클릭</button>
+  <button class="btn">버튼 클릭</button>  
+  <script>
+    $('#btnClick').click(function(){
+      console.log('클릭');
+    })
+    $('.btn').on('click', function(){
+      console.log('버튼클릭');
+    })
+
+  </script>
+</body>
+</html>

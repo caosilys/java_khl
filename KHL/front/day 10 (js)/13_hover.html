@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/jquery.min.js"></script>
+  <style>
+ 
+    .box1, .box2, .box3{
+      width: 100px; height: 100px; float: left; border: 1px red solid;
+    }
+
+    .box4, .box5, .box6{
+      width: 100px; height: 100px; float: left; border: 1px blue solid;
+      position: absolute; top: 110px; display: none;
+    }
+    .box5{ left:110px; }
+    .box6{ left:212px; }
+
+
+  </style>
+</head>
+<body>
+  <div class="box-a">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+  </div>
+  <div class="box-b">
+    <div class="box4"></div>
+    <div class="box5"></div>
+    <div class="box6"></div>
+  </div>
+
+
+  <script>
+    $('.box1').hover(function(){
+     $('.box4').toggle();
+    })
+    $('.box2').hover(function(){
+      $('.box5').toggle();
+    })
+    $('.box3').hover(function(){
+      $('.box6').toggle();
+    })
+  </script>
+</body>
+</html>
