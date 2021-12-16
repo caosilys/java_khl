@@ -1136,7 +1136,16 @@
   <script>
     $('.btn-more').click(function(){
       $('.more-menu-box').toggle();
-    })
+      if($('.btn-more').text() == '더보기')
+      { 
+        $('.btn-more').text('접기');        
+      }
+      else
+      {
+        $('.btn-more').text('더보기');
+      }
+    });
+
   </script>
 </body>
 </html>
