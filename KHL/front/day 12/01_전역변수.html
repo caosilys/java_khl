@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전역변수 예제</title>
+    <script src="../js/jquery.min.js"></script>
+    <script src="00_전역변수.js"></script>
+  </head>
+  <body>
+    <button class="minus">-</button>
+    <span class="num">0</span>
+    <button class="plus">+</button>
+    <script>
+      //전역변수 num를 호출
+      console.log(num);
+      //지역변수 num2를 호출
+      //지역 변수는 해당 지역에서 사용 가능하기 때문에 다른 곳에서는 에러 발생
+      //console.log(num2);
+      //숫자가 최소 0에서 최대 10까지 변하도록 코드를 작성하세요.
+      num = 0;
+
+      $('.minus').click(function(){
+        if(num > 0)
+        {
+          num--;
+        }
+        $('.num').text(num);
+      });
+      $('.plus').click(function(){
+        if(num<10){
+          num++;
+        }
+        $('.num').text(num);
+      });
+    </script>
+  
+</body>
+</html>
