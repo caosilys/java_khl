@@ -29,7 +29,7 @@
 <body>
 	<nav>
 		<ul class="menu">
-			<li class="menu-item menu-item1" data-target=".item1" data-res="">
+			<li class="menu-item menu-item1" data-target=".item1">
 				<a href="#" class="menu-link">메뉴1</a>
 			</li>
 			<li class="menu-item menu-item2" data-target=".item2">
@@ -67,6 +67,7 @@
 		$('.menu-item').click(function(){
 			//var target = $(this).attr('data-target');
 			var target = $(this).data('target');
+			console.log(target)
 			//data-res라는 속성에 target 변수에 저장된 값을 저장하는데, 화면상으로 확인이 안됨
 			$(this).data('res', target);
 			$('.contents-item').hide();

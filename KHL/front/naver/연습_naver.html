@@ -1076,16 +1076,16 @@
             <li><a href="#" class="theme-item hover-red">엔터</a></li>
             <li><a href="#" class="theme-item hover-yellow">스포츠</a></li>
             <li><a href="#" class="theme-item hover-blue">자동차</a></li> 
-            <li><a href="#" class="theme-item hover-green sel">웹툰</a></li>
+            <li><a href="#" class="theme-item hover-green">웹툰</a></li>
             <li><a href="#" class="theme-item hover-red">경제M</a></li> 
             <li><a href="#" class="theme-item hover-purple">레시피</a></li>
             <li><a href="#" class="theme-item hover-orange">게임</a></li> 
             <li><a href="#" class="theme-item hover-blue">영화</a></li>
-            <li><a href="#" class="theme-item hover-yellow">JOB&</a></li> 
+            <li><a href="#" class="theme-item hover-yellow sel">JOB&</a></li> 
             <li><a href="#" class="theme-item hover-green">테크</a></li>
             <li><a href="#" class="theme-item hover-indigo">여행+</a></li> 
             <li><a href="#" class="theme-item hover-orange">과학</a></li>
-            <li><a href="#" class="theme-item hover-red sel" >리빙</a></li> 
+            <li><a href="#" class="theme-item hover-red" >리빙</a></li> 
             <li><a href="#" class="theme-item hover-blue">건강</a></li>
             <li><a href="#" class="theme-item hover-yellow">비지니스</a></li> 
             <li><a href="#" class="theme-item hover-purple">연애-결혼</a></li>
@@ -1163,33 +1163,57 @@
       }
     });
 
-    //0~7
-    var theme_item_index = 0;
-    var theme_list_index = 1;
 
+
+    var theme_list_index = 1;    
     function move_theme_list(){
       var text = $(this).val();
-
+      var selobj = $('.theme-item.sel');
       switch(text)
       { 
         case '>' :
-        $('.theme-item.sel + li>a').addClass('sel')
-          if(theme_list_index < 3)
-          {
+        var endname = ['영화', '연애-결혼', 'FARM'];
+        if(endname.indexOf(selobj.text()) != -1){
             theme_list_index++;
             $('.theme-list-wrap').animate({
             left: '-=750'
             });
-          }
+        }
+       
+        if(selobj.text() == '함께N') // 테마리스트 맨 마지막요소
+        {
+          break;
+        }
+         
+        var nextobj = selobj.parent().next().children();         
+        selobj.removeClass('sel');
+        nextobj.addClass('sel');
+
         break;
         case '<' :
-        if(theme_list_index > 0)
-          {
-            theme_list_index--;
+
+        var startname = ['JOB&', '책방', '공연전시'];
+        if(startname.indexOf(selobj.text()) != -1){
+            theme_list_index++;
             $('.theme-list-wrap').animate({
             left: '+=750'
             });
-          }
+        }
+
+        if(selobj.text() == '엔터') // 테마리스트 맨 처음요소
+        {
+          break;
+        }
+        var prevobj = selobj.parent().prev().children();
+        selobj.removeClass('sel');
+        prevobj.addClass('sel');
+        // if(theme_list_index > 0)
+        //   {
+        //     theme_list_index--;
+        //     $('.theme-list-wrap').animate({
+        //     left: '+=750'
+        //     });
+        //   }
         break;
       };      
     }
