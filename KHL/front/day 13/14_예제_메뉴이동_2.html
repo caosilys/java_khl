@@ -55,7 +55,7 @@
 			<a href="#" class="btn-next">></a>
 		</div>
 		<ul class="menu-list">
-			<li class="menu-item sel" data-target=".item1">
+			<li class="menu-item" data-target=".item1">
 				<a href="#" class="menu-link">메뉴1</a>
 			</li>
 			<li class="menu-item" data-target=".item2">
@@ -93,14 +93,25 @@
 	</nav>
 	<script>
 
-    $(document).on('click', '.sel', function(e){
-      if(true)
-      {
-        console.log('.sel 클릭 이벤트')
-				console.log(e.target);
-      }
-    })
-
+		function hide_btn(){
+			if($('.menu-item.sel').next().length == 0)
+			{
+				$('.btn-next').hide();			
+			}
+			else
+			{
+				$('.btn-next').show()
+			}
+   		if($('.menu-item.sel').prev().length == 0)
+			{
+				$('.btn-prev').hide()
+			}
+			else
+			{
+				$('.btn-prev').show()
+			}
+		}
+		
 		$('.menu-item').click(function(e){
 			e.preventDefault();
 			
@@ -111,25 +122,21 @@
       $('.contents-item').hide();
       $(target).show();
       console.log("메뉴아이템 클릭이벤트")
+			hide_btn();
 		});
 		
 
 		$('.btn-prev').click(function(e){
 			e.preventDefault();
 			if( $('.sel').prev().length == 1){
-				$('.sel').removeClass('sel').prev().addClass('sel');
-
-        $('.sel').click();
+        $('.sel').prev().click();
 			}
-
 		});
 
 		$('.btn-next').click(function(e){
 			e.preventDefault();
 			if( $('.sel').next().length == 1){
-				$('.sel').removeClass('sel').next().addClass('sel');
-
-        $('.sel').click();
+        $('.sel').next().click();
 			}
 		});
 	</script>

@@ -342,6 +342,13 @@
             right: -10px; box-shadow: 2px 2px 2px gray; z-index: 1;
           }
 
+          .theme-contents-wrap>li{
+            width: 750px; height: 150px;
+            border: 1px solid black; box-sizing: border-box;
+            margin-top: 10px; text-align: center;
+            padding-top: 40px; display: none;
+          }
+
      .right-contents-box{
        margin: 20px 30px 20px 0px; width: 350px; height: 1000px; float: right;
      }
@@ -1073,36 +1080,63 @@
         <input type="button" class="btn_right theme-list-btn" value=">" >
         <div class="theme-list">
           <ul class="theme-list-wrap">
-            <li><a href="#" class="theme-item hover-red">엔터</a></li>
-            <li><a href="#" class="theme-item hover-yellow">스포츠</a></li>
-            <li><a href="#" class="theme-item hover-blue">자동차</a></li> 
-            <li><a href="#" class="theme-item hover-green">웹툰</a></li>
-            <li><a href="#" class="theme-item hover-red">경제M</a></li> 
-            <li><a href="#" class="theme-item hover-purple">레시피</a></li>
-            <li><a href="#" class="theme-item hover-orange">게임</a></li> 
-            <li><a href="#" class="theme-item hover-blue">영화</a></li>
-            <li><a href="#" class="theme-item hover-yellow sel">JOB&</a></li> 
-            <li><a href="#" class="theme-item hover-green">테크</a></li>
-            <li><a href="#" class="theme-item hover-indigo">여행+</a></li> 
-            <li><a href="#" class="theme-item hover-orange">과학</a></li>
-            <li><a href="#" class="theme-item hover-red" >리빙</a></li> 
-            <li><a href="#" class="theme-item hover-blue">건강</a></li>
-            <li><a href="#" class="theme-item hover-yellow">비지니스</a></li> 
-            <li><a href="#" class="theme-item hover-purple">연애-결혼</a></li>
-            <li><a href="#" class="theme-item hover-green">책방</a></li> 
-            <li><a href="#" class="theme-item hover-indigo">부모i</a></li>
-            <li><a href="#" class="theme-item hover-red">법률</a></li> 
-            <li><a href="#" class="theme-item hover-blue">패션뷰티</a></li>
-            <li><a href="#" class="theme-item hover-orange">동물공감</a></li> 
-            <li><a href="#" class="theme-item hover-purple">디자인</a></li>
-            <li><a href="#" class="theme-item hover-yellow">중국</a></li> 
-            <li><a href="#" class="theme-item hover-indigo">FARM</a></li>
-            <li><a href="#" class="theme-item hover-green">공연전시</a></li> 
-            <li><a href="#" class="theme-item hover-orange">함께N</a></li>
+            <li><a href="#" class="theme-item hover-red" data-target=".theme-enter">엔터</a></li>
+            <li><a href="#" class="theme-item hover-yellow" data-target=".theme-sport">스포츠</a></li>
+            <li><a href="#" class="theme-item hover-blue" data-target=".theme-car">자동차</a></li> 
+            <li><a href="#" class="theme-item hover-green" data-target=".theme-webtoon">웹툰</a></li>
+            <li><a href="#" class="theme-item hover-red" data-target=".theme-economi">경제M</a></li> 
+            <li><a href="#" class="theme-item hover-purple" data-target=".theme-recipe">레시피</a></li>
+            <li><a href="#" class="theme-item hover-orange" data-target=".theme-game">게임</a></li> 
+            <li><a href="#" class="theme-item hover-blue" data-target=".theme-movie">영화</a></li>
+            <li><a href="#" class="theme-item hover-yellow" data-target=".theme-job">JOB&</a></li> 
+            <li><a href="#" class="theme-item hover-green" data-target=".theme-teche">테크</a></li>
+            <li><a href="#" class="theme-item hover-indigo" data-target=".theme-travel">여행+</a></li> 
+            <li><a href="#" class="theme-item hover-orange" data-target=".theme-science">과학</a></li>
+            <li><a href="#" class="theme-item hover-red" data-target=".theme-living">리빙</a></li> 
+            <li><a href="#" class="theme-item hover-blue" data-target=".theme-health">건강</a></li>
+            <li><a href="#" class="theme-item hover-yellow" data-target=".theme-besenise">비지니스</a></li> 
+            <li><a href="#" class="theme-item hover-purple" data-target=".theme-weading">연애-결혼</a></li>
+            <li><a href="#" class="theme-item hover-green" data-target=".theme-book">책방</a></li> 
+            <li><a href="#" class="theme-item hover-indigo" data-target=".theme-paraent">부모i</a></li>
+            <li><a href="#" class="theme-item hover-red" data-target=".theme-low">법률</a></li> 
+            <li><a href="#" class="theme-item hover-blue" data-target=".theme-pasion">패션뷰티</a></li>
+            <li><a href="#" class="theme-item hover-orange" data-target=".theme-pet">동물공감</a></li> 
+            <li><a href="#" class="theme-item hover-purple" data-target=".theme-desine">디자인</a></li>
+            <li><a href="#" class="theme-item hover-yellow" data-target=".theme-chaina">중국</a></li> 
+            <li><a href="#" class="theme-item hover-indigo" data-target=".theme-farm">FARM</a></li>
+            <li><a href="#" class="theme-item hover-green" data-target=".theme-art">공연전시</a></li> 
+            <li><a href="#" class="theme-item hover-orange" data-target=".theme-weare">함께N</a></li>
           </ul>
         </div>
         <div class="theme-contents">
-
+          <ul class="theme-contents-wrap">
+            <li><a href="#" class="theme-enter">엔터</a></li>
+            <li><a href="#" class="theme-sport">스포츠</a></li>
+            <li><a href="#" class="theme-car">자동차</a></li> 
+            <li><a href="#" class="theme-webtoon">웹툰</a></li>
+            <li><a href="#" class="theme-economi">경제M</a></li> 
+            <li><a href="#" class="theme-recipe">레시피</a></li>
+            <li><a href="#" class="theme-game">게임</a></li> 
+            <li><a href="#" class="theme-movie">영화</a></li>
+            <li><a href="#" class="theme-job">JOB&</a></li> 
+            <li><a href="#" class="theme-teche">테크</a></li>
+            <li><a href="#" class="theme-travel">여행+</a></li> 
+            <li><a href="#" class="theme-science">과학</a></li>
+            <li><a href="#" class="theme-living" >리빙</a></li> 
+            <li><a href="#" class="theme-health">건강</a></li>
+            <li><a href="#" class="theme-besenise">비지니스</a></li> 
+            <li><a href="#" class="theme-weading">연애-결혼</a></li>
+            <li><a href="#" class="theme-book">책방</a></li> 
+            <li><a href="#" class="theme-paraent">부모i</a></li>
+            <li><a href="#" class="theme-low">법률</a></li> 
+            <li><a href="#" class="theme-pasion">패션뷰티</a></li>
+            <li><a href="#" class="theme-pet">동물공감</a></li> 
+            <li><a href="#" class="theme-desine">디자인</a></li>
+            <li><a href="#" class="theme-chaina">중국</a></li> 
+            <li><a href="#" class="theme-farm">FARM</a></li>
+            <li><a href="#" class="theme-art">공연전시</a></li> 
+            <li><a href="#" class="theme-weare">함께N</a></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1146,6 +1180,7 @@
     </div>
   </div>
   <div class="box5 container"></div>
+
   <script>
 
     $('.btn-more').click(function(e){
@@ -1162,10 +1197,7 @@
         $('.btn-more').css('color', 'black');
       }
     });
-
-
-
-    var theme_list_index = 1;    
+      
     function move_theme_list(){
       var text = $(this).val();
       var selobj = $('.theme-item.sel');
@@ -1174,56 +1206,61 @@
         case '>' :
         var endname = ['영화', '연애-결혼', 'FARM'];
         if(endname.indexOf(selobj.text()) != -1){
-            theme_list_index++;
             $('.theme-list-wrap').animate({
             left: '-=750'
             });
         }
-       
-        if(selobj.text() == '함께N') // 테마리스트 맨 마지막요소
-        {
-          break;
-        }
-         
-        var nextobj = selobj.parent().next().children();         
-        selobj.removeClass('sel');
-        nextobj.addClass('sel');
-
+        $('.theme-item.sel').parent().next().children().click();
         break;
-        case '<' :
 
+        case '<' :
         var startname = ['JOB&', '책방', '공연전시'];
         if(startname.indexOf(selobj.text()) != -1){
-            theme_list_index++;
             $('.theme-list-wrap').animate({
             left: '+=750'
             });
         }
-
-        if(selobj.text() == '엔터') // 테마리스트 맨 처음요소
-        {
-          break;
-        }
-        var prevobj = selobj.parent().prev().children();
-        selobj.removeClass('sel');
-        prevobj.addClass('sel');
-        // if(theme_list_index > 0)
-        //   {
-        //     theme_list_index--;
-        //     $('.theme-list-wrap').animate({
-        //     left: '+=750'
-        //     });
-        //   }
+        $('.theme-item.sel').parent().prev().children().click();
         break;
-      };      
+      };
+      
     }
+
+    function hide_btn(){
+      
+      var right = $('.btn_right.theme-list-btn');
+      var left = $('.btn_left.theme-list-btn');
+
+      if($('.theme-item.sel').parent().next().length == 0){
+        right.hide();
+      }
+      else{
+        right.show();
+      }
+
+      if($('.theme-item.sel').parent().prev().length == 0){
+        left.hide();
+      }
+      else{
+        left.show();
+      }
+    }
+
     $('.theme-list-btn').click(move_theme_list);
 
     $('.theme-item').click(function(e){
       e.preventDefault();
       $('.theme-item').removeClass('sel');
       $(this).addClass('sel');
+
+      var target = $(this).data('target');
+      $('.theme-contents-wrap>li').hide();
+      $(target).parent().show();
+
+      hide_btn();
     })
+
+    
 
   </script>
 </body>
