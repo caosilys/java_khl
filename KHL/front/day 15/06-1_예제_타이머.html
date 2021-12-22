@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/jquery.min.js"></script>
+</head>
+<body>
+  <div>00 : 00 : 00 : 000</div>
+  <script>
+    var h, m, s, mm, /* _h, _m, _s,*/ _mm ;
+    h = 0; 
+    m = 0;
+    s = 0;
+    mm = 0;
+    setInterval(function(){
+      
+      mm++;mm++;mm++;mm++;mm++;
+      mm++;mm++;mm++;mm++;mm++;
+
+      if(mm == 1000)
+      {
+        s++;
+        mm = 0;
+      }
+      if(s == 60){
+        m++;
+        s = 0;
+      }
+      if(m == 60){
+        h++
+        m = 0;
+      }
+      // if(h < 10)       {        _h = "0"+h;      } else {_h = h}
+      // if(m < 10)       {        _m = "0"+m;      } else {_m = m}
+      // if(s < 10)       {        _s = "0"+s;      } else {_s = s}
+      if(mm < 10)
+      {
+           _mm = "00"+mm;
+      } 
+      else if(mm < 100){
+        _mm = "0"+ mm;
+      }
+      else 
+      {
+        _mm = mm
+      }
+
+      // $('div').text(_h + ' : ' + _m + ' : ' + _s + ' : ' + _mm);
+      $('div').text(addZero(h) + ' : ' + addZero(m) + ' : ' + addZero(s) + ' : ' + _mm);
+    }, 1);
+
+    function addZero(num){
+      return num < 10 ? '0'+num : num;
+    } 
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>간격 함수</title>
+	<script src="../js/jquery.min.js"></script>
+</head>
+<body>
+	<button class="btn1">1초뒤</button>
+	<button class="btn2">1초마다</button>
+	<button class="btn3">1초마다 중지</button>
+	<script>
+		$(function(){
+      var num;
+			$('.btn1').click(function(){
+				setTimeout(function(){
+					alert('1초가 지났습니다.');
+				}, 1000);
+			});
+			$('.btn2').click(function(){
+				num = setInterval(function(){
+					console.log('1초');
+				},1000);
+			});
+			$('.btn3').click(function(){
+				clearInterval(num);
+			});
+		});
+	</script>
+</body>
+<!-- 
+  setInterval()
+    일정시간마다 함수를 실행하도록 등록하고, 아이디를 반환
+  clearInterval()
+    일정시간마다 실행되고 있는 함수를 제거 (id와 일치하는)
+  setTimeout()
+    지정된 시간이 되면 함수 실행하도록 등록
+ -->
+</html>

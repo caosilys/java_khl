@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>체크박스 선택 예제</title>
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.box-container::after{
+			clear: both; content: ''; display: block;
+		}
+		.box{
+			width: 150px; height: 50px; box-sizing: border-box;
+			border: 1px red solid; float: left; margin-right: 10px;
+		}
+		.box.next{
+			border: 1px blue solid;
+		}
+		.box.checked{
+			border: none; width: auto; line-height: 50px;
+		}
+		input[type=checkbox], .reset{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="box-container">
+		<div class="box checked">사과</div>
+		<div class="box checked">배</div>
+		<div class="box checked">바나나</div>
+		<div class="box checked">키위</div>
+	</div>
+	<div class="check-box-container">
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="사과" disabled >사과
+			</label>
+		</div>
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="배" disabled>배
+			</label>
+		</div>
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="바나나" disabled>바나나
+			</label>
+		</div>
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="키위" disabled>키위
+			</label>
+		</div>
+		<div class="check-box">
+			<label>
+				<input type="checkbox" name="fruit" value="딸기" disabled>딸기
+			</label>
+		</div>
+	</div>
+	<input type="button" value="설정" class="switch">
+	<input type="button" value="초기화" class="reset">
+	<script>
+		var arr = [];
+		var maxCount = $('.box-container .box').length - 1;
+
+		$('input[type=checkbox]').click(function(){
+			//최대 갯수 체크해서 최대 갯수만큼 저장되어 있으면 추가하지 않음
+			if(maxCount == arr.length && $(this).prop('checked')){
+				//최대 갯수이면 알림창 띄움
+				alert('최대 ' + maxCount + '개 선택이 가능합니다.');
+				//선택된 체크박스를 선택 해제
+				$(this).prop('checked', false);
+				//아래 추가/제거하는 작업을 하지 않기 위해 return을 통해 함수 종료
+				return;
+			}
+
+			//모든 box에 글자를 제거하고, checked 클래스를 제거
+			$('.box').removeClass('checked').text('');
+
+			var value = $(this).val();
+			//클릭한 체크박스가 체크된 상태이면 배열에 값을 추가
+			if($(this).prop('checked')){
+				arr.push(value);
+			}
+			//클릭한 체크박스가 체크 해제된 상태이면 배열에서 값을 제거
+			else{
+				var index = arr.indexOf(value);
+				arr.splice(index, 1);
+			}
+			
+			//배열에 있는 글자들을 순서에 맞게 box에 채워 넣고 checked 클래스를 추가
+			for(var i in arr){				
+				$('.box').eq(i).addClass('checked').text(arr[i]);				
+			}
+			$('.box').removeClass('next');
+			$('.box').eq(arr.length).addClass('next');
+			$('.box').eq(3).addClass('checked');
+		});
+
+		var resetmsg = '';
+
+		$('.switch').click(function(e){
+
+   		if($(this).val() == '설정'){
+				$('input[type=checkbox]').toggle();
+				$('.reset').toggle();
+				$('input[type=checkbox]').attr('disabled', false);
+				$(this).val('확인');
+
+				$('.box').removeClass('checked');
+				if(arr.length == 0)
+				{
+					$('.box').text("");
+				}
+									
+				for(var i = 0 ; i < arr.length ; i++){
+					$('.box').eq(i).addClass('checked');
+				}
+				$('.box').eq(3).addClass('checked');
+				$('.box').eq(arr.length).addClass('next');		
+			}
+			
+			else{
+				$('input[type=checkbox]').toggle()
+				$('.reset').toggle();
+				$('input[type=checkbox]').attr('disabled', true);
+				$('.box').addClass('checked');
+				$(this).val('설정');
+
+				if(arr.length == 0){
+					if(resetmsg == ""){
+						alert('선택된 메뉴가 없습니다. 초기설정으로 돌아갑니다.');
+					}
+  				else
+					{
+						alert(resetmsg);
+					}
+					$('.box').eq(0).text("사과");
+					$('.box').eq(1).text("배");
+					$('.box').eq(2).text("바나나");
+					$('.box').eq(3).text("키위");
+					$('.box').removeClass('next');
+				}
+			}
+		})
+		
+
+		$('.reset').click(function(){
+			arr = [];
+			$('input[type=checkbox]').prop('checked', false);
+			resetmsg = '초기설정으로 돌아갑니다.';
+			$('.switch').click();
+			resetmsg = "";
+		});
+
+
+
+	</script>
+  
+</body>
+<!-- 
+	예제 1에이어서 작업
+ -->
+</html>
