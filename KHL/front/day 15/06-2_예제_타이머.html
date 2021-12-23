@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,14 +8,9 @@
 	<script src="../js/jquery.min.js"></script>
 	<style>
 		.timer-box{
-			width: 500px; padding: 10px;  
+			width: 500px; padding: 10px; height: 50px; 
 			border: 1px solid black; line-height: 50px; 
 			text-align: center;
-		}
-		.record{ color: blue;}
-		.record:first-child{ color: red;}
-		.record-box{
-			max-height: 250px; overflow: auto;
 		}
 	</style>
 </head>
@@ -33,10 +27,6 @@
 		 : 
 		<span class="second">00</span>
 		<span class="millisecond">00</span>
-		<div class="record-box">
-			<!-- <div class="record">00 : 00 : 10 10</div>
-			<div class="record">00 : 00 : 05 10</div> -->
-		</div>
 	</div>
 	<button class="btn-start">시작</button>
 	<button class="btn-stop">중지</button>
@@ -79,7 +69,15 @@
 				$('.btn-stop').toggle();
 				clearInterval(timerId);
 			});
-			//리셋 버튼 클릭
+
+			
+      $('.btn-record').click(function(){
+      var text;
+      text = '<div class="record">'+ addZero(h) + ' : ' + addZero(m) + ' : ' + addZero(s) + ' : ' + addZero(ms) + '</div>'  
+      $('.timer-box').append(text);
+			});
+
+      //리셋 버튼 클릭
 			$('.btn-reset').click(function(){
 				$('.btn-stop').click();
 				ms = 0; s = 0; m = 0; h = 0;
@@ -88,18 +86,6 @@
 				$('.minute').text(addZero(m));
 				$('.second').text(addZero(s));
 				$('.millisecond').text(addZero(ms));
-				//$('.record-box').html('');
-				$('.record-box').empty();
-			});
-			//기록 버튼 클릭
-			$('.btn-record').click(function(){
-				var strMs = addZero(ms);
-				var strS = addZero(s);
-				var strM = addZero(m);
-				var strH = addZero(h);
-				var strTime = strH + " : " + strM + " : " + strS + " : " + strMs;
-				var strDiv = '<div class="record">'+strTime+'</div>'
-				$('.record-box').prepend(strDiv);
 			});
 		});
 

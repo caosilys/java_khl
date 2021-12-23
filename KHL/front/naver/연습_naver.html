@@ -9,8 +9,8 @@
 
     *{margin: 0; padding: 0; list-style: none; color: #000;}
     a, a:link, a:visited{text-decoration: none;}
-    .container{box-sizing: border-box;}
-    div{ width: 1190px; margin: 0 auto; border: none;}
+    .container{ width: 1190px; margin: 0 auto; padding: 0 30px; box-sizing: border-box;}
+    
     .after::after{content: ''; clear: both; display: block; }
     .icon{
       display: inline-block; vertical-align: middle;
@@ -57,13 +57,13 @@
             float: right; margin: -2px; 
           }
     .box3{
-      width: 100%; height: 52px;
+      min-width: 1190px; height: 52px;
       border: 2px solid #e4e8eb; border-right: none; border-left: none;
       box-sizing: border-box; position: relative;
     }
       .top-menu-box{
-        width: 1190px; height: 100%; border: none; 
-        position: relative;
+        min-width: 1190px; height: 100%; border: none; 
+        position: relative; 
       }      
         .basic-menu{ 
           width: 465px; height: 100%; float: left;
@@ -118,18 +118,19 @@
         .btn-more:hover{
         	text-decoration: underline;
         }
-        
+        /* 체크 */
       .more-menu-box{
         position: absolute;
+        width: 100%;
         right: 0; left: 0; top: 52px; height: 306px; z-index: 1; display: none;
         background-color: yellow; 
       }
     
     .box4{
-      min-height: 1000px;
+      min-height: 1000px; padding: 20px 30px;
     }
      .left-contents-box{
-       margin: 20px 0px 20px 30px; width: 750px; height: 1000px; background-color: #f7f9fa; float: left;
+       width: 750px; height: 1000px; background-color: #f7f9fa; float: left;
      }
       .top-advertisement{
         width: 100%; height: 135px; background-color: honeydew; margin-bottom: 12px;
@@ -141,7 +142,6 @@
           background-color: #f7f9fa; border: 1px solid #dae1e6;
           width: 750px; height: 49px;
           position: relative; line-height: 24px; box-sizing: border-box;
-    
         }
           .news-issue{
             margin-top: 15px; float: left; width: fit-content; height: 24px;
@@ -255,10 +255,12 @@
         width: 100%; padding: 35px 0 27px; position: relative;
       }
         .theme-introduce{
-         width:100%; padding-bottom: 17px; 
-         position: relative; display: flex;
+         width:100%; margin-bottom: 17px; line-height: 17px;
+         position: relative;
         }
-          
+          .theme-introduce-title{
+            float: left;
+          }          
           .theme-introduce-title>span:nth-child(1){
               font-size: 14px; font-weight: bold;
           }
@@ -266,7 +268,7 @@
               font-size: 12px; color: gray;
           }
           
-          .theme-introduce-info{position: relative; right: -186px;}
+          .theme-introduce-info{position: relative; float: right;}
           .theme-introduce-info>span:nth-child(1){
             font-weight: bold; font-size: 12px;
           }
@@ -350,7 +352,7 @@
           }
 
      .right-contents-box{
-       margin: 20px 30px 20px 0px; width: 350px; height: 1000px; float: right;
+       width: 350px; height: 1000px; float: right;
      }
       .login-box{
         width: 100%; height: 135px; background-color: #e4e8eb; margin-bottom: 12px;
@@ -389,26 +391,28 @@
 
       .issue-box{
         width: 100%; height: 49px; background-color: honeydew; position: relative;
-        box-sizing: border-box; overflow: hidden; border: 1px solid #dae1e6;
+        box-sizing: border-box; border: 1px solid #dae1e6;
         margin: 12px 0; 
 
-      }
-        .issue-wrap{
-          width: calc(340px * 3); height: 100%;
-          
+      } 
+        .issue-container{
+          width: 270px; height: 49px; float: left; overflow: hidden; 
         }
-          .issue-wrap>a{
-            width: 270px; height: 100%; float: left; margin: 11px; margin-right: 81px;
-            padding-top: 3px; font-size: 13px;
+          .issue-wrap{
+            width: calc(270px * 3); height: 100%; margin-left: -270px;
           }
-            .issue-wrap>a>i{
-              float: left; height: 18px;
-              padding: 0 7px; margin-right: 8px;
-              border: 1px solid #202020; border-radius: 10px;
-              font-size: 11px; line-height: 18px;
-              color: #202020; font-weight: 700;
-              vertical-align: top;
+            .issue-wrap>a{
+              width: 259px; height: calc(100% - 11px); float: left; 
+              margin: 11px; font-size: 13px;
             }
+              .issue-wrap>a>i{
+                float: left; height: 18px;
+                padding: 0 7px; margin-right: 8px;
+                border: 1px solid #202020; border-radius: 10px;
+                font-size: 11px; line-height: 18px;
+                color: #202020; font-weight: 700;
+                vertical-align: top;
+              }
 
         .issue-btn-box{
           width: 47px; height: 24px; background-color: brown; 
@@ -447,13 +451,10 @@
     </div>
   </div>
   <div class="box3">
-    <div class="top-menu-box">
+    <div class="top-menu-box container">
       <ul class="basic-menu">
         <li>
-          <a href="#">
-            <i class="icon icon-mail"></i>메일
-          </a>
-        </li>
+          <a href="#"><i class="icon icon-mail"></i> 메일</a></li>
         <li><a href="#">카페</a></li>
         <li><a href="#">사전</a></li>
         <li><a href="#">블로그</a></li>
@@ -483,6 +484,7 @@
         <a href="#" class="btn-more">더보기</a>
       <div class="weather-box"></div>
     </div>
+    <!-- 체크 -->
     <div class="more-menu-box">
       
     </div>
@@ -501,7 +503,15 @@
             </li>
             <li class="after">
               <div class="news-issue-name">DNF TV</div>
-              <a href="#" class="news-issue-title">신규 직업은 버퍼? 남거너 버퍼 사전정보 공개</a>
+              <a href="#" class="news-issue-title">신규 직업은 버퍼? 남거너 사전정보 공개 임박</a>
+            </li>
+            <li class="after">
+              <div class="news-issue-name">닌텐도 뉴스</div>
+              <a href="#" class="news-issue-title">"한, 모, 몽". 이대로 좋은가? 'D티어 포켓몬 상향시급하다'</a>
+            </li>
+            <li class="after">
+              <div class="news-issue-name">DNF TV</div>
+              <a href="#" class="news-issue-title">신규 직업 어썰트. 버퍼 아닌것으로 밝혀져... 버퍼난 이대로 좋은가?</a>
             </li>
           </ul>
           <div class="news-direct">
@@ -1065,7 +1075,7 @@
         </div>
       </div>
       <div class="theme-box">
-        <div class="theme-introduce">
+        <div class="theme-introduce after">
           <div class="theme-introduce-title">
             <span>오늘 읽을만한 글</span>
             <span>주제별로 분류된 다양한 글 모음</span>
@@ -1154,29 +1164,35 @@
         </div>
         </div>
       <div class="issue-box">
-        <div class="issue-wrap">
-          <a href="#" class="issue-1">
-            <i>이슈</i>
-            <span>코로나바이러스감염증-19 현황</span>
-            <!-- <img src="../image/issue-1.png" alt=""> -->
-          </a>
-          <a href="#" class="issue-2">
-            <!-- <img src="../image/issue-2.png" alt=""> -->
-          </a>
-          <a href="#" class="issue-3">
-            <!-- <img src="../image/issue-3.png" alt=""> -->
-          </a>
-        </div>
-        <div class="issue-btn-box">
-          <input type="button" class="btn_left" value="<">
-          <input type="button" class="btn_right" value=">">
+        <div class="issue-container"> 
+          <div class="issue-wrap">
+            <a href="#" class="issue-1">
+              <i>이슈</i>
+              <span>코로나바이러스감염증-19 현황</span>
+              <!-- <img src="../image/issue-1.png" alt=""> -->
+            </a>
+            <a href="#" class="issue-2">
+              <i>이슈</i>
+              <span>보람. 배고픈 것으로 밝혀져...</span>
+              <!-- <img src="../image/issue-2.png" alt=""> -->
+            </a>
+            <a href="#" class="issue-3">
+              <i>이슈</i>
+              <span>모크나이퍼 상향기원 1일차</span>
+              <!-- <img src="../image/issue-3.png" alt=""> -->
+            </a>
+          </div>
+          <div class="issue-btn-box">
+            <input type="button" class="btn_left" value="<">
+            <input type="button" class="btn_right" value=">">
+          </div>
         </div>
       </div>
-      <div class="right-advertisement">
+      <!-- <div class="right-advertisement">
         <a href="https://store.sony.co.kr/event/detail/1227">
           <img src="https://ssl.pstatic.net/tveta/libs/1368/1368151/9e0364bfd0bf866bd985_20211201181808900.jpg" width="350" height="200px">
         </a>
-      </div>      
+      </div>       -->
     </div>
   </div>
   <div class="box5 container"></div>
@@ -1260,7 +1276,50 @@
       hide_btn();
     })
 
-    
+    function rollingNews(){
+      if(!$('.after').first().is(':animated'))
+      {
+        $('.after').first().animate({marginTop:-24},1000,function(){
+          $(this).detach().appendTo('.news-issue').removeAttr('style');
+        })
+      }
+    }
+    var rolingNewsEvent = setInterval(rollingNews, 2500);
+    $('.after>a').hover(function(){
+      clearInterval(rolingNewsEvent);
+      $(this).css("text-decoration", 'underline');
+    }, function(){
+      rolingNewsEvent = setInterval(rollingNews, 2500);
+      $(this).css("text-decoration", 'none');
+    });
+
+    function rollingIssuesLeft(){
+      if(!$('.issue-wrap').children().first().is(':animated'))
+      {
+        $('.issue-wrap').children().first().animate({marginLeft:-270},1000,function(){
+          $(this).detach().appendTo('.issue-wrap').removeAttr('style');
+        })
+      }
+    }
+    function rollingIssuesRight(){ 
+      if(!$('.issue-wrap').children().first().is(':anumated'))
+      {
+        $('.issue-wrap').children().first().animate({marginLeft:270},1000,function(){
+        $('.issue-wrap').children().last().detach().prependTo('.issue-wrap');
+        $(this).removeAttr('style');
+        })
+      } 
+    }
+    var rollingIssueEvent = setInterval(rollingIssuesLeft, 2500);
+    $('.issue-btn-box .btn_left').click(rollingIssuesLeft);
+    $('.issue-btn-box .btn_right').click(rollingIssuesRight);
+    $('.issue-box').hover(function(){
+      clearInterval(rollingIssueEvent);
+    }, function(){
+      rollingIssueEvent = setInterval(rollingIssuesLeft, 2500);
+    });
+
+
 
   </script>
 </body>
