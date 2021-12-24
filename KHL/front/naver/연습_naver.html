@@ -95,7 +95,6 @@
             }
         .favorite-menu{
           width:321px; height: 100%; float: left;
-          margin-left: 12px;
         }
           .favorite-menu>li{
              width: 34px; height: 100%;
@@ -104,6 +103,21 @@
             }
           .favorite-menu>li>a{color:black; font-size: 13px; font-weight: 900; text-align: center;} 
           .favorite-menu>li:nth-child(4){width: 45px;}
+          /* 체크 */
+          .favorite-menu.me{
+            display: none; width: auto; 
+          }
+          .favorite-menu.me>li{
+            width: 68px; height: 28px;  margin-top: 10px; margin-left: 10px; line-height: 28px;
+            
+            border: 1px solid #dae1e6; background-color: #f7f9fa;
+          }
+          .favorite-menu.me>.next{
+            border-color: #19c060; background-color: #fff;
+          }
+          .favorite-menu.me>.checked{
+            border: none; background-color: white; width: auto; font-weight:bold;
+          }
         .btn-more{
         	float: left; line-height: 30px; font-size: 13px;
         	color: #202020; margin: 10px 7px 0px 7px;
@@ -118,13 +132,53 @@
         .btn-more:hover{
         	text-decoration: underline;
         }
+
+        .more-menu-btn-box{
+          width: auto; height: 26px; padding: 11px 0;  float: right; display: none;
+          text-align: center; font-size: 12px; line-height: 16px;
+        }
+
+          .more-menu-btn-box>a{
+            padding: 7px 13px 5px; margin-left: 3px; 
+            border: 1px solid #dae1e6; border-radius: 15px; float: right;
+          }
+          .menu-all, .menu-set{
+            display: inline; background-color: #fff;
+          }
+          .menu-reset, .menu-save{
+            display: none; background-color: #fff;
+          }
+          .menu-save{
+            color: white; background-color: #00c73c;
+          }
+
+          
         /* 체크 */
       .more-menu-box{
         position: absolute;
         width: 100%;
         right: 0; left: 0; top: 52px; height: 306px; z-index: 1; display: none;
-        background-color: yellow; 
+        background-color: white;
       }
+        .select-menu{
+          height: 100%; display: flex; position: relative;
+        }
+          .select-menu>div{
+            width:calc(100% / 7) ; height: 100%; border: 1px solid #e4e8eb;
+            margin-top: 10px; border-right: none; border-top: none; padding: 0 14px 0 15px;
+          }
+          .select-menu>div:last-child{
+            border-right: 1px solid #e4e8eb;
+          }
+            .select-menu-title{
+              line-height: 26px; font-weight: 700; font-size: 13px;
+            }
+            .select-menu-item{
+              display: block; font-size: 13px; line-height: 26px;
+            }
+            .select-menu-item>input{
+              margin-right: 3px; display: none;
+            }
     
     .box4{
       min-height: 1000px; padding: 20px 30px;
@@ -471,7 +525,7 @@
           </a>
         </li>
       </ul>
-      <ul class="favorite-menu">
+      <ul class="favorite-menu default">
         <li><a href="#">사전</a></li>
         <li><a href="#">뉴스</a></li>
         <li><a href="#">증권</a></li>
@@ -481,12 +535,198 @@
         <li><a href="#">책</a></li>
         <li><a href="#">웹툰</a></li>
       </ul>
-        <a href="#" class="btn-more">더보기</a>
+      <ul class="favorite-menu me">
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+      </ul>
+      <a href="#" class="btn-more">더보기</a>
       <div class="weather-box"></div>
+      <div class="more-menu-btn-box">
+        <a href="#" class="menu-save">저장</a>
+        <a href="#" class="menu-reset">초기화</a>
+        <a href="#" class="menu-set">메뉴설정</a>
+        <a href="https://www.naver.com/more.html" class="menu-all" >서비스 전체보기</a>       
+      </div>
     </div>
     <!-- 체크 -->
     <div class="more-menu-box">
-      
+      <div class="select-menu container">
+        <div class="select-menu1">
+          <div class="select-menu-title">ㄱ-ㅁ</div>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="날씨" disabled>날씨
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="네이버 MY CAR" disabled>네이버 MY CAR
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="네이버 게임" disabled>네이버 게임
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="네이버 예약" disabled>네이버 예약
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="프리미엄콘텐츠" disabled>프리미엄콘텐츠
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="네이버플러스" disabled>네이버플러스
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="뉴스" disabled>뉴스
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="데이터랩" disabled>데이터랩
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="메모" disabled>메모
+          </label> 
+        </div>
+        <div class="select-menu2">
+          <div class="select-menu-title">ㅂ-ㅅ</div>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="밴드" disabled>밴드
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="부동산" disabled>부동산
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="북마크" disabled>북마크
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="스포츠" disabled>스포츠
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="시리즈" disabled>시리즈
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="시리즈온" disabled>시리즈온
+          </label>
+        </div>
+        <div class="select-menu3">
+          <div class="select-menu-title">ㅇ</div>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="엑스퍼트" disabled>엑스퍼트
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="영화" disabled>영화
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="오디오클립" disabled>오디오클립
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="오피스" disabled>오피스
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="웨일" disabled>웨일
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="웹소설" disabled>웹소설
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="웹툰" disabled>웹툰
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="인플루언서 검색" disabled>인플루언서 검색
+          </label>
+        </div>
+        <div class="select-menu4">
+          <div class="select-menu-title">ㅈ-ㅊ</div>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="자동차" disabled>자동차
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="주소록" disabled>주소록
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="증권" disabled>증권
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="지도" disabled>지도
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="지식백과" disabled>지식백과
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="책" disabled>책
+          </label>
+        </div>
+        <div class="select-menu5">
+          <div class="select-menu-title">ㅋ-ㅎ</div>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="캘린더" disabled>캘린더
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="클로바더빙" disabled>클로바더빙
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="파파고" disabled>파파고
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="포스트" disabled>포스트
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="학술정보" disabled>학술정보
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="항공권" disabled>항공권
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="호텔" disabled>호텔
+          </label>
+        </div>
+        <div class="select-menu6">
+          <div class="select-menu-title">A-Z</div>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="keep" disabled>keep
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="modoo!" disabled>modoo!
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="MYBOX" disabled>MYBOX
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="MY구독" disabled>MY구독
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="TV연예" disabled>TV연예
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="V LIVE" disabled>V LIVE
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="VIBE" disabled>VIBE
+          </label>
+        </div>
+        <div class="select-menu7">
+          <div class="select-menu-title">사전</div>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="사전" disabled>사전
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="국어사전" disabled>국어사전
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="영어/영영사전" disabled>영어/영영사전
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="일본어사전" disabled>일본어사전
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="중국어사전" disabled>중국어사전
+          </label>
+          <label class="select-menu-item">
+            <input type="checkbox" name="select-menu-item" id="" value="한자사전" disabled>한자사전
+          </label>
+          <label class="select-menu-item">
+            <a href="#">사전 더보기</a>
+            <i></i>
+          </label>
+          <label class="select-menu-item">
+        </div>
+      </div>
     </div>
   </div>
   <div class="box4 container">
@@ -1200,18 +1440,27 @@
   <script>
 
     $('.btn-more').click(function(e){
-      e.preventDefault();
+      e.preventDefault();      
       $('.more-menu-box').toggle();
-      if($('.btn-more').text() == '더보기')
+      $('.more-menu-btn-box').toggle()
+
+      if($('.btn-more').text() == '접기')
       { 
-        $('.btn-more').text('접기');
-        $('.btn-more').css('color', 'green');
+        $('.btn-more').text('더보기');
+        $('.btn-more').css('color', 'black');
+        if(checkMenuArr.length == 0){
+          menueDefaultShow(true);
+        }
+        menuCheckboxToggle(false);
+        menuBtnToggle(true);
       }
       else
       {
-        $('.btn-more').text('더보기');
-        $('.btn-more').css('color', 'black');
+        $('.btn-more').text('접기');
+        $('.btn-more').css('color', 'green');
       }
+      showFavoriteMe(checkMenuArr, false);
+      reCheck(checkMenuArr);
     });
       
     function move_theme_list(){
@@ -1262,6 +1511,13 @@
       }
     }
 
+    // each 내용 확인
+    function reCheck(arr){
+      $('.select-menu-item>input').each(function(){
+        var value = $(this).val();
+				$(this).prop('checked', arr.indexOf(value) != -1);
+      })      
+    }
     $('.theme-list-btn').click(move_theme_list);
 
     $('.theme-item').click(function(e){
@@ -1285,6 +1541,7 @@
       }
     }
     var rolingNewsEvent = setInterval(rollingNews, 2500);
+   
     $('.after>a').hover(function(){
       clearInterval(rolingNewsEvent);
       $(this).css("text-decoration", 'underline');
@@ -1319,8 +1576,137 @@
       rollingIssueEvent = setInterval(rollingIssuesLeft, 2500);
     });
 
+    //체크
+    var maxCheckMenu = 4;
+    var checkMenuArr = [];
+    var checkMenuArr_tmp = [];
+    var checkboxs = $('.select-menu-item>input');
 
+    function menuBtnToggle(flag){
+      if(flag){
+        $('.menu-all').show();
+        $('.menu-set').show();
+        $('.menu-reset').hide();
+        $('.menu-save').hide();
+      }
+      else{
+        $('.menu-all').hide();
+        $('.menu-set').hide();
+        $('.menu-reset').show();
+        $('.menu-save').show();
+      }
+    }
+    function menuCheckboxToggle(flag){
+      if(flag)
+      { 
+        checkboxs.show();
+        checkboxs.attr('disabled', false);
+      }
+      else{
+        checkboxs.hide();
+        checkboxs.attr('disabled', true);
+      }
+    }
+    function menueDefaultShow(flag){
+      if(flag)
+      {
+        $('.favorite-menu.default').show(); 
+        $('.favorite-menu.me').hide();
+      }
+      else{
+        $('.favorite-menu.default').hide(); 
+        $('.favorite-menu.me').show(); 
+      }
 
+    }
+    function showFavoriteMe(arr , isNext){
+      // 그려주는 부분
+      for(var i = 0; i < 4 ; i++)
+      {
+        if(i < arr.length){
+          $('.favorite-menu.me>li').eq(i).text(arr[i]).addClass('checked').show();
+        }
+        else{
+          $('.favorite-menu.me>li').eq(i).text("").removeClass('checked').show();
+        }
+      }
+      // 다음박스 테두리 변경
+      var nextbox = $('.favorite-menu.me>li').eq(arr.length);
+      $('.favorite-menu.me>li').removeClass('next');
+      nextbox.addClass('next');
+
+      if(!isNext)
+      {
+        for(var i = arr.length; i < 4 ; i++)
+        {
+          $('.favorite-menu.me>li').eq(i).hide();
+        }
+      }
+
+    }
+
+    $('.more-menu-btn-box>a').click(function(e){
+      if($(this).attr('class') != 'menu-all'){
+        e.preventDefault(); 
+      }
+    })
+
+    $('.select-menu-item>input').click(function(){        
+
+      var value = $(this).val();
+      //check 될 때
+      if($(this).prop('checked')){
+        // 4개이하일 때
+        if(checkMenuArr_tmp.length < maxCheckMenu){
+        checkMenuArr_tmp.push(value);
+       } // 4개 이상 선택될 때
+        else
+        {
+          alert('최대 4개까지 설정할 수 있습니다')
+          $(this).prop('checked', false);
+        }
+      }
+      // check 해제할 때
+      else{
+        var index = checkMenuArr_tmp.indexOf(value);
+        checkMenuArr_tmp.splice(index,1)
+      }
+      showFavoriteMe(checkMenuArr_tmp, true)
+    })
+    
+    $('.menu-set').click(function(){
+      menuCheckboxToggle(true);
+      menuBtnToggle(false);
+      menueDefaultShow(false);     
+      showFavoriteMe(checkMenuArr, true)
+      checkMenuArr_tmp = [...checkMenuArr];
+    })
+
+    $('.menu-reset').click(function(){
+      menuCheckboxToggle(false);
+      menuBtnToggle(true);
+      menueDefaultShow(true);
+      checkMenuArr = [];
+      checkMenuArr_tmp = [];
+      checkboxs.prop('checked', false);
+      alert('초기설정으로 돌아갑니다.')
+    })
+
+    $('.menu-save').click(function(){
+      $('.btn-more').click();
+      checkMenuArr = [...checkMenuArr_tmp];
+      console.log('변경함')
+
+      if(checkMenuArr.length == 0){
+        $('.favorite-menu').show();
+        $('.favorite-menu.me').hide();
+        alert('선택된 메뉴가 없습니다. 초기설정으로 돌아갑니다.')
+      }
+      else{
+        menueDefaultShow(false);
+        showFavoriteMe(checkMenuArr, false)
+      }
+    })
   </script>
 </body>
 </html>

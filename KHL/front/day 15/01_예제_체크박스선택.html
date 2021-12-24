@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,19 +12,29 @@
 			clear: both; content: ''; display: block;
 		}
 		.box{
-			width: 150px; height: 50px; box-sizing: border-box;
-			border: 1px solid red; float: left; margin-right: 10px;
+			float: left; margin-right: 10px; box-sizing: border-box;
+			height: 50px; line-height: 50px;
 		}
-		.box.checked{
+		.red-box{
+			width: 150px; border: 1px solid red; float: left;
+		}
+		.red-box.checked{
 			border: none; width: auto; line-height: 50px;
+		}
+		.check-box-container input[type=checkbox]{
+			display: none;
+		}
+		.focus{
+			border: 1px solid blue;
 		}
 	</style>
 </head>
 <body>
 	<div class="box-container">
-		<div class="box">1</div>
-		<div class="box">2</div>
-		<div class="box">3</div>
+		<div class="box">사과</div>
+		<div class="box">배</div>
+		<div class="box">바나나</div>
+		<div class="box">키위</div>
 	</div>
 	<div class="check-box-container">
 		<div class="check-box">
@@ -52,12 +63,22 @@
 			</label>
 		</div>
 	</div>
+	<button class="btn-set">메뉴설정</button>
+	<div class="btn-box">
+		<button class="btn-init">초기화</button>
+		<button class="btn-ok">설정</button>
+	</div>
 	<script>
+		$('.check-box-container input[type=checkbox]').prop('disabled',true);
+		$('.btn-box').hide();
 		var arr = [];
-		var maxCount = $('.box-container .box').length;
+		var baseArr = ['사과','배','바나나','키위'];
+		//선택 가능한 최대 갯수 3개
+		var maxCount = 3;
+		//과일을 클릭했을 때
 		$('input[type=checkbox]').click(function(){
 			//최대 갯수 체크해서 최대 갯수만큼 저장되어 있으면 추가하지 않음
-			if(maxCount == arr.length){
+			if(maxCount == arr.length && $(this).prop('checked')){
 				//최대 갯수이면 알림창 띄움
 				alert('최대 ' + maxCount + '개 선택이 가능합니다.');
 				//선택된 체크박스를 선택 해제
@@ -82,10 +103,77 @@
 			
 			//배열에 있는 글자들을 순서에 맞게 box에 채워 넣고 checked 클래스를 추가
 			for(var i in arr){
-				$('.box').eq(i).addClass('checked').text(arr[i]);
+				//$('.box').eq(i).addClass('checked').text(arr[i]);
+			}
+			$('.box').each(function(i){
+				if(i < arr.length){
+					$(this).addClass('checked').text(arr[i]);
+				}
+			});
+			$('.box.red-box').removeClass('focus');
+			$('.box.red-box').not('.checked').first().addClass('focus');
+		});
+		//메뉴설정을 클릭했을 때
+		$('.btn-set').click(function(){
+			$(this).hide();
+			$('.box').hide();
+			$('.btn-box').show();
+
+			//빨간 테두리 박스 설정
+			for(var i=0; i<maxCount; i++){
+				//기존 선택된 메뉴 출력
+				if(i<arr.length){
+					$('.box').eq(i).addClass('red-box checked').text(arr[i]).show();
+				}
+				//선택된 메뉴 외의 빨간박스 출력
+				else{
+					$('.box').eq(i).addClass('red-box').text('').show();
+				}
+			}
+			//파란색 테두리 설정
+			$('.box.red-box').removeClass('focus');
+			$('.box.red-box').not('.checked').first().addClass('focus');
+			//체크박스 보여주기
+			$('.check-box-container input[type=checkbox]').prop('disabled',false);
+			$('.check-box-container input[type=checkbox]').show();
+		});
+		//초기화를 클릭했을 때
+		$('.btn-init').click(function(){
+			alert('초기 설정으로 돌아갑니다.');
+			$('.btn-box').hide();
+			$('.btn-set').show();
+			$('.box').removeClass('red-box checked focus');
+			$('.check-box-container input[type=checkbox]').prop('disabled',true);
+			$('.check-box-container input[type=checkbox]').hide();
+			//메뉴 설정에서 체크된 메뉴들을 해제
+			$('.check-box-container input[type=checkbox]').prop('checked',false);
+			arr =[];
+
+			$('.box').show();
+			for(var i in baseArr){
+				$('.box').eq(i).text(baseArr[i]);
+			}
+			
+		});
+		//설정을 클릭했을때
+		$('.btn-ok').click(function(){
+			
+			$('.btn-box').hide();
+			$('.btn-set').show();
+			$('.box').removeClass('red-box checked focus');
+			$('.check-box-container input[type=checkbox]').prop('disabled',true);
+			$('.check-box-container input[type=checkbox]').hide();
+			
+			if(arr.length == 0){
+				alert('선택된 메뉴가 없습니다. 초기 설정으로 돌아갑니다.');
+			}
+			$('.box').hide();
+			var tmpArr = arr.length == 0 ? baseArr : arr;
+
+			for(var i in tmpArr){
+				$('.box').eq(i).show().text(tmpArr[i]);
 			}
 		});
-
 	</script>
   
 </body>
