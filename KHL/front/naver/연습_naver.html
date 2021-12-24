@@ -1559,7 +1559,8 @@
       }
     }
     function rollingIssuesRight(){ 
-      if(!$('.issue-wrap').children().first().is(':anumated'))
+      
+      if(!$('.issue-wrap').children().first().is(':animated'))
       {
         $('.issue-wrap').children().first().animate({marginLeft:270},1000,function(){
         $('.issue-wrap').children().last().detach().prependTo('.issue-wrap');
