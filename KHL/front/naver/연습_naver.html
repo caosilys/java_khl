@@ -1439,30 +1439,7 @@
 
   <script>
 
-    $('.btn-more').click(function(e){
-      e.preventDefault();      
-      $('.more-menu-box').toggle();
-      $('.more-menu-btn-box').toggle()
-
-      if($('.btn-more').text() == '접기')
-      { 
-        $('.btn-more').text('더보기');
-        $('.btn-more').css('color', 'black');
-        if(checkMenuArr.length == 0){
-          menueDefaultShow(true);
-        }
-        menuCheckboxToggle(false);
-        menuBtnToggle(true);
-      }
-      else
-      {
-        $('.btn-more').text('접기');
-        $('.btn-more').css('color', 'green');
-      }
-      showFavoriteMe(checkMenuArr, false);
-      reCheck(checkMenuArr);
-    });
-      
+    // 테마박스 이벤트
     function move_theme_list(){
       var text = $(this).val();
       var selobj = $('.theme-item.sel');
@@ -1490,7 +1467,6 @@
       };
       
     }
-
     function hide_btn(){
       
       var right = $('.btn_right.theme-list-btn');
@@ -1511,15 +1487,7 @@
       }
     }
 
-    // each 내용 확인
-    function reCheck(arr){
-      $('.select-menu-item>input').each(function(){
-        var value = $(this).val();
-				$(this).prop('checked', arr.indexOf(value) != -1);
-      })      
-    }
     $('.theme-list-btn').click(move_theme_list);
-
     $('.theme-item').click(function(e){
       e.preventDefault();
       $('.theme-item').removeClass('sel');
@@ -1531,7 +1499,8 @@
 
       hide_btn();
     })
-
+    
+    // 뉴스박스 이벤트
     function rollingNews(){
       if(!$('.after').first().is(':animated'))
       {
@@ -1540,8 +1509,7 @@
         })
       }
     }
-    var rolingNewsEvent = setInterval(rollingNews, 2500);
-   
+    
     $('.after>a').hover(function(){
       clearInterval(rolingNewsEvent);
       $(this).css("text-decoration", 'underline');
@@ -1549,7 +1517,10 @@
       rolingNewsEvent = setInterval(rollingNews, 2500);
       $(this).css("text-decoration", 'none');
     });
-
+    
+    var rolingNewsEvent = setInterval(rollingNews, 2500);
+   
+    // 로그인 창 하단 이슈 박스 이벤트
     function rollingIssuesLeft(){
       if(!$('.issue-wrap').children().first().is(':animated'))
       {
@@ -1557,7 +1528,7 @@
           $(this).detach().appendTo('.issue-wrap').removeAttr('style');
         })
       }
-    }
+    }   
     function rollingIssuesRight(){ 
       
       if(!$('.issue-wrap').children().first().is(':animated'))
@@ -1568,7 +1539,7 @@
         })
       } 
     }
-    var rollingIssueEvent = setInterval(rollingIssuesLeft, 2500);
+    
     $('.issue-btn-box .btn_left').click(rollingIssuesLeft);
     $('.issue-btn-box .btn_right').click(rollingIssuesRight);
     $('.issue-box').hover(function(){
@@ -1576,8 +1547,10 @@
     }, function(){
       rollingIssueEvent = setInterval(rollingIssuesLeft, 2500);
     });
+    
+    var rollingIssueEvent = setInterval(rollingIssuesLeft, 2500);
 
-    //체크
+    // 메뉴박스 이벤트
     var maxCheckMenu = 4;
     var checkMenuArr = [];
     var checkMenuArr_tmp = [];
@@ -1644,14 +1617,39 @@
         }
       }
 
+    }  
+    function reCheck(arr){ // each 내용 확인
+      $('.select-menu-item>input').each(function(){
+        var value = $(this).val();
+				$(this).prop('checked', arr.indexOf(value) != -1);
+      })      
     }
 
-    $('.more-menu-btn-box>a').click(function(e){
-      if($(this).attr('class') != 'menu-all'){
-        e.preventDefault(); 
-      }
-    })
 
+    $('.btn-more').click(function(e){
+      e.preventDefault();      
+      $('.more-menu-box').toggle();
+      $('.more-menu-btn-box').toggle()
+
+      if($('.btn-more').text() == '접기')
+      { 
+        $('.btn-more').text('더보기');
+        $('.btn-more').css('color', 'black');
+        if(checkMenuArr.length == 0){
+          menueDefaultShow(true);
+        }
+        menuCheckboxToggle(false);
+        menuBtnToggle(true);
+      }
+      else
+      {
+        $('.btn-more').text('접기');
+        $('.btn-more').css('color', 'green');
+      }
+      showFavoriteMe(checkMenuArr, false);
+      reCheck(checkMenuArr);
+    });
+    
     $('.select-menu-item>input').click(function(){        
 
       var value = $(this).val();
@@ -1675,15 +1673,16 @@
       showFavoriteMe(checkMenuArr_tmp, true)
     })
     
-    $('.menu-set').click(function(){
+    $('.menu-set').click(function(e){
+      e.preventDefault();
       menuCheckboxToggle(true);
       menuBtnToggle(false);
       menueDefaultShow(false);     
       showFavoriteMe(checkMenuArr, true)
       checkMenuArr_tmp = [...checkMenuArr];
     })
-
-    $('.menu-reset').click(function(){
+    $('.menu-reset').click(function(e){
+      e.preventDefault();
       menuCheckboxToggle(false);
       menuBtnToggle(true);
       menueDefaultShow(true);
@@ -1692,8 +1691,8 @@
       checkboxs.prop('checked', false);
       alert('초기설정으로 돌아갑니다.')
     })
-
-    $('.menu-save').click(function(){
+    $('.menu-save').click(function(e){
+      e.preventDefault();
       $('.btn-more').click();
       checkMenuArr = [...checkMenuArr_tmp];
       console.log('변경함')
