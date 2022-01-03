@@ -8,7 +8,16 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.green.khl.vo.MemberVO;
 
 @Controller
-public class Test2Controller {
+public class TestController {
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public ModelAndView testGet(ModelAndView mv, Integer num, String name) {
+		
+		mv.setViewName("test");
+//		mv.addObject("serverTime", "데이타");
+		System.out.println("/test ; num = " + num + ", name = " + name);
+		return mv;
+	}
 	
 	@RequestMapping(value = "/test2", method = RequestMethod.GET)	
 	public ModelAndView test2Get(ModelAndView mv){
