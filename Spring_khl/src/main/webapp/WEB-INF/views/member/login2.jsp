@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,7 +8,6 @@ pageEncoding="UTF-8"%>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>회원가입</title>
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -25,7 +23,7 @@ pageEncoding="UTF-8"%>
 	</style>
 </head>
 <body>
-	<form class="container signup" action="/khl/login2" method="post">
+	<form class="container signup" action="<%=request.getContextPath() %>/login2" method="post">
 		<h1 class="title text-center">회원가입</h1>
 		<div class="box" style="height: 100px; border: 1px solid black;">약관내용</div>
 		<div class="form-group">
@@ -147,8 +145,7 @@ pageEncoding="UTF-8"%>
 						// 건물명이 있고, 공동주택일 경우 추가한다.
 						if(data.buildingName !== '' && data.apartment === 'Y'){
 								extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-						}
-					
+						}					
 					} 
 					// 우편번호와 주소 정보를 해당 필드에 넣는다.
 					document.getElementById('postcode').value = data.zonecode;
