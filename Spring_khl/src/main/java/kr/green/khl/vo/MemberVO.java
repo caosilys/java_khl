@@ -9,8 +9,9 @@ public class MemberVO {
 	private String me_pw;
 	private String me_name;
 	private String me_gender;
-	//date타입으로 바꿔줘야함
-	private String me_birth;
+	private Date me_birth;
+	private String me_address;
+	private String me_phone;
 	
 	@Override
 	public String toString() {
@@ -42,10 +43,10 @@ public class MemberVO {
 	public void setMe_gender(String me_gender) {
 		this.me_gender = me_gender;
 	}
-	public String getMe_birth() {
+	public Date getMe_birth() {
 		return me_birth;
 	}
-	public void setMe_birth(String me_birth) {
+	public void setMe_birth(Date me_birth) {
 		this.me_birth = me_birth;
 	}
 	public String getMe_address() {
@@ -60,7 +61,6 @@ public class MemberVO {
 	public void setMe_phone(String me_phone) {
 		this.me_phone = me_phone;
 	}
-	private String me_address;
-	private String me_phone;
+
 
 }

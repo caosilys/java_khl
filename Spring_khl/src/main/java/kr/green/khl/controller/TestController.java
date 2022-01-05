@@ -16,18 +16,4 @@ public class testController {
 	MemberService memberService;
 	
 	
-	@RequestMapping(value = "/join", method = RequestMethod.GET)	
-	public ModelAndView joinGet(ModelAndView mv){		
-		mv.setViewName("/member/join");
-		return mv;
-	}
-	
-	//테스트중인코드
-	@RequestMapping(value = "/join", method = RequestMethod.POST)	
-	public ModelAndView joinTest(ModelAndView mv, MemberVO member){
-		System.out.println("가입정보 : "+ member);
-		memberService.join(member);
-		mv.setViewName("/main/home");
-		return mv;
-	}
 }

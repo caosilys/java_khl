@@ -6,4 +6,7 @@
 	<select id="getMember" resultType="kr.green.khl.vo.MemberVO">
 		select * from member where me_id = #{me_id}
 	</select>
+		<insert id="signup" parameterType="kr.green.khl.vo.MemberVO">		
+		insert into member value (#{me_id}, #{me_pw}, #{me_name}, #{me_gender}, #{me_birth}, #{me_address}, #{me_phone});
+	</insert>
 </mapper>

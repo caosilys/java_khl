@@ -18,12 +18,10 @@ pageEncoding="UTF-8"%>
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<!-- 우편번호 -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<style>
 
-	</style>
 </head>
 <body>
-	<form class="container signup" action="<%=request.getContextPath() %>/login2" method="post">
+	<form class="container signup" action="<%=request.getContextPath()%>/signup" method="post">
 		<h1 class="title text-center">회원가입</h1>
 		<div class="box" style="height: 100px; border: 1px solid black;">약관내용</div>
 		<div class="form-group">
@@ -34,29 +32,32 @@ pageEncoding="UTF-8"%>
 			</div>
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="아이디" name="id">
+			<input type="text" class="form-control" placeholder="아이디" name="me_id">
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control" placeholder="비밀번호" name="pw">
+			<input type="password" class="form-control" placeholder="비밀번호" name="me_pw">
 		</div>
 		<div class="form-group">
 			<input type="password" class="form-control" placeholder="비밀번호확인" name="pw2">
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="이름" name="name">
+			<input type="text" class="form-control" placeholder="이름" name="me_name">
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="생년월일" name="birth" id="birth">
+			<input type="text" class="form-control" placeholder="생년월일"  id="me_birth"> <!-- name 제거함 -->
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="전화번호"  name="me_phone"> 
 		</div>
 		<div class="form-group">
 			<div class="form-check-inline">
 				<label class="form-check-label">
-					<input type="radio" class="form-check-input" name="gender" value="남성">남성
+					<input type="radio" class="form-check-input" name="me_gender" value="남성">남성
 				</label>
 			</div>
 			<div class="form-check-inline">
 				<label class="form-check-label">
-					<input type="radio" class="form-check-input" name="gender" value="여성">여성
+					<input type="radio" class="form-check-input" name="me_gender" value="여성">여성
 				</label>
 			</div>
 		</div>
@@ -67,18 +68,18 @@ pageEncoding="UTF-8"%>
 			</div>
 			<input type="text" id="address" placeholder="주소" class="form-control mb-2">
 			<input type="text" id="detailAddress" placeholder="상세주소" class="form-control mb-2">
-			<input type="hidden" name="address">
+			<input type="hidden" name="me_address">
 		</div>
 		<button class="btn btn-outline-success col-12">회원가입</button>
 	</form>
 	<script>
 		$('form').submit(function(){
-			var id = $('[name=id]').val().trim();
-			var pw = $('[name=pw]').val().trim();
+			var id = $('[name=me_id]').val().trim();
+			var pw = $('[name=me_pw]').val().trim();
 			var pw2 = $('[name=pw2]').val().trim();
-			var name = $('[name=name]').val().trim();
-			var birth = $('[name=birth]').val().trim();
-			var genderObj = $('[name=gender]:checked');
+			var name = $('[name=me_name]').val().trim();
+			/* var birth = $('[name=me_birth]').val().trim(); */
+			var genderObj = $('[name=me_gender]:checked');
 			var gender = genderObj.length == 0 ? '' : genderObj.val();
 			var isAgree = $('[name=agree]').is(':checked');
 			//동의에 체크되지 않으면
@@ -89,12 +90,12 @@ pageEncoding="UTF-8"%>
 			}
 			if(id == ''){
 				alert('아이디를 입력하세요.');
-				$('[name=id]').focus();
+				$('[name=me_id]').focus();
 				return false;
 			}
 			if(pw == ''){
 				alert('비밀번호를 입력하세요.');
-				$('[name=pw]').focus();
+				$('[name=me_pw]').focus();
 				return false;
 			}
 			if(pw2 != pw){
@@ -104,25 +105,28 @@ pageEncoding="UTF-8"%>
 			}
 			if(name == ''){
 				alert('이름을 입력하세요.');
-				$('[name=name]').focus();
+				$('[name=me_name]').focus();
 				return false;
 			}
+			/*
 			if(birth == ''){
 				alert('생일을 입력하세요.');
-				$('[name=birth]').focus();
+				$('[name=me_birth]').focus();
 				return false;
 			}
+			*/
 			if(gender == ''){
 				alert('성별을 선택하세요.');
-				$('[name=gender]').focus();
+				$('[name=me_gender]').focus();
 				return false;
 			}
+			
 			var address = $('#address').val() + ' ' +$('#detailAddress').val();
-			$('[name=address]').val(address);
+			$('[name=me_address]').val(address);
 		});
 
-		$('#birth').datepicker();
-		$('#birth').datepicker('option','dateFormat', 'yy-mm-dd');
+		$('#me_birth').datepicker();
+		$('#me_birth').datepicker('option','dateFormat', 'yy-mm-dd');
 
 		function execDaumPostcode() {
 			new daum.Postcode({

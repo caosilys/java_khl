@@ -1,0 +1,54 @@
+구조
+화면(jsp) - Controller - Service(interface)  -	 DAO(interface)
+		ServiceImpl(구현클래스)	 매퍼(xml)
+
+화면 : jsp파일
+ex : <form action="여기" method="post"> 또는 <a href="여기">
+경로(value) 및 전송방식(method) 등을 데이터로 넘기기도 함.
+
+
+Controller : 
+url - jsp 
+화면을 뿌려주거나(setViewName) 화면에서 받은 데이터 처리 등
+
+Sercive :
+
+ServiceImpl : 
+
+dao : 
+
+1. 프로젝트 생성 
+Spring Lagacy Project
+-> (location 지정) - Spring MVC Project
+-> 패키지명 지정 (xx.xx.xx) - Finish
+
+2. 서버 생성
+Project Explorer - new - server
+-> Apache -> Tomcat v9.0 - Finish
+
+3. 한글인코딩
+web-xml에 인코딩 추가
+workspace 인코딩 확인
+각 jsp 파일 인코딩 확인
+
+4. 타일즈(화면구성) 연동 
+pom.xml : 타일즈 의존성 추가
+servlet-context.xml : View Resolver 등록
+WEB-INF > Spring > tiles-def.xml 생성(tiles 정의)
+기본 레이아웃 설정
+
+5. DB연동				dao: data Access Object : DB에 접근하는 객체
+pom.xml : 의존성추가		       가급적 DB 접근은 해당 객체로만 할 것
+root-context.xml : Namespace에 aop, beans, context, jdbc, mybatis-spring 체크
+		Mysql 정보추가 : 1. DB이름 체크(스키마) 2.타임존 체크 3. DB id,pw 체크
+		mapper 설정 : base-package 경로 확인 및 dao설정
+
+6. 트랜잭션 생성?
+Service, ServiceIMP, DAO 패키지/파일 생성
+src/main/resources 에 mappers 폴더 및 mapper 생성 (root-contex..xml에서 지정한 경로 및 이름 패턴)
+mapper : namespace 정의
+
+
+
+
+

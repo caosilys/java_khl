@@ -29,6 +29,5 @@
 	</bean>
 	
 	<mybatis-spring:scan base-package="kr.green.khl.dao"/>
-	<mybatis-spring:scan base-package="kr.green.khl.service"/> 
 		
 </beans>

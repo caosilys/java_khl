@@ -78,3 +78,5 @@ select * from comunity.member;
 insert into member
 value ("abc123", "abc123", '테스트', '남', '19980510', '청주', '010-1234-5678');
 
+delete from comunity.member where me_id = 'def12'
+

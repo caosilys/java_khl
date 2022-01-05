@@ -22,10 +22,10 @@ public class MemberServiceImp implements MemberService{
 		return null;
 	}
 
-	@Override
-	public void join(MemberVO member) {
-		// 이미있는 아이디 예외처리 필요함
-		System.out.println("test"); 
-		System.out.println(member);
+	public void signup(MemberVO member) {
+		
+		// 이미있는 아이디 예외처리 필요함!
+		memberDao.signup(member);
+		
 	}
 }
