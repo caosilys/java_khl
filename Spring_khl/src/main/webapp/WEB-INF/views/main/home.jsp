@@ -7,6 +7,8 @@
 	<title>Home</title>
 </head>
 	<body>
-		<h1>메인</h1>
+		<div class="body">
+			<h1>메인</h1>
+		</div>
 	</body>
 </html>

@@ -1,5 +1,7 @@
 package kr.green.khl.vo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 //테이블을 VO로 만들어야함
@@ -43,11 +45,20 @@ public class MemberVO {
 	public void setMe_gender(String me_gender) {
 		this.me_gender = me_gender;
 	}
+	
 	public Date getMe_birth() {
 		return me_birth;
 	}
-	public void setMe_birth(Date me_birth) {
-		this.me_birth = me_birth;
+
+	public void setMe_birth(String me_birth)  {		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			this.me_birth = format.parse(me_birth);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			System.out.println("날짜정보 에러");
+			System.out.println("birth 정보 : " +  me_birth);
+		}
 	}
 	public String getMe_address() {
 		return me_address;

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@ pageEncoding="UTF-8"%>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>회원가입</title>
-
+	
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -21,7 +22,7 @@ pageEncoding="UTF-8"%>
 
 </head>
 <body>
-	<form class="container signup" action="<%=request.getContextPath()%>/signup" method="post">
+	<form class="container signup body" action="<%=request.getContextPath()%>/signup" method="post">
 		<h1 class="title text-center">회원가입</h1>
 		<div class="box" style="height: 100px; border: 1px solid black;">약관내용</div>
 		<div class="form-group">
@@ -32,19 +33,19 @@ pageEncoding="UTF-8"%>
 			</div>
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="아이디" name="me_id">
+			<input type="text" class="form-control" placeholder="아이디" name="me_id" value="${member.me_id}">
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control" placeholder="비밀번호" name="me_pw">
+			<input type="password" class="form-control" placeholder="비밀번호" name="me_pw" value="${member.me_pw}">
 		</div>
 		<div class="form-group">
 			<input type="password" class="form-control" placeholder="비밀번호확인" name="pw2">
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="이름" name="me_name">
+			<input type="text" class="form-control" placeholder="이름" name="me_name" value="${member.me_name}">
 		</div>
 		<div class="form-group">
-			<input type="text" class="form-control" placeholder="생년월일"  id="me_birth"> <!-- name 제거함 -->
+			<input type="text" class="form-control" placeholder="생년월일" name="me_birth" id="birth" ${member.me_birth}>
 		</div>
 		<div class="form-group">
 			<input type="text" class="form-control" placeholder="전화번호"  name="me_phone"> 
@@ -78,7 +79,7 @@ pageEncoding="UTF-8"%>
 			var pw = $('[name=me_pw]').val().trim();
 			var pw2 = $('[name=pw2]').val().trim();
 			var name = $('[name=me_name]').val().trim();
-			/* var birth = $('[name=me_birth]').val().trim(); */
+			var birth = $('[name=me_birth]').val().trim();
 			var genderObj = $('[name=me_gender]:checked');
 			var gender = genderObj.length == 0 ? '' : genderObj.val();
 			var isAgree = $('[name=agree]').is(':checked');
@@ -108,13 +109,13 @@ pageEncoding="UTF-8"%>
 				$('[name=me_name]').focus();
 				return false;
 			}
-			/*
+			
 			if(birth == ''){
 				alert('생일을 입력하세요.');
 				$('[name=me_birth]').focus();
 				return false;
 			}
-			*/
+			
 			if(gender == ''){
 				alert('성별을 선택하세요.');
 				$('[name=me_gender]').focus();
@@ -125,8 +126,8 @@ pageEncoding="UTF-8"%>
 			$('[name=me_address]').val(address);
 		});
 
-		$('#me_birth').datepicker();
-		$('#me_birth').datepicker('option','dateFormat', 'yy-mm-dd');
+		$('#birth').datepicker();
+		$('#birth').datepicker('option','dateFormat', 'yy-mm-dd');
 
 		function execDaumPostcode() {
 			new daum.Postcode({

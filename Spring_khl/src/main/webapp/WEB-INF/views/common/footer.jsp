@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="container-fluid" >
-	  <div class="jumbotron" style="margin-bottom: 0">
+	  <div class="jumbotron" style="margin-bottom: 0 ; margin-top:20px;">
 	    <h1>푸터</h1>      
 		</div>	         
 	</div>
