@@ -23,12 +23,12 @@
           </tr>
         </thead>
         <tbody>
-        <c:forEach var="list" items="${boardList}">
+        <c:forEach items="${list}" var="board">
 	        <tr>
-	       		 <td>${list.bd_num}</td>
-		         <td><a href="<%=request.getContextPath()%>/board/list/${list.bd_num}">${list.bd_title}</a></td>
-		         <td>${list.bd_me_id}</td>
-		         <td>${list.bd_reg_date}</td>
+	       		 <td>${board.bd_num}</td>
+		         <td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">${board.bd_title}</a></td>
+		         <td>${board.bd_me_id}</td>
+		         <td>${board.bd_reg_date_str}</td>
 		  		</tr>
         </c:forEach>
       </table>

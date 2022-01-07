@@ -19,32 +19,33 @@
 	  <!-- Links -->
 	  <ul class="navbar-nav">
 	  <!-- 로그인 되어있지 않으면(세션에 유저가 없음) -->
-		<c:if test="${user == null}"> 
-		    <li class="nav-item">
-		      <a class="nav-link" href="<%=request.getContextPath() %>/login">로그인</a>
-		    </li>
-		    <li class="nav-item">
-		      <a class="nav-link" href="<%=request.getContextPath() %>/signup">회원가입</a>
-		    </li>
-	     </c:if>
-	     <!-- 로그인 되어있음(세션에 유저가 있음) -->
-	     <c:if test="${user != null}">
-	     			    <li class="nav-item">
-		      <a class="nav-link" href="<%=request.getContextPath() %>/logout">로그아웃</a>
-		    </li>
-	     </c:if>
-   	    <li class="nav-item">
+	    <li class="nav-item">
 	      <a class="nav-link" href="<%=request.getContextPath() %>/notice/list">공지사항</a>
 	    </li>
-      	    <li class="nav-item">
+	    <li class="nav-item">
 	      <a class="nav-link" href="<%=request.getContextPath() %>/board/list">게시글</a>
 	    </li>
 	    <li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath() %>/memberlist">${user.me_id}</a>
-	    </li>
-		<li class="nav-item">
 	      <a class="nav-link" href="<%=request.getContextPath() %>/memberlist">회원정보</a>
 	    </li>
+		<c:if test="${user == null}"> 		    
+			<li class="nav-item">
+		    	<a class="nav-link" href="<%=request.getContextPath() %>/signup">회원가입</a>
+		    </li>
+		    <li class="nav-item">
+		    	<a class="nav-link" href="<%=request.getContextPath() %>/login">로그인</a>
+		    </li>
+	    </c:if>
+	    <!-- 로그인 되어있음(세션에 유저가 있음) -->
+	     <c:if test="${user != null}">
+		     <li class="nav-item">
+		      <a class="nav-link" href="<%=request.getContextPath() %>/mypage">${user.me_id}님의 MyPage</a>
+			</li>
+			<li class="nav-item">
+		      <a class="nav-link" href="<%=request.getContextPath() %>/logout">로그아웃</a>
+		    </li>
+	     </c:if>	    
+
 	  </ul>
 	</nav>
 </body>

@@ -24,47 +24,83 @@ public class BoardController {
 	BoardService boardService;
 	
 	//일반적으로 get 방식을 사용함 
+	// 게시글 목록 보기
 	@RequestMapping(value="list")
 	public ModelAndView boardList(ModelAndView mv) {
 		
-		//테스트코드
-		List<BoardVO> boardList = boardService.getBoardList();
-		mv.addObject("boardList", boardList);
-		//테스트코드
-		
+		List<BoardVO> List = boardService.getBoardList("일반");
+		mv.addObject("list", List);
 		mv.setViewName("/board/list");
 		return mv;
 	}
-			
+	
+	//게시글 등록 페이지 이동
 	@RequestMapping(value="register", method=RequestMethod.GET)
-	public ModelAndView BoardRegisterGet(ModelAndView mv) {
+	public ModelAndView boardRegisterGet(ModelAndView mv) {
 		mv.setViewName("/board/register");
 		return mv;
 	}
 	
+	//게시글 등록
 	@RequestMapping(value="register", method=RequestMethod.POST)
-	public ModelAndView BoardRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
+	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
 		
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		board.setBd_me_id(user.getMe_id());
 		board.setBd_type("일반");
-		boardService.registerBoard(board);		
+		boardService.registerBoard(board);
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
 	
-	//테스트코드
-	@RequestMapping(value="list/*")
-	public ModelAndView viewContent(ModelAndView mv, HttpServletRequest request) {
-		
-		String uri = request.getRequestURI();
-		String contentNum = uri.substring(uri.lastIndexOf("/")+1);	
-		BoardVO	content = boardService.getContent(contentNum);
-		
-		mv.addObject("content", content);
-		
-		mv.setViewName("/board/content");
+	// 게시글 보기 
+	@RequestMapping(value="/detail")
+	public ModelAndView boardDetail(ModelAndView mv, Integer bd_num) {
+				
+		BoardVO board = boardService.getBoard(bd_num);	
+		mv.addObject("board", board);		
+		mv.setViewName("/board/detail");
 		return mv;
 	}
+	
+	//게시글 삭제
+	@RequestMapping(value="delete", method=RequestMethod.GET)
+	public ModelAndView boardDelete(ModelAndView mv, Integer bd_num, HttpServletRequest request) {
+
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		//서비스에게 게시글정보, 로그인한 유저정보를 주면서 게시글 삭제
+		boardService.deleteBoard(bd_num, user);		
+		mv.setViewName("redirect:/board/list");
+		return mv;
+	}	
+	
+	
+	//게시글 수정 페이지로 이동 
+		@RequestMapping(value="modify", method=RequestMethod.GET)
+		public ModelAndView boardUpdateGet(ModelAndView mv, Integer bd_num, HttpServletRequest request) {
+						
+			//수정페이지가 정상적으로 떠도 되는지 확인 필요			
+			MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		
+			// 수정페이지를 띄워주는 부분
+			BoardVO board = boardService.getBoard(bd_num);
+			mv.addObject("board", board);	
+			mv.setViewName("/board/register");
+			return mv;
+		}
+		
+		//게시글 수정 동작
+		@RequestMapping(value="modify", method=RequestMethod.POST)
+		public ModelAndView boardUpdatePost(ModelAndView mv, BoardVO board, Integer bd_num, HttpServletRequest request) {
+											
+			MemberVO user = (MemberVO)request.getSession().getAttribute("user");			
+			board.setBd_me_id(user.getMe_id());
+			board.setBd_type("일반");
+			System.out.println(board);
+			
+			// user 정보도 넘겨줘야 하는가? => ID를 넣어줬으니 필요없다고 봄
+			boardService.updateBoard(board);
+			mv.setViewName("redirect:/board/list");
+			return mv;			
+		}
 }

@@ -78,5 +78,12 @@ select * from comunity.member;
 insert into member
 value ("abc123", "abc123", '테스트', '남', '19980510', '청주', '010-1234-5678');
 
-delete from comunity.member where me_id = 'def12'
+select * from board where bd_num = "1" and bd_del="N";
+
+update board set bd_del = 'N', bd_del_date = now() where bd_num = 1;
+
+select * from board;
+
+update board set bd_title = '변경' , bd_content = '변경', bd_up_date = now() where bd_num = 4;
+
 

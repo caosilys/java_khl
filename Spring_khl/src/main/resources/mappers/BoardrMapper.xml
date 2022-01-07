@@ -11,9 +11,17 @@
 		from board
 	</insert>
 	<select id="getBoardList"  resultType="kr.green.khl.vo.BoardVO">
-		select bd_num, bd_title, bd_me_id, bd_reg_date from board
+		select bd_num, bd_title, bd_me_id, bd_reg_date from board 
+		where bd_type = #{type} and bd_del='N'
+		order by bd_num desc
 	</select>
-	<select id="getContent"  resultType="kr.green.khl.vo.BoardVO">
-		select * from board where bd_num = #{contentNum}
+	<select id="getBoard"  resultType="kr.green.khl.vo.BoardVO">
+		select * from board where bd_num = #{bd_num} and bd_del='N'
 	</select>
+	<update id="deleteBoard">
+		update board set bd_del = 'Y' , bd_del_date = now() where bd_num = #{bd_num};
+	</update>	
+	<update id="updateBoard">
+		update board set bd_title = #{board.bd_title} , bd_content = #{board.bd_content}, bd_up_date = now() where bd_num = #{board.bd_num};
+	</update>
 </mapper>

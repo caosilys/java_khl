@@ -2,6 +2,8 @@ package kr.green.khl.controller;
 
 import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,16 +25,29 @@ public class testController {
 		
 		List<MemberVO> userList =	memberService.getList();
 		mv.addObject("member", userList);
-		mv.setViewName("/member/memberlist");
+		mv.setViewName("/test/memberlist");
 		return mv;
 	}
 	
-	@RequestMapping(value = "/memberlist", method = RequestMethod.POST)	
-	public ModelAndView memberListPost(ModelAndView mv){		
+//	@RequestMapping(value = "/memberlist", method = RequestMethod.POST)	
+//	public ModelAndView memberListPost(ModelAndView mv){		
+//		
+//		List<MemberVO> userList =	memberService.getList();
+//		mv.addObject("member", userList);
+//		mv.setViewName("/test/memberlist");
+//		return mv;
+//	}
+	
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)	
+	public ModelAndView myPageGet(ModelAndView mv, HttpServletRequest request){
 		
-		List<MemberVO> userList =	memberService.getList();
-		mv.addObject("member", userList);
-		mv.setViewName("/member/memberlist");
+		if(request.getSession().getAttribute("user") == null) {
+			mv.setViewName("/test/home");
+			System.out.println("세션이 만료되어 로그아웃되었습니다.");
+		}
+		else {
+			mv.setViewName("/test/mypage");
+		}	
 		return mv;
 	}
 }

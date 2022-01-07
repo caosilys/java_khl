@@ -10,7 +10,11 @@ public interface BoardDAO {
 
 	void insertBoard(@Param("board")BoardVO board);
 	
-	//테스트
-	List<BoardVO> getBoardList();
-	BoardVO getContent(@Param("contentNum")String contentNum);
+	List<BoardVO> getBoardList(@Param("type")String type);
+	
+	BoardVO getBoard(@Param("bd_num")Integer bd_num);
+
+	void deleteBoard(@Param("bd_num")Integer bd_num);
+
+	void updateBoard(@Param("board")BoardVO board);
 }

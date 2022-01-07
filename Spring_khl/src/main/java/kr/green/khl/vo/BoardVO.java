@@ -1,5 +1,6 @@
 package kr.green.khl.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BoardVO {
@@ -34,6 +35,12 @@ public class BoardVO {
 		}
 		public Date getBd_reg_date() {
 			return bd_reg_date;
+		}
+		public String getBd_reg_date_str() {
+			
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			String str_date = format.format(bd_reg_date);			
+			return str_date;
 		}
 		public void setBd_reg_date(Date bd_reg_date) {
 			this.bd_reg_date = bd_reg_date;

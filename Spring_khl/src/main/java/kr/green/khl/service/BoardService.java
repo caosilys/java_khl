@@ -3,14 +3,18 @@ package kr.green.khl.service;
 import java.util.List;
 
 import kr.green.khl.vo.BoardVO;
+import kr.green.khl.vo.MemberVO;
 
 public interface BoardService {
 
 	void registerBoard(BoardVO board);
 
-	List<BoardVO> getBoardList();
+	List<BoardVO> getBoardList(String string);
 
-	//테스트중인 코드
-	BoardVO getContent(String contentNum);
+	BoardVO getBoard(Integer bd_num);
+
+	void deleteBoard(Integer bd_num, MemberVO user);
+
+	void updateBoard(BoardVO board);
 
 }

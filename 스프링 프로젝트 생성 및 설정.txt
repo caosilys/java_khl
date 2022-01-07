@@ -1,17 +1,21 @@
+작업중 => 답글달기 / 마이페이지화면구성
+
+
+
 구조
-화면(jsp) - Controller - Service(interface)  -	 DAO(interface)
-		ServiceImpl(구현클래스)	 매퍼(xml)
+         인터셉터동작
+화면(jsp) 		Controller	Service(interface)		DAO(interface) 	매퍼(xml)
+         				ServiceImpl(구현클래스)	 
 
 화면 : jsp파일
 ex : <form action="여기" method="post"> 또는 <a href="여기">
 경로(value) 및 전송방식(method) 등을 데이터로 넘기기도 함.
 
-
 Controller : 
 url - jsp 
 화면을 뿌려주거나(setViewName) 화면에서 받은 데이터 처리 등
 
-Sercive :
+Sercive : 기능정의
 
 ServiceImpl : 
 

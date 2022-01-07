@@ -59,11 +59,9 @@ public class HomeController {
 		
 		MemberVO user = 	memberService.login(member);
 		if(user == null) {
-			System.out.println("로그인 실패");
 			mv.setViewName("redirect:/login");
 		}
 		else {
-			System.out.println("로그인 성공");
 			mv.addObject("user",user);
 			mv.setViewName("redirect:/");
 		}
@@ -73,7 +71,6 @@ public class HomeController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ModelAndView logoutGet(ModelAndView mv, HttpServletRequest request) {
 		request.getSession().removeAttribute("user") ;
-		System.out.println("로그아웃");
 		mv.setViewName("redirect:/");
 		return mv;
 	}
