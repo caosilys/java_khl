@@ -12,9 +12,13 @@ public interface BoardService {
 	List<BoardVO> getBoardList(String string);
 
 	BoardVO getBoard(Integer bd_num);
+	
+	BoardVO getBoard(Integer bd_num, String me_id);
 
 	void deleteBoard(Integer bd_num, MemberVO user);
 
 	void updateBoard(BoardVO board);
+
+	
 
 }

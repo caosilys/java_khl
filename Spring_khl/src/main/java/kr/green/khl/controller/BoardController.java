@@ -45,6 +45,7 @@ public class BoardController {
 	@RequestMapping(value="register", method=RequestMethod.POST)
 	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
 		
+		
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		board.setBd_me_id(user.getMe_id());
 		board.setBd_type("일반");
@@ -77,30 +78,33 @@ public class BoardController {
 	
 	//게시글 수정 페이지로 이동 
 		@RequestMapping(value="modify", method=RequestMethod.GET)
-		public ModelAndView boardUpdateGet(ModelAndView mv, Integer bd_num, HttpServletRequest request) {
-						
-			//수정페이지가 정상적으로 떠도 되는지 확인 필요			
-			MemberVO user = (MemberVO)request.getSession().getAttribute("user");
-		
+		public ModelAndView boardmodifyGet(ModelAndView mv, Integer bd_num, HttpServletRequest request) {
+			
 			// 수정페이지를 띄워주는 부분
-			BoardVO board = boardService.getBoard(bd_num);
-			mv.addObject("board", board);	
-			mv.setViewName("/board/register");
+			//수정페이지가 정상적으로 떠도 되는지 확인 하기위해 id정보 넘겨줌
+			MemberVO user = (MemberVO)request.getSession().getAttribute("user");	
+			BoardVO board = boardService.getBoard(bd_num, user.getMe_id());
+			if(board == null) {
+				System.out.println("잘못된 접근");
+				mv.setViewName("redirect:/board/list");
+			}
+			else {
+				mv.addObject("board", board);	
+				mv.setViewName("/board/modify");
+			}
 			return mv;
 		}
 		
 		//게시글 수정 동작
 		@RequestMapping(value="modify", method=RequestMethod.POST)
-		public ModelAndView boardUpdatePost(ModelAndView mv, BoardVO board, Integer bd_num, HttpServletRequest request) {
-											
-			MemberVO user = (MemberVO)request.getSession().getAttribute("user");			
-			board.setBd_me_id(user.getMe_id());
-			board.setBd_type("일반");
-			System.out.println(board);
-			
-			// user 정보도 넘겨줘야 하는가? => ID를 넣어줬으니 필요없다고 봄
+		public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board) {
+							
 			boardService.updateBoard(board);
-			mv.setViewName("redirect:/board/list");
+			
+			mv.addObject("bd_num", board.getBd_num());
+			mv.setViewName("redirect:/board/detail");			
 			return mv;			
 		}
+		
+
 }

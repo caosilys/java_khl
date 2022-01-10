@@ -3,16 +3,20 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>kr.green</groupId>
-	<artifactId>khl</artifactId>
-	<name>Spring_khl</name>
+	<artifactId>spring</artifactId>
+	<name>Spring_green</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
+		<!-- 타일즈 적용시 버전 수정 -->
 		<org.springframework-version>5.1.8.RELEASE</org.springframework-version>
+		<!-- 타일즈 적용시 버전 수정 -->
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<!-- 타일즈 적용시 내용 추가 -->		
 		<org.apache.tiles-version>3.0.8</org.apache.tiles-version>
+		<!-- 타일즈 적용시 내용 추가 -->		
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -117,7 +121,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
-		
+<!-- 타일즈 적용시 의존성 추가 -->		
 		<!-- Tiles -->
 		<dependency>
 		    <groupId>org.apache.tiles</groupId>
@@ -134,7 +138,6 @@
 		    <artifactId>tiles-jsp</artifactId>
 		    <version>${org.apache.tiles-version}</version>
 		</dependency>
-		
 		<dependency>
 		    <groupId>org.apache.tiles</groupId>
 		    <artifactId>tiles-core</artifactId>
@@ -145,8 +148,9 @@
 		    <artifactId>tiles-template</artifactId>
 		    <version>${org.apache.tiles-version}</version>
 		</dependency>
-		
-		<!-- mybatis 의존성 추가 -->
+<!-- 타일즈 적용시 의존성 추가 -->
+
+<!-- DB연동을 위한 Mybatis 의존성 추가 -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis</artifactId>
@@ -169,26 +173,9 @@
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-jdbc</artifactId>
 		    <version>${org.springframework-version}</version>
-		</dependency>		
-		<!--스프링시큐리티 web 라이브러리-->
-		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-web</artifactId>
-		    <version>4.1.0.RELEASE</version>
 		</dependency>
-		  <!--스프링시큐리티 core 라이브러리-->
-		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-core</artifactId>
-		    <version>4.1.0.RELEASE</version>
-		</dependency>
-		  <!--스프링시큐리티 config 라이브러리-->
-		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-config</artifactId>
-		    <version>4.1.0.RELEASE</version>
-		</dependency>
-				        
+<!-- DB연동을 위한 Mybatis 의존성 추가 -->
+		        
 	</dependencies>
     <build>
         <plugins>

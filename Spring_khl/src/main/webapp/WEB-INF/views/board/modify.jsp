@@ -11,16 +11,16 @@
   <title>Document</title>
 </head>
 <body>
-	
-	<form action="<%=request.getContextPath()%>/board/register" method="post" class="container body">
-		<h1>게시글 등록</h1>
+	<form action="<%=request.getContextPath()%>/board/modify" method="post" calss="container body">
+		<h1>게시글 수정</h1>
 		<div class="form-group">
-		 	<input type="text" class="form-control" name="bd_title" placeholder="제목">
+		 	<input type="text" class="form-control" name="bd_title" value="${board.bd_title}">  
 		</div>
 		<div class="form-group">
-			<textarea class="form-control" name="bd_content" placeholder="내용" rows="10" style="resize:none"></textarea>
+			<textarea class="form-control" name="bd_content"  rows="10" style="resize:none">${board.bd_content}</textarea>
 		</div>
-		<button class="btn btn-outline-success col-12">등록</button>
+		<input type="hidden" name="bd_num" value="${board.bd_num}">
+		<button class="btn btn-outline-success col-12">수정</button>
 	</form>
 </body>
 </html>

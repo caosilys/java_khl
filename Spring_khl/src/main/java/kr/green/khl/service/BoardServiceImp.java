@@ -20,13 +20,11 @@ public class BoardServiceImp implements BoardService{
 		if(	board == null ||
 			board.getBd_title() == null ||
 			board.getBd_content() == null ||
-			board.getBd_me_id() == null)
-		{
-			System.out.println("boardServiceImp 작업실패 "); return;
-		}			
+			board.getBd_me_id() == null) return;
+
 			boardDao.insertBoard(board);			
 	}
-
+	
 	@Override
 	public List<BoardVO> getBoardList(String type) {
 		
@@ -39,6 +37,17 @@ public class BoardServiceImp implements BoardService{
 		if(bd_num == null || bd_num <= 0) return null;
 
 		return boardDao.getBoard(bd_num);
+		
+	}
+	
+	@Override
+	public BoardVO getBoard(Integer bd_num, String me_id) {
+		if(bd_num == null || bd_num <= 0) return null;
+		
+		BoardVO board = boardDao.getBoard(bd_num);
+		if(board ==null || !board.getBd_me_id().equals(me_id)) return null;
+		
+		return board;
 		
 	}
 
@@ -68,12 +77,11 @@ public class BoardServiceImp implements BoardService{
 
 	@Override
 	public void updateBoard(BoardVO board) {
-		
-		//유저정보 확인?
-		BoardVO oriBoard = boardDao.getBoard(board.getBd_num());
-		
+				
 		boardDao.updateBoard(board);
-		
 	}
+
+
+
 
 }
