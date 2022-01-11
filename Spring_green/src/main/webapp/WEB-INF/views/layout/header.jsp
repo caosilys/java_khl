@@ -8,6 +8,8 @@
 <title>해더</title>
 </head>
 <body>
-	<h1>해더</h1>
+	<a href="#" style="margin: 8px">
+		<img alt="햄버거" src="resources/img/Hamburger_icon.png" style="width: 50px; height: 50px">
+	</a>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <title>홈</title>
 </head>
 <body>
-	<div class="_content">
+	<div>
 		<h1>홈</h1>
 	</div>
 </body>

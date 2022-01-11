@@ -23,7 +23,7 @@
 	
 	<context:component-scan base-package="kr.green.spring.*" />
 	
-		<!-- 타일즈 적용 -->
+<!-- 타일즈 적용 -->
 	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
     <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
     <beans:property name="order" value="1" /><!-- 순서를 우선으로 지정 -->
@@ -36,6 +36,16 @@
 	        </beans:list>
 	    </beans:property>
 	</beans:bean>
-	<!-- 타일즈 적용 -->
-	
+<!-- 타일즈 적용 -->
+<!-- 로그인 인터셉터 등록-->	
+	<beans:bean id="loginInterceptor" class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean>
+	<interceptors>
+    <interceptor>
+        <mapping path="/login"/>
+        <beans:ref bean="loginInterceptor"/>
+    </interceptor>
+</interceptors>
+<!-- 로그인 인터셉터 -->
+
+
 </beans:beans>

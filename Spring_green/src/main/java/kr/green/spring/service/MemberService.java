@@ -1,8 +1,13 @@
 package kr.green.spring.service;
 
+import kr.green.spring.vo.MemberVO;
 
 public interface MemberService {
 
-	String getTest();
+	MemberVO getMember(String bd_id);
+
+	void signUpMember(MemberVO member);
+
+	MemberVO login(MemberVO member);
 
 }
