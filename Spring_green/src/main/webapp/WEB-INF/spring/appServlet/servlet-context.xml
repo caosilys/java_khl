@@ -37,15 +37,28 @@
 	    </beans:property>
 	</beans:bean>
 <!-- 타일즈 적용 -->
-<!-- 로그인 인터셉터 등록-->	
+<!-- 인터셉터 등록-->	
 	<beans:bean id="loginInterceptor" class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="memberInterceptor" class="kr.green.spring.interceptor.MemberInterceptor"></beans:bean>
+	<beans:bean id="guestInterceptor" class="kr.green.spring.interceptor.GuestInterceptor"></beans:bean>	
 	<interceptors>
     <interceptor>
         <mapping path="/login"/>
         <beans:ref bean="loginInterceptor"/>
     </interceptor>
-</interceptors>
-<!-- 로그인 인터셉터 -->
+    <interceptor>
+        <mapping path="/board/register"/>
+        <mapping path="/board/modify"/>
+        <mapping path="/board/delete"/>
+        <beans:ref bean="memberInterceptor"/>
+    </interceptor>
+    <interceptor>
+        <mapping path="/login"/>
+        <mapping path="/signup"/>
+        <beans:ref bean="guestInterceptor"/>
+    </interceptor>
+	</interceptors>
+	<!-- 인터셉터 -->
 
 
 </beans:beans>

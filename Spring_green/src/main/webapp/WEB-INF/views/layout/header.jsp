@@ -9,7 +9,7 @@
 </head>
 <body>
 	<a href="#" style="margin: 8px">
-		<img alt="햄버거" src="resources/img/Hamburger_icon.png" style="width: 50px; height: 50px">
+		<img alt="햄버거" src="${pageContext.request.contextPath}/resources/img/Hamburger_icon.png" style="width: 50px; height: 50px">
 	</a>
 </body>
 </html>
