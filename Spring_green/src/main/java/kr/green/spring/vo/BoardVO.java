@@ -30,6 +30,13 @@ public class BoardVO {
 		return strdate;
 	}
 	
+	public String getBd_up() {
+		if(bd_up_date == null) return null;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		String strdate = sdf.format(bd_up_date);
+		return strdate;
+	}
+	
 	
 	
 }

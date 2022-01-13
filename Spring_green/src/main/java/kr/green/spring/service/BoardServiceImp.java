@@ -26,4 +26,32 @@ public class BoardServiceImp implements BoardService{
 		return boardDao.detailGet(bd_num);
 	}
 
+	@Override
+	public void registerPost(BoardVO board) {
+		
+		//기타 예외처리
+		boardDao.registerPost(board);
+	}
+	
+	@Override
+	public void modifyPost(BoardVO board, String userID) {
+		
+		if(!userID.equals(board.getBd_me_id())) return;
+		
+		// 기타예외처리
+		boardDao.modifyPost(board);		
+	}
+	
+	@Override
+	public void deleteGet(Integer bd_num, String userID) {
+		String board_id = boardDao.detailGet(bd_num).getBd_me_id();		
+		if(!board_id.equals(userID)) return;
+		
+		//기타 예외처리
+		
+		boardDao.deleteGet(bd_num);
+	}
+
+
+
 }

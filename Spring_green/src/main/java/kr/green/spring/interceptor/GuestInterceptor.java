@@ -19,7 +19,7 @@ public class GuestInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session = request.getSession();
 		Object user = session.getAttribute("user");
 		if(user != null) {
-			response.sendRedirect(request.getContextPath()+"/");
+			response.sendRedirect(request.getContextPath()+"/");			
 			return false;
 		}
 		return true;

@@ -12,4 +12,10 @@ public interface BoardDAO {
 
 	BoardVO detailGet(@Param("bd_num")Integer bd_num);
 
+	void registerPost(@Param("board")BoardVO board);
+
+	void deleteGet(@Param("bd_num")Integer bd_num);
+
+	void modifyPost(@Param("board")BoardVO board);
+
 }

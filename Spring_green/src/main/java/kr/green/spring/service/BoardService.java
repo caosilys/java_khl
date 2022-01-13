@@ -10,4 +10,9 @@ public interface BoardService {
 
 	BoardVO detailGet(Integer bd_num);
 
+	void registerPost(BoardVO board);
+
+	void deleteGet(Integer bd_num, String userID);
+
+	void modifyPost(BoardVO board, String userID);
 }

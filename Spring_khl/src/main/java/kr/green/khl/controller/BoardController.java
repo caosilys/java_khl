@@ -70,7 +70,7 @@ public class BoardController {
 
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		//서비스에게 게시글정보, 로그인한 유저정보를 주면서 게시글 삭제
-		boardService.deleteBoard(bd_num, user);		
+		boardService.deleteBoard(bd_num, user);
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}	

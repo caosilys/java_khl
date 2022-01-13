@@ -31,7 +31,12 @@
           </tr>
         </c:forEach>
       </tbody>
-    </table>
+    </table>    
+    <div class="form-group">
+    	<c:if test="${user != null }">
+    		<a href="<%=request.getContextPath()%>/board/register"><button class="btn btn-outline-dark">글쓰기</button></a>
+    	</c:if>   	
+    </div>
   </div>
 </body>
 </html>
