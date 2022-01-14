@@ -149,7 +149,6 @@
 		    <version>${org.apache.tiles-version}</version>
 		</dependency>
 <!-- 타일즈 적용시 의존성 추가 -->
-
 <!-- DB연동을 위한 Mybatis 의존성 추가 -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
@@ -189,12 +188,21 @@
 		    <version>4.1.0.RELEASE</version>
 		</dependency>
   <!--스프링시큐리티 config 라이브러리-->
+<!-- 비밀번호 암호화를 위한 의존성 추가 -->	  
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-config</artifactId>
 		    <version>4.1.0.RELEASE</version>
 		</dependency>
-<!-- 비밀번호 암호화를 위한 의존성 추가 -->			        
+<!-- 비밀번호 암호화를 위한 의존성 추가 -->	
+<!-- 롬복 의존성 추가 -->
+		<dependency> 
+			<groupId>org.projectlombok</groupId> 
+			<artifactId>lombok</artifactId> 
+			<version>1.18.20</version> 
+			<scope>provided</scope> 
+		</dependency>
+<!-- 롬복 의존성 추가 -->	        
 	</dependencies>
     <build>
         <plugins>

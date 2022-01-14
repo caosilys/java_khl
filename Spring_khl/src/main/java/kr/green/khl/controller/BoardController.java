@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.khl.service.*;
+import kr.green.khl.utils.UploadFileUtils;
 import kr.green.khl.vo.*;
 
 // 게시글 url을 담당하는 컨트롤러 /board/XXX 을 담당
@@ -43,13 +45,12 @@ public class BoardController {
 	
 	//게시글 등록
 	@RequestMapping(value="register", method=RequestMethod.POST)
-	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
-		
-		
+	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request, MultipartFile file) throws Exception {
+				
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
 		board.setBd_me_id(user.getMe_id());
 		board.setBd_type("일반");
-		boardService.registerBoard(board);
+		boardService.registerBoard(board, file);
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
@@ -58,7 +59,9 @@ public class BoardController {
 	@RequestMapping(value="/detail")
 	public ModelAndView boardDetail(ModelAndView mv, Integer bd_num) {
 				
-		BoardVO board = boardService.getBoard(bd_num);	
+		BoardVO board = boardService.getBoard(bd_num);
+		FileVO file = boardService.getFile(bd_num);
+		mv.addObject("file", file);
 		mv.addObject("board", board);		
 		mv.setViewName("/board/detail");
 		return mv;

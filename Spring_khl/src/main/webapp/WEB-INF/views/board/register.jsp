@@ -12,7 +12,7 @@
 </head>
 <body>
 	
-	<form action="<%=request.getContextPath()%>/board/register" method="post" class="container body">
+	<form action="<%=request.getContextPath()%>/board/register" method="post" class="container body" enctype="multipart/form-data">
 		<h1>게시글 등록</h1>
 		<div class="form-group">
 		 	<input type="text" class="form-control" name="bd_title" placeholder="제목">
@@ -20,6 +20,7 @@
 		<div class="form-group">
 			<textarea class="form-control" name="bd_content" placeholder="내용" rows="10" style="resize:none"></textarea>
 		</div>
+		<input type="file" class="btn btn-outline-success col-12" name="file">
 		<button class="btn btn-outline-success col-12">등록</button>
 	</form>
 </body>

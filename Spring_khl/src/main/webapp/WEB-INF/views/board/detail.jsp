@@ -22,6 +22,12 @@
 			 	<div class="col"  name="bd_reg_date"> ${board.bd_reg_date_str}</div>
 			</div>
 			<textarea class="col"  rows="10" disabled Style="resize:none; border: none">${board.bd_content}</textarea>
+			<c:if test="${file != null}">
+				<a href="<%=request.getContextPath()%>/board/download?fileName=${file.fi_name}" class="form-control">${file.fi_ori_name}</a>
+			</c:if>
+			<c:if test="${file == null}">
+				<label>첨부파일 없음</label>
+			</c:if>
 			<c:if test="${user != null}">
 				<a href="#"><button class="btn btn-secondary addcon">답글쓰기</button></a>			
 			</c:if>	
