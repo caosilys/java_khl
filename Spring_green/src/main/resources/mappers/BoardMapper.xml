@@ -9,18 +9,30 @@
   	<select id="detailGet" resultType="kr.green.spring.vo.BoardVO">
 			select * from board where bd_num = #{bd_num} and bd_del = 'N'
   	</select>
-  	<insert id="registerPost" parameterType="kr.green.spring.vo.BoardVO" >
+  	<insert id="registerPost" parameterType="kr.green.spring.vo.BoardVO"  
+  	useGeneratedKeys="true" keyProperty="board.bd_num" >
 			insert into board (bd_title, bd_content, bd_reg_date, bd_type, bd_me_id, bd_ori_num, bd_del)
 			select #{board.bd_title}, #{board.bd_content}, now(), '일반', #{board.bd_me_id}, ifnull(max(bd_num),0)+1, 'N'
 			from board
 	 	</insert>
 	 	<update id="deleteGet">
-	 		update board set bd_del = 'Y', bd_del_date = now() where bd_num = #{bd_num} 
+	 		update board set bd_del = 'Y', bd_del_date = now() where bd_num = #{bd_num};
 	 	</update>
 	 	<update id="modifyPost">
 	 		update board set 
 	 		bd_title = #{board.bd_title}, bd_content = #{board.bd_content},  bd_up_date = now() 
 	 		where bd_num = #{board.bd_num}
 	 	</update>
-	 	
+  	<insert id="insertFile" >
+			insert into file (fi_ori_name, fi_name, fi_bd_num, fi_del)
+			values(#{file.fi_ori_name}, #{file.fi_name}, #{file.fi_bd_num}, 'N')
+	 	</insert>
+	 	<select id="getFileList" resultType="kr.green.spring.vo.FileVO">
+			select * from file where fi_bd_num = #{bd_num} and fi_del = 'N'
+  	</select>
+	 	<update id="deleteFile">
+	 		update file set
+	 		fi_del_date = now(),  fi_del = 'Y' 
+	 		where fi_num = #{fi_num}
+	 	</update>
 </mapper>

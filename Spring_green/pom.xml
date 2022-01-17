@@ -202,7 +202,14 @@
 			<version>1.18.20</version> 
 			<scope>provided</scope> 
 		</dependency>
-<!-- 롬복 의존성 추가 -->	        
+<!-- 롬복 의존성 추가 -->
+<!-- 파일업로드 의존성 추가 -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.3.2</version>
+		</dependency>
+<!-- 파일업로드 의존성 추가 -->   
 	</dependencies>
     <build>
         <plugins>

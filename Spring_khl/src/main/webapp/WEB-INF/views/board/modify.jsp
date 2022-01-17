@@ -20,7 +20,7 @@
 			<textarea class="form-control" name="bd_content"  rows="10" style="resize:none">${board.bd_content}</textarea>
 		</div>
 		<input type="hidden" name="bd_num" value="${board.bd_num}">
-		<input type="file" class="btn btn-outline-success col-12" name="file"></input>
+		<input type="file" class="btn btn-outline-success col-12" name="file" value="">${file.fi_name}</input>
 		<button class="btn btn-outline-success col-12">수정</button>
 	</form>
 </body>

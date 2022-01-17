@@ -26,6 +26,12 @@
     <div class="form-group">
 		   <textarea class="form-control" rows="10" readonly style="resize: none;" >${board.bd_content}</textarea>
 		</div>
+		<div class="form-group">
+			<label>첨부파일</label>
+			<c:forEach items="${fileList}" var="file">
+				<a class="form-control" href="<%=request.getContextPath()%>/board/download?fileName=${file.fi_name}">${file.fi_ori_name}</a>
+			</c:forEach>		
+		</div>
    	<div class="form-group">
    		<c:if test="${user.me_id == board.bd_me_id}">
    			<a href="<%=request.getContextPath()%>/board/modify?bd_num=${board.bd_num}"><button class="btn btn-outline-primary">수정</button></a>

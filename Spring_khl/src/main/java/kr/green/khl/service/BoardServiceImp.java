@@ -20,22 +20,24 @@ public class BoardServiceImp implements BoardService{
 	BoardDAO boardDao;
 	
 	//업로드할 폴더 경로. 환경에 따라 바꿔줘야함
-	String uploadPath="C:\\Users\\caosi\\Desktop\\upload";
+	//집
 //	String uploadPath="C:\\Users\\caosi\\Desktop\\upload";
+	//학원
+	String uploadPath="C:\\Users\\green\\Desktop\\upload";
 	@Override
 	public void registerBoard(BoardVO board, MultipartFile file) throws Exception {
 		if(	board == null ||
 			board.getBd_title() == null ||
+			board.getBd_title().equals("") ||
 			board.getBd_content() == null ||
-			board.getBd_me_id() == null) return;
-			
-			
+			board.getBd_me_id() == null ) return;
+						
 			boardDao.insertBoard(board);
 			
 //			UploadFileUtils.uploadFile(업로드경로, 파일명, 파일데이터);
 			if(file == null) return;
 			//서버에 업로드
-			String path = UploadFileUtils.uploadFile(uploadPath, file.getName(), file.getBytes());
+			String path = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
 			
 			//db에 저장
 			FileVO  fileVo = 

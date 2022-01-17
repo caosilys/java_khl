@@ -10,7 +10,7 @@
   <title>게시판</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/board/register" method="post">  
+	<form action="<%=request.getContextPath()%>/board/register" method="post" enctype="multipart/form-data">  
 	  <div class="form-group">
 		  <h2>게시글 등록</h2>
 		</div>
@@ -21,6 +21,12 @@
     <div class="form-group">
     		<label>내용</label>
 		   <textarea class="form-control" rows="10" style="resize: none;" name ="bd_content" ></textarea>
+		</div>.
+		<div class="form-group">
+			<label>첨부 파일</label>
+			<input type="file" name="files" class="form-control">
+			<input type="file" name="files" class="form-control">
+			<input type="file" name="files" class="form-control">		
 		</div>
    	<div class="form-group">
  			<button type="submit" class=" form-control btn btn-outline-primary">등록</button>

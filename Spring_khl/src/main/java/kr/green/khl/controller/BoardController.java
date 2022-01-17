@@ -87,11 +87,15 @@ public class BoardController {
 			//수정페이지가 정상적으로 떠도 되는지 확인 하기위해 id정보 넘겨줌
 			MemberVO user = (MemberVO)request.getSession().getAttribute("user");	
 			BoardVO board = boardService.getBoard(bd_num, user.getMe_id());
+			
+			
 			if(board == null) {
 				System.out.println("잘못된 접근");
 				mv.setViewName("redirect:/board/list");
 			}
 			else {
+				FileVO file = boardService.getFile(bd_num);
+				mv.addObject("file", file);
 				mv.addObject("board", board);	
 				mv.setViewName("/board/modify");
 			}
