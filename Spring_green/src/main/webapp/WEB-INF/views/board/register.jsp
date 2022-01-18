@@ -8,11 +8,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>게시판</title>
+	  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
 	<form action="<%=request.getContextPath()%>/board/register" method="post" enctype="multipart/form-data">  
 	  <div class="form-group">
-		  <h2>게시글 등록</h2>
+	  	<c:if test="${bd_ori_num == null }">
+		  	<h2>게시글 등록</h2>
+		  </c:if>
+		  <c:if test="${bd_ori_num != null }">
+		  	<h2>답글 등록</h2>
+		  </c:if>
 		</div>
 		<div class="form-group">
 		  <label>제목</label>
@@ -24,13 +31,29 @@
 		</div>.
 		<div class="form-group">
 			<label>첨부 파일</label>
-			<input type="file" name="files" class="form-control">
-			<input type="file" name="files" class="form-control">
-			<input type="file" name="files" class="form-control">		
+			<input type="file" name="files2" class="form-control">
+			<input type="file" name="files2" class="form-control">
+			<input type="file" name="files2" class="form-control">		
 		</div>
    	<div class="form-group">
  			<button type="submit" class=" form-control btn btn-outline-primary">등록</button>
    	</div>
- 	</form>   
+   	<c:if test="${bd_ori_num != null }">
+   		<input type="hidden" name="bd_ori_num" value="${bd_ori_num}">
+ 		</c:if>
+ 		<c:if test="${bd_type == null }">
+   		<input type="hidden" name="bd_type" value="일반">
+ 		</c:if>
+ 		<c:if test="${bd_type != null }">
+   		<input type="hidden" name="bd_type" value="${bd_type}">
+ 		</c:if>
+ 	</form>
+ 	<script>
+      $('[name=bd_content]').summernote({
+        placeholder: 'Hello Bootstrap 4',
+        tabsize: 2,
+        height: 100
+      });
+    </script>
 </body>
 </html>

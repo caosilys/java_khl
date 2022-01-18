@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.green.spring.pagination.Criteria;
+import kr.green.spring.pagination.PageMaker;
 import kr.green.spring.service.BoardService;
 import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.FileVO;
@@ -34,9 +36,14 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value = "/list")
-	public ModelAndView listGet(ModelAndView mv) {
+	public ModelAndView listGet(ModelAndView mv, Criteria cri) {
 		
-		List<BoardVO> list = boardService.listGet("일반");
+		cri.setPerPageNum(5);
+		List<BoardVO> list = boardService.listGet(cri);
+		int totalCount = boardService.getTotalCount(cri);
+		PageMaker pm = new PageMaker(totalCount, 5, cri);
+		
+		mv.addObject("pm", pm);				
 		mv.addObject("list", list);
 		mv.setViewName("/board/list");
 		return mv;
@@ -62,17 +69,20 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public ModelAndView registerGet(ModelAndView mv) {		
+	public ModelAndView registerGet(ModelAndView mv, Integer bd_ori_num, String bd_type) {	
+		mv.addObject("bd_ori_num", bd_ori_num);
+		mv.addObject("bd_type", bd_type);
 		mv.setViewName("/board/register");
 		return mv;
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView registerPost(ModelAndView mv, BoardVO board, HttpServletRequest request, List<MultipartFile> files) {		
+	public ModelAndView registerPost(ModelAndView mv, BoardVO board, HttpServletRequest request, List<MultipartFile> files2) {		
 
 		MemberVO user = (MemberVO)request.getSession().getAttribute("user");		
 		board.setBd_me_id(user.getMe_id());	
-		boardService.registerPost(board, files);		
+		boardService.registerPost(board, files2);
+		mv.addObject("type", board.getBd_type());
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
@@ -102,10 +112,11 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public ModelAndView modifyPost(ModelAndView mv, BoardVO board, HttpServletRequest request, List<MultipartFile> files, Integer[] fileNums) {
+	public ModelAndView modifyPost(ModelAndView mv, BoardVO board, HttpServletRequest request, List<MultipartFile> files2, Integer[] fileNums) {
 		// modify 페이지에서 board 넘겨받음
 		String userID = ((MemberVO)request.getSession().getAttribute("user")).getMe_id();
-		boardService.modifyPost(board, userID, files, fileNums);
+		System.out.println(board);
+		boardService.modifyPost(board, userID, files2, fileNums);
 
 		mv.addObject("bd_num", board.getBd_num());
 		mv.setViewName("redirect:/board/detail");
@@ -127,9 +138,9 @@ public class BoardController {
 	@RequestMapping(value = "/download")
 	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
 		//집
-//		String uploadPath = "C:\\Users\\green\\Desktop\\upload";
+		String uploadPath = "C:\\Users\\caosi\\Desktop\\upload";
 		//학원
-		String uploadPath = "C:\\Users\\green\\Desktop\\upload";
+//		String uploadPath = "C:\\Users\\green\\Desktop\\upload";
 		InputStream in = null;
 	    ResponseEntity<byte[]> entity = null;
 	    try{

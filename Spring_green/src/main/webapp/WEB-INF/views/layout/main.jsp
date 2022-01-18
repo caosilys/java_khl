@@ -17,17 +17,17 @@
 		
 		.header{
 			background-color: red; top: 0; left: 0px; position : fixed;
-			width: 100vh; height: 50px; z-index: 2; opacity: 0.5;
+			width:120vh; height: 40px; z-index: 2; opacity: 0.5;
 	  }
 	  
 		.menu{
-		  top: 50px; left: 0; position : fixed;
-			width: 70px; height: 100vh;
+		  top: 40px; left: 0; position : fixed;
+			width: 70px; height: 120vh;
 		}
 		
 		.content{
-			background-color: yellow; left: 70px; top:50px;
-			width: calc(100vh - 70px); height: 100vh; z-index: 1;
+			left: 70px; top:40px;
+			width: calc(120vh - 70px);
 		}
 		._content{
 			position: absolute; top:100px;

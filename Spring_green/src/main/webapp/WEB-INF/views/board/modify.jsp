@@ -8,6 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>게시판</title>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
 	<form action="<%=request.getContextPath()%>/board/modify" method="post" enctype="multipart/form-data">  
@@ -32,7 +34,7 @@
 				</div>
 			</c:forEach>
 			<c:forEach begin="1"  end="${3-fileList.size()}">
-				<input type="file" class="form-control" name="files">				
+				<input type="file" class="form-control" name="files2">				
 			</c:forEach>
 		</div>
    	<div class="form-group">
@@ -42,11 +44,15 @@
    	<input type="hidden" name="bd_num" value="${board.bd_num}">
  	</form>
  	<script>
+			$('[name=bd_content]').summernote({
+       tabsize: 2,
+       height: 100
+     });
 		$(function(){
 			$('.attachment .btn-close').click(function(e){
 				e.preventDefault();
 				$(this).parent().remove();
-				var str = '<input type="file" class="form-control" name="files">';
+				var str = '<input type="file" class="form-control" name="files2">';
 				$('.attachment').append(str);
 			});
 		});

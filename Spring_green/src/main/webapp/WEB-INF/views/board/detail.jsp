@@ -24,7 +24,7 @@
 		  </c:if>
 		</div>   
     <div class="form-group">
-		   <textarea class="form-control" rows="10" readonly style="resize: none;" >${board.bd_content}</textarea>
+		   <div class="form-control" style="min-height:300px; height:auto;" >${board.bd_content}</div>
 		</div>
 		<div class="form-group">
 			<label>첨부파일</label>
@@ -37,6 +37,10 @@
    			<a href="<%=request.getContextPath()%>/board/modify?bd_num=${board.bd_num}"><button class="btn btn-outline-primary">수정</button></a>
    			<a href="<%=request.getContextPath()%>/board/delete?bd_num=${board.bd_num}"><button class="btn btn-outline-danger">삭제</button></a>
    		</c:if>
+   		<c:if test="${board.bd_num == board.bd_ori_num && board.bd_type != '공지'}">
+	   		<a href="<%=request.getContextPath()%>/board/register?bd_ori_num=${board.bd_num}"><button class="btn btn-secondary">답변</button></a>   		
+   		</c:if>
+
    	</div>
   </div>
 </body>

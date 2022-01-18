@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.spring.dao.BoardDAO;
+import kr.green.spring.pagination.Criteria;
 import kr.green.spring.utils.UploadFileUtils;
 import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.FileVO;
@@ -20,13 +21,13 @@ public class BoardServiceImp implements BoardService{
 	@Autowired
 	BoardDAO boardDao;
 	//집
-//	String uploadPath = "C:\\Users\\green\\Desktop\\upload";
+	String uploadPath = "C:\\Users\\caosi\\Desktop\\upload";
 	//학원
-	String uploadPath = "C:\\Users\\green\\Desktop\\upload";
+//	String uploadPath = "C:\\Users\\green\\Desktop\\upload";
 	@Override
-	public List<BoardVO> listGet(String bd_type) {
+	public List<BoardVO> listGet(Criteria cri) {
 		 
-		return boardDao.listGet(bd_type);
+		return boardDao.listGet(cri);
 	}
 
 	@Override
@@ -122,6 +123,12 @@ public class BoardServiceImp implements BoardService{
 				boardDao.deleteFile(tmpFileVo.getFi_num());
 			}
 		}
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+		
+		return boardDao.getTotalCount(cri);
 	}
 
 

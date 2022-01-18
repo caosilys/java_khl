@@ -11,7 +11,13 @@
 </head>
 <body>
   <div class="container">
-    <h2>게시판</h2>
+  	<c:if test="${pm.criteria.type == '일반' }">
+  		<h2>게시판</h2>
+  	</c:if>
+  	<c:if test="${pm.criteria.type == '공지' }">
+  		<h2>공지사항</h2>
+  	</c:if>
+    
     <table class="table table-dark table-striped">
       <thead>
         <tr>
@@ -25,16 +31,37 @@
       	<c:forEach items="${list}" var="board">     
           <tr>
             <td>${board.bd_num}</td>
-            <td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">${board.bd_title}</a></td>
+            <c:if test="${board.bd_num == board.bd_ori_num }">
+            	<td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">${board.bd_title}</a></td>
+            </c:if>
+            <c:if test="${board.bd_num != board.bd_ori_num }">
+            	<td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">ㄴ 답변 : ${board.bd_title}</a></td>
+            </c:if>
             <td>${board.bd_me_id}</td>
             <td>${board.bd_date}</td>
           </tr>
         </c:forEach>
       </tbody>
-    </table>    
+    </table>
+    <ul class="pagination justify-content-center">
+    	<c:if test="${pm.prev}">
+	    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.criteria.page-1}&search=${pm.criteria.search}&type=${pm.criteria.type}">이전</a></li>
+	    </c:if>
+	    <c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
+				<c:if test="${i != pm.criteria.page }">
+	    		<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${i}&search=${pm.criteria.search}&type=${pm.criteria.type}">${i}</a></li>
+				</c:if>
+				<c:if test="${i == pm.criteria.page }">
+	    		<li class="page-item active"><a class="page-link" href="">${i}</a></li>
+				</c:if>
+	    </c:forEach>
+	    <c:if test="${pm.next}">
+	    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.criteria.page+1}&search=${pm.criteria.search}&type=${pm.criteria.type}">다음</a></li>
+	    </c:if>
+  	</ul>    
     <div class="form-group">
     	<c:if test="${user != null }">
-    		<a href="<%=request.getContextPath()%>/board/register"><button class="btn btn-outline-dark">글쓰기</button></a>
+    		<a href="<%=request.getContextPath()%>/board/register?bd_type=${pm.criteria.type}"><button class="btn btn-outline-dark">글쓰기</button></a>
     	</c:if>   	
     </div>
   </div>
