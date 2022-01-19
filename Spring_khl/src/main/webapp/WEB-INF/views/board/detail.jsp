@@ -23,7 +23,9 @@
 			</div>
 			<textarea class="col"  rows="10" disabled Style="resize:none; border: none">${board.bd_content}</textarea>
 			<c:if test="${file != null}">
-				<a href="<%=request.getContextPath()%>/board/download?fileName=${file.fi_name}" class="form-control">${file.fi_ori_name}</a>
+				<c:forEach items="${file}" var="getfile" >
+					<a href="<%=request.getContextPath()%>/board/download?fileName=${getfile.fi_name}" class="form-control">${getfile.fi_ori_name}</a>					
+				</c:forEach>
 			</c:if>
 			<c:if test="${file == null}">
 				<label>첨부파일 없음</label>

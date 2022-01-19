@@ -16,6 +16,7 @@
 		</div>
 		<div class="form-group">
 		  <label>작성자 : ${board.bd_me_id}</label>
+		  <label>조회수 : ${board.bd_views}</label>
 		  <c:if test="${board.bd_up == null}">
 		  	<label>작성일 : ${board.bd_date}</label>
 		  </c:if>

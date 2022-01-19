@@ -20,6 +20,8 @@ public class MemberVO {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date me_birth;
+	
 	private String me_address;
 	private String me_phone;
+	private String me_authority;
 }

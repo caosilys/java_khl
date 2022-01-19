@@ -20,8 +20,28 @@
 			<textarea class="form-control" name="bd_content"  rows="10" style="resize:none">${board.bd_content}</textarea>
 		</div>
 		<input type="hidden" name="bd_num" value="${board.bd_num}">
-		<input type="file" class="btn btn-outline-success col-12" name="file" value="">${file.fi_name}</input>
+		<div class="add_div">	
+			<c:forEach items="${file}" var="getfile">
+				<div class="form-group">							
+					<span>${getfile.fi_ori_name}</span>
+					<a class="btn_del_file">X</a>
+					<input type="hidden" name="fileNums" value="${getfile.fi_num}">
+				</div>	
+			</c:forEach>
+		</div>
+		<c:forEach begin="1" end="${3-file.size()}">
+			<input type="file" class="btn btn-outline-success col-12" name="file">
+		</c:forEach>
+				
 		<button class="btn btn-outline-success col-12">수정</button>
 	</form>
+	<script>
+		$('.add_div .btn_del_file').click(function(e){
+			e.preventDefault();
+			$(this).parent().remove();
+			var str = '<input type="file" class="btn btn-outline-success col-12" name="file">';
+			$('.add_div').append(str);
+		})
+	</script>
 </body>
 </html>

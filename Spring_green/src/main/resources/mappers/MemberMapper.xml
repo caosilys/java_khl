@@ -7,6 +7,7 @@
     select * from member where me_id = #{bd_id}
   </select>
   <insert id="sighUpMember">
-  	insert into member value(#{member.me_id}, #{member.me_pw}, #{member.me_name}, #{member.me_gender}, #{member.me_birth}, #{member.me_address}, #{member.me_phone})
-  </insert>
+  		insert into 	member(me_id, me_pw, me_name, me_gender, me_birth, me_address, me_phone)
+			values(#{member.me_id},#{member.me_pw},#{member.me_name},#{member.me_gender},	#{member.me_birth},#{member.me_address},#{member.me_phone})  
+	</insert>
 </mapper>

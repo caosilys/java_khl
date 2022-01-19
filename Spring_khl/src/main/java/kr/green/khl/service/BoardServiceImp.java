@@ -1,6 +1,8 @@
 package kr.green.khl.service;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,63 @@ public class BoardServiceImp implements BoardService{
 //	String uploadPath="C:\\Users\\caosi\\Desktop\\upload";
 	//학원
 	String uploadPath="C:\\Users\\green\\Desktop\\upload";
+		
 	@Override
-	public void registerBoard(BoardVO board, MultipartFile file) throws Exception {
+	public void deleteFile(int bd_num, Integer[] fileNums) {		
+		
+		List<FileVO> fileList = boardDao.getFile(bd_num);
+		List<FileVO> deletefiles = new ArrayList<FileVO>();
+		// 1. fileNums != null : modify 에서 삭제하지 않은 파일이 남아있는 경우
+		// -> file 과 fileNums 를 비교해서 새로운 배열(삭제해야할 fi_num)을 만듬
+		// -> 삭제해야할 FileVO 변경됨
+		if(fileList != null && fileList.size() !=0 && fileNums != null && fileNums.length !=0) {			
+			for(FileVO tmpFilevo : fileList) {
+				for(Integer tmp : fileNums) {
+					if(tmpFilevo.getFi_num() == tmp) {
+						deletefiles.add(tmpFilevo);
+					}
+				}
+			}
+			fileList.removeAll(deletefiles);
+		}
+		else if(fileNums == null){
+			deletefiles = fileList;
+		}
+		// 2. fileNums == null : 	a. board 자체를 삭제할 때 null을 넣어서 호출한 경우							
+		//								b. modify 중 기존에 있던 파일을 전부 삭제
+		// 								삭제해야 할 FileVO는 그대로		
+		if(deletefiles != null && deletefiles.size() !=0) {			
+			for(FileVO tmpFileVo : deletefiles) {
+				File f = new File(uploadPath+tmpFileVo.getFi_name().replace("/", File.separator));
+				if(f.exists()) {
+					f.delete();
+				}
+				// db에서도 삭제
+				boardDao.deleteFile(tmpFileVo.getFi_num());
+			}
+		}
+	}
+	
+	@Override
+	public void uploadFile(List<MultipartFile> file, int bd_num) throws Exception {
+		if(file == null || bd_num == 0) return;
+		
+//		UploadFileUtils.uploadFile(업로드경로, 파일명, 파일데이터);		
+		for(MultipartFile tmpfile : file) {
+			//서버에 업로드				
+			if(!tmpfile.getOriginalFilename().equals("") && tmpfile.getBytes() != null)  {
+				String path = UploadFileUtils.uploadFile(uploadPath, tmpfile.getOriginalFilename(), tmpfile.getBytes());
+				
+				//db에 저장
+				FileVO  fileVo = 
+						new FileVO(tmpfile.getOriginalFilename(), path, bd_num);			
+				boardDao.insertFile(fileVo);
+			}				
+		}
+	}
+	
+	@Override
+	public void registerBoard(BoardVO board) {
 		if(	board == null ||
 			board.getBd_title() == null ||
 			board.getBd_title().equals("") ||
@@ -33,17 +90,6 @@ public class BoardServiceImp implements BoardService{
 			board.getBd_me_id() == null ) return;
 						
 			boardDao.insertBoard(board);
-			
-//			UploadFileUtils.uploadFile(업로드경로, 파일명, 파일데이터);
-			if(file == null) return;
-			//서버에 업로드
-			String path = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
-			
-			//db에 저장
-			FileVO  fileVo = 
-					new FileVO(file.getOriginalFilename(), path, board.getBd_num());			
-			System.out.println(fileVo);
-			boardDao.insertFile(fileVo);
 	}
 	
 	@Override
@@ -103,10 +149,14 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public FileVO getFile(Integer bd_num) {
+	public List<FileVO> getFile(Integer bd_num) {
 		if(bd_num == null || bd_num <= 0) return null;
 		return boardDao.getFile(bd_num);
 	}
+
+
+
+
 
 
 

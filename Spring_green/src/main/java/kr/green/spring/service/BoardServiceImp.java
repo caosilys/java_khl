@@ -21,9 +21,9 @@ public class BoardServiceImp implements BoardService{
 	@Autowired
 	BoardDAO boardDao;
 	//집
-	String uploadPath = "C:\\Users\\caosi\\Desktop\\upload";
+//	String uploadPath = "C:\\Users\\caosi\\Desktop\\upload";
 	//학원
-//	String uploadPath = "C:\\Users\\green\\Desktop\\upload";
+	String uploadPath = "C:\\Users\\green\\Desktop\\upload";
 	@Override
 	public List<BoardVO> listGet(Criteria cri) {
 		 
@@ -129,6 +129,11 @@ public class BoardServiceImp implements BoardService{
 	public int getTotalCount(Criteria cri) {
 		
 		return boardDao.getTotalCount(cri);
+	}
+
+	@Override
+	public void updateViews(Integer bd_num) {
+		boardDao.updateViews(bd_num);	
 	}
 
 

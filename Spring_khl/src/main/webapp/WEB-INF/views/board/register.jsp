@@ -21,6 +21,8 @@
 			<textarea class="form-control" name="bd_content" placeholder="내용" rows="10" style="resize:none"></textarea>
 		</div>
 		<input type="file" class="btn btn-outline-success col-12" name="file">
+		<input type="file" class="btn btn-outline-success col-12" name="file">
+		<input type="file" class="btn btn-outline-success col-12" name="file">
 		<button class="btn btn-outline-success col-12">등록</button>
 	</form>
 </body>

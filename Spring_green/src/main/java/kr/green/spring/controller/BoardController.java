@@ -52,10 +52,10 @@ public class BoardController {
 	@RequestMapping(value = "/detail")
 	public ModelAndView detailGet(ModelAndView mv, Integer bd_num) {
 		
+		boardService.updateViews(bd_num);
 		BoardVO board = boardService.detailGet(bd_num);
 		// 게시글 번호와 일치하는 첨부파일을 가져옴
-		List<FileVO> fileList = boardService.getFileList(bd_num);
-		
+		List<FileVO> fileList = boardService.getFileList(bd_num);		
 		if(board == null) {
 			System.out.println("잘못된 접근입니다");
 			mv.setViewName("redirect:/board/list");
@@ -79,11 +79,24 @@ public class BoardController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView registerPost(ModelAndView mv, BoardVO board, HttpServletRequest request, List<MultipartFile> files2) {		
 
-		MemberVO user = (MemberVO)request.getSession().getAttribute("user");		
-		board.setBd_me_id(user.getMe_id());	
-		boardService.registerPost(board, files2);
-		mv.addObject("type", board.getBd_type());
-		mv.setViewName("redirect:/board/list");
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");	
+		board.setBd_me_id(user.getMe_id());
+		List<String> authorityAdmin = new ArrayList<String>();
+		authorityAdmin.add("관리자");
+		authorityAdmin.add("슈퍼관리자");
+		
+		if(authorityAdmin.indexOf(user.getMe_authority()) < 0 &&
+			board.getBd_type().equals("공지")) {
+			//권한이 회원인 경우 && 작성하려는 글 타입이 "공지"인 경우
+			mv.addObject("type", "공지");
+			mv.setViewName("redirect:/board/list");
+		}
+		else
+		{
+			boardService.registerPost(board, files2);
+			mv.addObject("type", board.getBd_type());
+			mv.setViewName("redirect:/board/list");
+		}
 		return mv;
 	}
 	
@@ -114,13 +127,13 @@ public class BoardController {
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public ModelAndView modifyPost(ModelAndView mv, BoardVO board, HttpServletRequest request, List<MultipartFile> files2, Integer[] fileNums) {
 		// modify 페이지에서 board 넘겨받음
-		String userID = ((MemberVO)request.getSession().getAttribute("user")).getMe_id();
-		System.out.println(board);
-		boardService.modifyPost(board, userID, files2, fileNums);
-
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		String userID = (user.getMe_id());
+		
+		boardService.modifyPost(board, userID, files2, fileNums);		
 		mv.addObject("bd_num", board.getBd_num());
 		mv.setViewName("redirect:/board/detail");
-//		mv.setViewName("redirect:/board/detail?bd_num="+board.getBd_num());
+
 		return mv;
 	}
 	
@@ -138,9 +151,9 @@ public class BoardController {
 	@RequestMapping(value = "/download")
 	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
 		//집
-		String uploadPath = "C:\\Users\\caosi\\Desktop\\upload";
+//		String uploadPath = "C:\\Users\\caosi\\Desktop\\upload";
 		//학원
-//		String uploadPath = "C:\\Users\\green\\Desktop\\upload";
+		String uploadPath = "C:\\Users\\green\\Desktop\\upload";
 		InputStream in = null;
 	    ResponseEntity<byte[]> entity = null;
 	    try{

@@ -12,6 +12,7 @@ public class BoardVO {
 
 	Integer bd_num;
 	Integer bd_ori_num;
+	Integer bd_views;
 	
 	String bd_title;
 	String bd_content;
