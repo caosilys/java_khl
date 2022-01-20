@@ -10,10 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.khl.dao.*;
-import kr.green.khl.utils.UploadFileUtils;
-import kr.green.khl.vo.BoardVO;
-import kr.green.khl.vo.FileVO;
-import kr.green.khl.vo.MemberVO;
+import kr.green.khl.utils.*;
+import kr.green.khl.vo.*;
 
 @Service
 public class BoardServiceImp implements BoardService{
@@ -23,9 +21,9 @@ public class BoardServiceImp implements BoardService{
 	
 	//업로드할 폴더 경로. 환경에 따라 바꿔줘야함
 	//집
-//	String uploadPath="C:\\Users\\caosi\\Desktop\\upload";
+	String uploadPath="C:\\Users\\caosi\\Desktop\\upload";
 	//학원
-	String uploadPath="C:\\Users\\green\\Desktop\\upload";
+//	String uploadPath="C:\\Users\\green\\Desktop\\upload";
 		
 	@Override
 	public void deleteFile(int bd_num, Integer[] fileNums) {		
@@ -88,14 +86,13 @@ public class BoardServiceImp implements BoardService{
 			board.getBd_title().equals("") ||
 			board.getBd_content() == null ||
 			board.getBd_me_id() == null ) return;
-						
 			boardDao.insertBoard(board);
 	}
 	
 	@Override
-	public List<BoardVO> getBoardList(String type) {
+	public List<BoardVO> getBoardList(PageMaker pm) {
 		
-		return boardDao.getBoardList(type);
+		return boardDao.getBoardList(pm);
 	}
 	
 	@Override
@@ -152,6 +149,21 @@ public class BoardServiceImp implements BoardService{
 	public List<FileVO> getFile(Integer bd_num) {
 		if(bd_num == null || bd_num <= 0) return null;
 		return boardDao.getFile(bd_num);
+	}
+
+//	@Override
+	private int getBoardCount(PageMaker pm) {
+		
+		return boardDao.getBoardCount(pm);
+	}
+
+	@Override
+	public PageMaker setPageMaker(PageMaker pm, Integer page, String search) {
+		
+		if(search != null) pm.setSearch(search);		
+		pm.setCount(getBoardCount(pm));			
+		if(page != null) pm.setPage(page);	
+		return pm;
 	}
 
 

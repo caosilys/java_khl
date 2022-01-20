@@ -14,6 +14,14 @@
     <div class="container body">
       <table class="table table-dark table-hover">
         <h1>게시글</h1>
+        <form action="<%=request.getContextPath()%>/board/list">
+	        <div class="input-group mb-3">
+					  <input type="text" class="form-control" placeholder="검색어 입력" name="search">
+					  <div class="input-group-append">
+					    <button class="btn btn-success" type="submit">검색</button>
+					  </div>
+					</div>
+				</form>
         <thead>
           <tr>
           	<th>번호</th>
@@ -26,13 +34,41 @@
         <c:forEach items="${list}" var="board">
 	        <tr>
 	       		 <td>${board.bd_num}</td>
-		         <td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">${board.bd_title}</a></td>
+	       		 <c:if test="${board.bd_num == board.bd_ori_num}">
+		         	<td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">${board.bd_title}</a></td>
+		         </c:if>
+		         <c:if test="${board.bd_num != board.bd_ori_num}">
+		         	<td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">ㄴ답변 : ${board.bd_title}</a></td>
+		         </c:if>
 		         <td>${board.bd_me_id}</td>
 		         <td>${board.bd_reg_date_str}</td>
 		  		</tr>
         </c:forEach>
       </table>
-      	  	<c:if test="${user != null}">
+      <ul class="pagination justify-content-center">
+      	<c:if test="${pm.prev}">
+      		<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.page-1}&search=${pm.search}">이전</a></li>
+      	</c:if>
+      	<c:if test="${!pm.prev}">
+      		<li class="page-item page-link" disabled="disabled">이전</li>
+      	</c:if>
+				<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="i">
+					<c:if test="${i != pm.page }">
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${i}&search=${pm.search}">${i}</a></li>
+					</c:if>
+					<c:if test="${i == pm.page }">
+						<li class="page-item active"><a class="page-link">${i}</a></li>
+					</c:if>				
+				</c:forEach>
+		    <c:if test="${pm.next}">
+		    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.page+1}&search=${pm.search}">다음</a></li>
+		    </c:if>
+ 		    <c:if test="${!pm.next}">
+		    	<li class="page-item page-link">다음</li>
+		    </c:if>
+		    
+  		</ul>
+ 	  	<c:if test="${user != null}">
 	  		<a href="<%=request.getContextPath()%>/board/register" style="float: right">
 	  			<button class="btn btn-outline-success">글쓰기</button>
 	  		</a>	  		

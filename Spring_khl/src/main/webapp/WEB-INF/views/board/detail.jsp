@@ -31,7 +31,7 @@
 				<label>첨부파일 없음</label>
 			</c:if>
 			<c:if test="${user != null}">
-				<a href="#"><button class="btn btn-secondary addcon">답글쓰기</button></a>			
+				<a href="<%=request.getContextPath()%>/board/register?bd_ori_num=${board.bd_ori_num}"><button class="btn btn-secondary addcon">답글쓰기</button></a>			
 			</c:if>	
 			<c:if test="${user.me_id == board.bd_me_id}">
 				<a href="<%=request.getContextPath()%>/board/delete?bd_num=${board.bd_num}" >

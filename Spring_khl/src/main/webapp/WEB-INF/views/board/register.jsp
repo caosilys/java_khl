@@ -13,7 +13,13 @@
 <body>
 	
 	<form action="<%=request.getContextPath()%>/board/register" method="post" class="container body" enctype="multipart/form-data">
-		<h1>게시글 등록</h1>
+		<c:if test="${bd_ori_num == null}">
+			<h1>게시글 등록</h1>
+		</c:if>
+		<c:if test="${bd_ori_num != null}">
+			<h1>답글 등록</h1>
+			<input type="hidden" name="bd_ori_num" value="${bd_ori_num}">
+		</c:if>
 		<div class="form-group">
 		 	<input type="text" class="form-control" name="bd_title" placeholder="제목">
 		</div>

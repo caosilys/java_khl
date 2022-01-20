@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.khl.service.*;
-import kr.green.khl.utils.UploadFileUtils;
+import kr.green.khl.utils.*;
 import kr.green.khl.vo.*;
 
 // 게시글 url을 담당하는 컨트롤러 /board/XXX 을 담당
@@ -36,9 +36,13 @@ public class BoardController {
 	//일반적으로 get 방식을 사용함 
 	// 게시글 목록 보기
 	@RequestMapping(value="list")
-	public ModelAndView boardList(ModelAndView mv) {
+	public ModelAndView boardList(ModelAndView mv, PageMaker pm, Integer page, String search) {		
 		
-		List<BoardVO> List = boardService.getBoardList("일반");
+		// 페이지 메이커를 세팅 (서비스에서 전체 글 수를 가져옴)
+		pm = boardService.setPageMaker(pm, page, search);
+		List<BoardVO> List = boardService.getBoardList(pm);
+			
+		mv.addObject("pm", pm);
 		mv.addObject("list", List);
 		mv.setViewName("/board/list");
 		return mv;
@@ -46,7 +50,8 @@ public class BoardController {
 	
 	//게시글 등록 페이지 이동
 	@RequestMapping(value="register", method=RequestMethod.GET)
-	public ModelAndView boardRegisterGet(ModelAndView mv) {
+	public ModelAndView boardRegisterGet(ModelAndView mv, Integer bd_ori_num) {
+		mv.addObject("bd_ori_num", bd_ori_num);
 		mv.setViewName("/board/register");
 		return mv;
 	}
@@ -132,8 +137,11 @@ public class BoardController {
 				public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
 					InputStream in = null;
 				    ResponseEntity<byte[]> entity = null;
+				    //집
+				    String uploadPath = "C:\\Users\\caosi\\Desktop\\upload";
+
 				    //학원
-				    String uploadPath = "C:\\Users\\green\\Desktop\\upload";
+//				    String uploadPath = "C:\\Users\\green\\Desktop\\upload";
 				    try{
 				    	String FormatName = fileName.substring(fileName.lastIndexOf(".")+1);
 					    HttpHeaders headers = new HttpHeaders();
