@@ -26,4 +26,8 @@ public interface BoardDAO {
 	void deleteFile(@Param("fi_num")int fi_num);
 
 	int getBoardCount(@Param("pm")PageMaker pm);
+
+	List<BoardVO> getMyBoard(@Param("user_id")String user_id);
+
+	void updateViews(@Param("bd_num")Integer bd_num);
 }

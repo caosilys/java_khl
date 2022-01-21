@@ -22,6 +22,7 @@
 	  <div class="form-group">
 	    <label class="col-md-2">ID:</label>
 	    <input type="text" class="form-control col-md-4" name="me_id">
+	    <button type="button" class="btn btn-outline-success col-md-4" id="idCheck">아이디 중복검사</button>
 	  </div>
 	  <div class="form-group">
 	    <label class="col-md-2">PW:</label>
@@ -50,6 +51,39 @@
 	  <div class="form-group">
 	  	<input type="submit" class="form-control" value="가입하기">
 	  </div>
-	</form>       
+	</form>
+	<script>
+	
+		var idCheck = false;
+		$('#idCheck').click(function() {
+			var id = $('[name=me_id]').val();
+			$.ajax({						 
+		           async:false,
+		           type:'POST',
+		           data: {id : id },
+		           url:"<%=request.getContextPath()%>/idcheck",
+		           success : function(res){
+		               console.log(res);
+		               idCheck = res == 'no' ? true : false;
+		               
+		               if(idCheck) alert('사용가능한 아이디입니다.');
+		               else alert('이미 사용중인 아이디입니다.');
+		           }
+		       });
+		});
+		
+		$('[name=me_id]').change(function () {
+			idCheck = false;
+		})
+		
+		$('form').submit(function () {		
+			if(!idCheck){
+				alert('아이디 중복검사를 하세요.');
+				return false;
+			}
+			
+		})
+	
+	</script>       
 </body>
 </html>

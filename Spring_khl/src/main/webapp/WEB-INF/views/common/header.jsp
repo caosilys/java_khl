@@ -20,7 +20,7 @@
 	  <ul class="navbar-nav">
 	  <!-- 로그인 되어있지 않으면(세션에 유저가 없음) -->
 	    <li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath() %>/notice/list">공지사항</a>
+	      <a class="nav-link" href="<%=request.getContextPath() %>/board/list?type=공지">공지사항</a>
 	    </li>
 	    <li class="nav-item">
 	      <a class="nav-link" href="<%=request.getContextPath() %>/board/list">게시글</a>

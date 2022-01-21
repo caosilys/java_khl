@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.green.khl.dao.BoardDAO">
+
 	<insert id="insertBoard"  useGeneratedKeys="true"
 	 keyProperty="board.bd_num" parameterType="kr.green.khl.vo.BoardVO">
 			insert into board
@@ -15,35 +16,52 @@
 		<if test="board.bd_ori_num != 0">
 			values (#{board.bd_title}, #{board.bd_content}, now(),
 			#{board.bd_type}, #{board.bd_me_id}, #{board.bd_ori_num}, 'N')
-		</if>
-		
+		</if>		
 	</insert>
+	
 	<select id="getBoardList"  resultType="kr.green.khl.vo.BoardVO">
 		select * from board 
 		where bd_type = #{pm.type} and bd_del='N' and bd_title like concat('%', #{pm.search}, '%')
 		order by bd_ori_num desc, bd_num asc 
 		limit #{pm.pageStart}, #{pm.perPageNum}
 	</select>
+	
 	<select id="getBoard"  resultType="kr.green.khl.vo.BoardVO">
 		select * from board where bd_num = #{bd_num} and bd_del='N'
 	</select>
+	
 	<update id="deleteBoard">
 		update board set bd_del = 'Y' , bd_del_date = now() where bd_num = #{bd_num};
 	</update>	
+	
 	<update id="updateBoard">
 		update board set bd_title = #{board.bd_title} , bd_content = #{board.bd_content}, bd_up_date = now() where bd_num = #{board.bd_num};
 	</update>
+	
 	<insert id="insertFile">
 			insert into file (fi_ori_name, fi_name, fi_bd_num, fi_del)
 			values(#{file.fi_ori_name}, #{file.fi_name}, #{file.fi_bd_num}, 'N')
 	</insert>
-		<select id="getFile" resultType="kr.green.khl.vo.FileVO">
+	
+	<select id="getFile" resultType="kr.green.khl.vo.FileVO">
 			select * from file where fi_bd_num = #{bd_num} and fi_del = 'N'
 	</select>
+	
 	<update id="deleteFile">
 		update file set fi_del = 'Y', fi_del_date = now() where fi_num = #{fi_num};
 	</update>
+	
 	<select id="getBoardCount" resultType="int">
-		select count(*) from board where bd_type = #{pm.type} and bd_del = 'N' and bd_title like concat('%', #{pm.search}, '%')
+		select count(*) from board 
+		where bd_type = #{pm.type} and bd_del = 'N' and bd_title like concat('%', #{pm.search}, '%')
 	</select>
+	
+	<update id="updateViews">
+		update board set bd_views = bd_views+1 where bd_num = #{bd_num}
+	</update>
+	<!-- 테스트 코드 -->
+	<select id="getMyBoard" resultType="kr.green.khl.vo.BoardVO">
+		select * from board where bd_me_id = #{user_id} and bd_del = 'N'
+	</select>
+	
 </mapper>

@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.spring.service.*;
@@ -67,6 +68,14 @@ public class HomeController {
 			request.getSession().setAttribute("user", null);
 			mv.setViewName("redirect:/");
 			return mv;
+	}
+	
+	@ResponseBody //view를 거치지않고 직접 전달
+	@RequestMapping(value ="/idcheck") 
+	public String ajaxIdcheck(String id) {
+			
+		if(memberService.idDuplicated(id)) return "ok"; //중복이다 => 사용불가
+		return "no"; // 중복이 아니다 => 사용가능
 	}
 	
 	

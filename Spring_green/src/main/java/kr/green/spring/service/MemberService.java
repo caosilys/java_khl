@@ -10,4 +10,6 @@ public interface MemberService {
 
 	MemberVO login(MemberVO member);
 
+	boolean idDuplicated(String id);
+
 }

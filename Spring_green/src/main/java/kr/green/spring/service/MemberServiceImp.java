@@ -43,4 +43,11 @@ public class MemberServiceImp implements MemberService{
 		return null;
 	}
 
+	@Override
+	public boolean idDuplicated(String id) {
+		MemberVO user =  memberDao.getMember(id);
+		if(user == null) return false; // 중복되는가? false 아니다. 중복되지 않는다
+		return true;
+	}
+
 }

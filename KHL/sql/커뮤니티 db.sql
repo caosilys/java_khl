@@ -86,4 +86,30 @@ select * from board;
 
 update board set bd_title = '변경' , bd_content = '변경', bd_up_date = now() where bd_num = 4;
 
-
+-- 댓글 테이블 생성
+CREATE TABLE `comunity`.`commant` (
+  `co_num` INT NOT NULL AUTO_INCREMENT,
+  `co_bd_num` INT NOT NULL,
+  `co_me_id` VARCHAR(20) NOT NULL,
+  `co_reg_date` DATETIME NOT NULL DEFAULT now(),
+  `co_del` VARCHAR(2) NOT NULL DEFAULT 'N',
+  `co_ori_num` INT NOT NULL,
+  `co_content` LONGTEXT NOT NULL,
+  PRIMARY KEY (`co_num`));
+  
+-- 댓글 테이블 외래키 지정
+ALTER TABLE `comunity`.`commant` 
+ADD INDEX `co_bd_num_idx` (`co_bd_num` ASC) VISIBLE,
+ADD INDEX `co_me_id_idx` (`co_me_id` ASC) VISIBLE;
+;
+ALTER TABLE `comunity`.`commant` 
+ADD CONSTRAINT `co_bd_num`
+  FOREIGN KEY (`co_bd_num`)
+  REFERENCES `comunity`.`board` (`bd_num`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+ADD CONSTRAINT `co_me_id`
+  FOREIGN KEY (`co_me_id`)
+  REFERENCES `comunity`.`member` (`me_id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;

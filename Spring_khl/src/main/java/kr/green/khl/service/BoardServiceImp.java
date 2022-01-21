@@ -21,9 +21,9 @@ public class BoardServiceImp implements BoardService{
 	
 	//업로드할 폴더 경로. 환경에 따라 바꿔줘야함
 	//집
-	String uploadPath="C:\\Users\\caosi\\Desktop\\upload";
+//	String uploadPath="C:\\Users\\caosi\\Desktop\\upload";
 	//학원
-//	String uploadPath="C:\\Users\\green\\Desktop\\upload";
+	String uploadPath="C:\\Users\\green\\Desktop\\upload";
 		
 	@Override
 	public void deleteFile(int bd_num, Integer[] fileNums) {		
@@ -158,12 +158,26 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public PageMaker setPageMaker(PageMaker pm, Integer page, String search) {
+	public PageMaker setPageMaker(PageMaker pm, Integer page, String search, String type) {
 		
-		if(search != null) pm.setSearch(search);		
+		if(page != null) pm.setPage(page);
+		if(search != null) pm.setSearch(search);	
+		if(type != null) pm.setType(type);
 		pm.setCount(getBoardCount(pm));			
-		if(page != null) pm.setPage(page);	
+		
 		return pm;
+	}
+
+	@Override
+	public List<BoardVO> getMyBoard(String user_id) {
+		
+		return boardDao.getMyBoard(user_id);
+	}
+
+	@Override
+	public void updateViews(Integer bd_num) {
+		boardDao.updateViews(bd_num);
+		
 	}
 
 

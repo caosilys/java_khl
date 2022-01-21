@@ -20,6 +20,9 @@ public class testController {
 	@Autowired
 	MemberService memberService;
 	
+	@Autowired
+	BoardService boardService;
+	
 	@RequestMapping(value = "/memberlist", method = RequestMethod.GET)	
 	public ModelAndView memberListGet(ModelAndView mv){		
 		
@@ -28,6 +31,7 @@ public class testController {
 		mv.setViewName("/test/memberlist");
 		return mv;
 	}
+	
 	
 //	@RequestMapping(value = "/memberlist", method = RequestMethod.POST)	
 //	public ModelAndView memberListPost(ModelAndView mv){		
@@ -41,12 +45,15 @@ public class testController {
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)	
 	public ModelAndView myPageGet(ModelAndView mv, HttpServletRequest request){
 		
-		if(request.getSession().getAttribute("user") == null) {
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		if(user == null) {
 			mv.setViewName("/test/home");
 			System.out.println("세션이 만료되어 로그아웃되었습니다.");
 		}
 		else {
-			mv.setViewName("/test/mypage");
+			List<BoardVO> myBoard = boardService.getMyBoard(user.getMe_id());
+			mv.addObject("list", myBoard);		
+			mv.setViewName("/board/list");
 		}	
 		return mv;
 	}

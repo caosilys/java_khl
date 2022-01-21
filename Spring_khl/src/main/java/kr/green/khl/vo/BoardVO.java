@@ -16,6 +16,7 @@ public class BoardVO {
 		private String bd_type;
 		private String bd_me_id;
 		private int bd_ori_num;
+		private int bd_views;
 		private String bd_del;
 		private Date bd_del_date;
 		

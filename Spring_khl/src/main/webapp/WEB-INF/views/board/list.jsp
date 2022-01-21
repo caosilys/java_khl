@@ -13,7 +13,12 @@
 <body>
     <div class="container body">
       <table class="table table-dark table-hover">
-        <h1>게시글</h1>
+      	<c:if test="${pm.type == '일반'}">
+        	<h1>게시글</h1>
+        </c:if>
+        <c:if test="${pm.type == '공지'}">
+        	<h1>공지사항</h1>
+        </c:if>
         <form action="<%=request.getContextPath()%>/board/list">
 	        <div class="input-group mb-3">
 					  <input type="text" class="form-control" placeholder="검색어 입력" name="search">
@@ -27,6 +32,7 @@
           	<th>번호</th>
             <th>제목</th>
             <th>작성자</th>
+            <th>조회수</th>
             <th>작성시간</th>
           </tr>
         </thead>
@@ -41,6 +47,7 @@
 		         	<td><a href="<%=request.getContextPath()%>/board/detail?bd_num=${board.bd_num}">ㄴ답변 : ${board.bd_title}</a></td>
 		         </c:if>
 		         <td>${board.bd_me_id}</td>
+		         <td>${board.bd_views}</td>
 		         <td>${board.bd_reg_date_str}</td>
 		  		</tr>
         </c:forEach>
@@ -69,9 +76,18 @@
 		    
   		</ul>
  	  	<c:if test="${user != null}">
-	  		<a href="<%=request.getContextPath()%>/board/register" style="float: right">
-	  			<button class="btn btn-outline-success">글쓰기</button>
-	  		</a>	  		
+ 	  		<c:if test="${pm.type == '일반'}">
+		  		<a href="<%=request.getContextPath()%>/board/register" style="float: right">
+		  			<button class="btn btn-outline-success">글쓰기</button>
+		  		</a>
+	  		</c:if>
+	  		<c:if test="${pm.type == '공지'}">
+	  			<c:if test="${user.me_authority == '관리자' || user.me_authority == '슈퍼관리자' }">
+		  		<a href="<%=request.getContextPath()%>/board/register?type=${pm.type}" style="float: right">
+		  			<button class="btn btn-outline-success">글쓰기</button>
+		  		</a>
+		  		</c:if>
+	  		</c:if>
 	  	</c:if>
     </div>
   </body>

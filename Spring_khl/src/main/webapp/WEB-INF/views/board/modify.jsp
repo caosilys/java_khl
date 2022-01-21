@@ -9,6 +9,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
 	<form action="<%=request.getContextPath()%>/board/modify" method="post" calss="container body" enctype="multipart/form-data">
@@ -17,7 +19,7 @@
 		 	<input type="text" class="form-control" name="bd_title" value="${board.bd_title}">  
 		</div>
 		<div class="form-group">
-			<textarea class="form-control" name="bd_content"  rows="10" style="resize:none">${board.bd_content}</textarea>
+			<textarea class="form-control" name="bd_content"  id="summernote">${board.bd_content} </textarea>>
 		</div>
 		<input type="hidden" name="bd_num" value="${board.bd_num}">
 		<div class="add_div">	
@@ -42,6 +44,13 @@
 			var str = '<input type="file" class="btn btn-outline-success col-12" name="file">';
 			$('.add_div').append(str);
 		})
+		
+    $('#summernote').summernote({
+      placeholder: '내용',
+      tabsize: 2,
+      height: 300
+    });
+  
 	</script>
 </body>
 </html>

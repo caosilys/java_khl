@@ -25,7 +25,7 @@
 		  </c:if>
 		</div>   
     <div class="form-group">
-		   <div class="form-control" style="min-height:300px; height:auto;" >${board.bd_content}</div>
+		   <div class="form-control" style="min-height:300px; height:auto; width: auto; border: none" >${board.bd_content}</div>
 		</div>
 		<div class="form-group">
 			<label>첨부파일</label>
@@ -41,7 +41,6 @@
    		<c:if test="${board.bd_num == board.bd_ori_num && board.bd_type != '공지'}">
 	   		<a href="<%=request.getContextPath()%>/board/register?bd_ori_num=${board.bd_num}"><button class="btn btn-secondary">답변</button></a>   		
    		</c:if>
-
    	</div>
   </div>
 </body>

@@ -30,7 +30,12 @@ public interface BoardService {
 	
 //	int getBoardCount(String type);
 	
-	PageMaker setPageMaker(PageMaker pm, Integer page, String search);
+	PageMaker setPageMaker(PageMaker pm, Integer page, String search, String type);
+	
+	//테스트 메소드
+	List<BoardVO> getMyBoard(String user_id);
+	
+	void updateViews(Integer bd_num);
 
 	
 
