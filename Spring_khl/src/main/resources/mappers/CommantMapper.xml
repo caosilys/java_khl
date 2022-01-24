@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.green.khl.dao.CommantDAO">
+
+	<insert id="insertCommant">
+		insert into commant
+		(co_bd_num, co_me_id, co_content, co_ori_num)
+		select #{commant.co_bd_num}, #{commant.co_me_id},
+						#{commant.co_content}, ifnull(max(co_num),0)+1
+		from commant
+	</insert>
+	
+	<select id="selectCommantList" resultType="kr.green.khl.vo.CommantVO">
+		select * from commant where co_bd_num = #{co_bd_num} and co_del='N'
+		limit #{pm.pageStart}, #{pm.perPageNum}
+	</select>
+	
+	<select id="selectTotalCount" resultType="int">
+		select count(*) from commant where co_bd_num = #{co_bd_num} and co_del='N'
+	</select>
+	
+	<select id="selectCommant" resultType="kr.green.khl.vo.CommantVO">
+		select * from commant where co_num = #{co_num} and co_del='N'
+	</select>
+	
+	<update id="deleteCommant" >
+		update commant set co_del = 'Y' where co_num = #{co_num}
+	</update>
+</mapper>

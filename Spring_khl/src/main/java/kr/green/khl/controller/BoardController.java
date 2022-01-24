@@ -153,10 +153,10 @@ public class BoardController {
 			InputStream in = null;
 		    ResponseEntity<byte[]> entity = null;
 		    //집
-//				    String uploadPath = "C:\\Users\\caosi\\Desktop\\upload";
+		    String uploadPath = "C:\\Users\\caosi\\Desktop\\upload";
 
 		    //학원
-		    String uploadPath = "C:\\Users\\green\\Desktop\\upload";
+//		    String uploadPath = "C:\\Users\\green\\Desktop\\upload";
 		    try{
 		    	String FormatName = fileName.substring(fileName.lastIndexOf(".")+1);
 			    HttpHeaders headers = new HttpHeaders();

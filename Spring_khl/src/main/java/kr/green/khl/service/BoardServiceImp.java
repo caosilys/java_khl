@@ -21,9 +21,9 @@ public class BoardServiceImp implements BoardService{
 	
 	//업로드할 폴더 경로. 환경에 따라 바꿔줘야함
 	//집
-//	String uploadPath="C:\\Users\\caosi\\Desktop\\upload";
+	String uploadPath="C:\\Users\\caosi\\Desktop\\upload";
 	//학원
-	String uploadPath="C:\\Users\\green\\Desktop\\upload";
+//	String uploadPath="C:\\Users\\green\\Desktop\\upload";
 		
 	@Override
 	public void deleteFile(int bd_num, Integer[] fileNums) {		
