@@ -18,7 +18,7 @@ public class CommantServiceImp implements CommantService{
 
 	@Override
 	public boolean insertCommant(CommantVO commant, MemberVO user) {
-		if(user == null || commant == null){
+		if(user == null || commant == null || commant.getCo_content().equals("")){
 			return false;
 		}
 		commant.setCo_me_id(user.getMe_id());
@@ -40,7 +40,6 @@ public class CommantServiceImp implements CommantService{
 	@Override
 	public int selectTotalCount(Integer co_bd_num) {
 		if(co_bd_num == null || co_bd_num <=0)	return 0;
- 	
 		return commantDao.selectTotalCount(co_bd_num);  
 	}
 
@@ -49,12 +48,22 @@ public class CommantServiceImp implements CommantService{
 		
 		CommantVO com = commantDao.selectCommant(co_num);
 		
-		System.out.println("deleteCommant : " + com);
 		
 		if(co_num == null || co_num <=  0 || user == null || com == null) return "false";
 		
 		commantDao.deleteCommant(co_num);
 		
+		return "true";
+	}
+
+	@Override
+	public String updateCommant(MemberVO user, CommantVO commant) {
+		
+		if(user == null || commant == null) return "false";
+		CommantVO dbCommant = commantDao.selectCommant(commant.getCo_num());
+		
+		if(dbCommant == null || !dbCommant.getCo_me_id().equals(user.getMe_id())) return "false";
+		commantDao.updateCommant(commant);		
 		return "true";
 	} 
 	

@@ -19,5 +19,7 @@ public interface CommantDAO {
 	
 	void deleteCommant(@Param("co_num")Integer co_num);
 
+	void updateCommant(@Param("commant")CommantVO commant);
+
 		
 }

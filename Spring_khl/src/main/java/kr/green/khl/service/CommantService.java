@@ -16,4 +16,6 @@ public interface CommantService {
 
 	String deleteCommant(MemberVO user, Integer co_num);
 
+	String updateCommant(MemberVO user, CommantVO commant);
+
 }

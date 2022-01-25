@@ -5,15 +5,24 @@
 <mapper namespace="kr.green.khl.dao.CommantDAO">
 
 	<insert id="insertCommant">
-		insert into commant
-		(co_bd_num, co_me_id, co_content, co_ori_num)
-		select #{commant.co_bd_num}, #{commant.co_me_id},
-						#{commant.co_content}, ifnull(max(co_num),0)+1
-		from commant
+	
+		<if test="commant.co_ori_num == 0">
+			insert into commant (co_bd_num, co_me_id, co_content, co_ori_num)
+			select #{commant.co_bd_num}, #{commant.co_me_id},
+							#{commant.co_content}, ifnull(max(co_num),0)+1
+			from commant
+		</if>
+		<if test="commant.co_ori_num != 0">
+			insert into commant (co_bd_num, co_me_id, co_content, co_ori_num)
+			values( #{commant.co_bd_num}, #{commant.co_me_id},
+							#{commant.co_content}, #{commant.co_ori_num})
+		</if>
+		
 	</insert>
 	
 	<select id="selectCommantList" resultType="kr.green.khl.vo.CommantVO">
 		select * from commant where co_bd_num = #{co_bd_num} and co_del='N'
+		order by co_ori_num desc, co_num asc
 		limit #{pm.pageStart}, #{pm.perPageNum}
 	</select>
 	
@@ -27,5 +36,10 @@
 	
 	<update id="deleteCommant" >
 		update commant set co_del = 'Y' where co_num = #{co_num}
+	</update>
+	
+	<update id="updateCommant">
+		update commant set co_content = '[수정됨] ' #{commant.co_content}
+		where co_num = #{commant.co_num}
 	</update>
 </mapper>
