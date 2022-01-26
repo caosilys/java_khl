@@ -8,6 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>게시판</title>
+  <script type="text/javascript" src="/spring/resources/js/parseAjax.js"></script>
 </head>
 <body>
   <div class="container">
@@ -37,11 +38,54 @@
    		<c:if test="${user.me_id == board.bd_me_id}">
    			<a href="<%=request.getContextPath()%>/board/modify?bd_num=${board.bd_num}"><button class="btn btn-outline-primary">수정</button></a>
    			<a href="<%=request.getContextPath()%>/board/delete?bd_num=${board.bd_num}"><button class="btn btn-outline-danger">삭제</button></a>
+   			<c:if test="${board.bd_num == board.bd_ori_num && board.bd_type != '공지'}">
+	   			<a href="<%=request.getContextPath()%>/board/register?bd_ori_num=${board.bd_num}"><button class="btn btn-secondary">답변</button></a>   		
+  			</c:if>
    		</c:if>
-   		<c:if test="${board.bd_num == board.bd_ori_num && board.bd_type != '공지'}">
-	   		<a href="<%=request.getContextPath()%>/board/register?bd_ori_num=${board.bd_num}"><button class="btn btn-secondary">답변</button></a>   		
-   		</c:if>
-   	</div>
+ 		</div>
+ 		<div class="form-group commant-box">
+ 			
+ 		
+ 		
+ 		
+ 		</div> 		
   </div>
+  <script>
+	  ajaxService.setContextPath('/spring');
+	   
+	  $(function() {
+		
+  	// 댓글 리스트와 pm을 담을 전역변수
+		  var com_list;
+		  var co_pm;
+		// 게시글 확인시 최초 실행		  
+		  readCommant(); 
+		   
+		  console.log('보여줄 댓글 목록');
+		  console.log(com_list);
+		  console.log('댓글용 페이지메이커');
+		  console.log(co_pm);
+		  		  
+		//이벤트
+		
+		
+		//이벤트
+		//함수  
+			function readCommant() {			
+				var bd_num = ${board.bd_num};			
+				var url = '/commant/list?bd_num='+bd_num;				
+				function res_function(res) {				
+					com_list = res.list;
+					co_pm = res.pm;
+				}
+				// bd_num으로 해당게시글의 commant를 가져옴
+				// Controller에서 설정한 Criteria를 확인하여
+				// Pagemaker와 commantList를 설정해줌
+				ajaxService.parseAjax('get', null, url, res_function);	
+			}
+		
+		//함수
+		});
+  </script>
 </body>
 </html>

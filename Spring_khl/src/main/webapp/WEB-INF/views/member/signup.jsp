@@ -8,6 +8,7 @@ pageEncoding="UTF-8"%>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>회원가입</title>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/commant.js"></script>
 	
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 	<!-- jquery -->
@@ -34,6 +35,9 @@ pageEncoding="UTF-8"%>
 		</div>
 		<div class="form-group">
 			<input type="text" class="form-control" placeholder="아이디" name="me_id" value="${member.me_id}">
+		</div>
+		<div class="form-group">
+			<input type="button" class="form-control" name="id_check" value="아이디 중복확인">
 		</div>
 		<div class="form-group">
 			<input type="password" class="form-control" placeholder="비밀번호" name="me_pw" value="${member.me_pw}">
@@ -74,6 +78,44 @@ pageEncoding="UTF-8"%>
 		<button class="btn btn-outline-success col-12">회원가입</button>
 	</form>
 	<script>
+	
+	commantService.setContextPath('<%=request.getContextPath()%>');
+
+	$(function() {
+		
+		var chackidFlag = false;
+		
+		$('[name=id_check]').click(function () {
+			
+			var data = $('[name=me_id]').val()
+			
+			if(data == null || data == ''){
+				alert('아이디를 입력하세요');
+				return;
+			}
+			
+			var url = "/checkId?id="+data;
+			
+			function responseFunction(res) {
+				
+				if(res){
+					chackidFlag = true;
+					alert('사용가능한 아이디 입니다.');
+				}
+				else{
+					alert('이미 사용중인 아이디입니다.');
+				}
+			}
+			
+			commantService.parseAjax('GET', null, url, responseFunction);
+			
+		})
+		
+		$('[name=me_id]').change(function () {
+			chackidFlag = false;
+		});
+		
+		
 		$('form').submit(function(){
 			var id = $('[name=me_id]').val().trim();
 			var pw = $('[name=me_pw]').val().trim();
@@ -89,11 +131,17 @@ pageEncoding="UTF-8"%>
 				$('[name=agree]').focus();
 				return false;
 			}
+			
 			if(id == ''){
 				alert('아이디를 입력하세요.');
 				$('[name=me_id]').focus();
 				return false;
 			}
+			if(!chackidFlag){
+				alert('아이디 중복확인을 해주세요.');
+				return false;
+			}
+			
 			if(pw == ''){
 				alert('비밀번호를 입력하세요.');
 				$('[name=me_pw]').focus();
@@ -160,6 +208,9 @@ pageEncoding="UTF-8"%>
 				}
 			}).open();
     }
+	});
+	
+
 	</script>
 </body>
 </html>

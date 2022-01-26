@@ -10,7 +10,8 @@ public interface MemberService {
 
 	boolean signup(MemberVO member);
 	
-	//테스트코드
 	List<MemberVO> getList();
+
+	String checkId(String id);
 
 }

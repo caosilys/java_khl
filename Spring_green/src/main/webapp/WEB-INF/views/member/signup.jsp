@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sighup</title>
+    <script type="text/javascript" src="/spring/resources/js/parseAjax.js"></script>
     <style>
     .form-group>*{
     	display: inline;
@@ -55,22 +56,28 @@
 	<script>
 	
 		var idCheck = false;
+		ajaxService.setContextPath('<%=request.getContextPath()%>');
+		
 		$('#idCheck').click(function() {
-			var id = $('[name=me_id]').val();
-			$.ajax({						 
-		           async:false,
-		           type:'POST',
-		           data: {id : id },
-		           url:"<%=request.getContextPath()%>/idcheck",
-		           success : function(res){
-		               console.log(res);
-		               idCheck = res == 'no' ? true : false;
-		               
-		               if(idCheck) alert('사용가능한 아이디입니다.');
-		               else alert('이미 사용중인 아이디입니다.');
-		           }
-		       });
+			var id = $('[name=me_id]').val();			
+			var url = '/idcheck?id='+id;
+			
+			if(id == null || id == ''){
+				alert('아이디를 입력하세요.')
+				return false;
+			}
+			
+			function res_function(res) {				
+	      idCheck = res;
+	      
+	      if(idCheck) alert('사용가능한 아이디입니다.');
+	      else alert('이미 사용중인 아이디입니다.');
+			}
+			
+			ajaxService.parseAjax('get', null, url, res_function);
+			
 		});
+		
 		
 		$('[name=me_id]').change(function () {
 			idCheck = false;

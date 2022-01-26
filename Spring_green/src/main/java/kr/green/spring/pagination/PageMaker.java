@@ -4,11 +4,13 @@ import lombok.Data;
 
 @Data
 public class PageMaker {
+	// 총 게시글/댓글 개수
 	private int totalCount;
 	private int startPage;
 	private int endPage;
 	private boolean prev;
 	private boolean next;
+	// 보여줄 버튼개수
 	private int displayPageNum;
 	private Criteria criteria;
 	

@@ -63,7 +63,6 @@
 	<script>
     // 기본 경로 지정
     
-   console.log(commantService);
     
    commantService.setContextPath("<%=request.getContextPath()%>");
 		

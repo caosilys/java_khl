@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.green.spring.dao.CommantDAO">
+
+ 	<select id="getList" resultType="kr.green.spring.vo.CommantVO">
+ 		select * from commant where co_bd_num = #{bd_num} and co_del = 'N'
+ 		limit #{cri.pageStart}, #{cri.perPageNum}
+ 	</select>
+ 	
+ 	<select id="getTotalCount" resultType="int">
+ 		select count(*) from commant where co_bd_num = #{bd_num} and co_del = 'N' 	
+ 	</select>
+</mapper>

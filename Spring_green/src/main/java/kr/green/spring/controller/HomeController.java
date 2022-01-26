@@ -73,9 +73,8 @@ public class HomeController {
 	@ResponseBody //view를 거치지않고 직접 전달
 	@RequestMapping(value ="/idcheck") 
 	public String ajaxIdcheck(String id) {
-			
-		if(memberService.idDuplicated(id)) return "ok"; //중복이다 => 사용불가
-		return "no"; // 중복이 아니다 => 사용가능
+		if(memberService.idDuplicated(id)) return "false"; //중복이다 => 사용불가
+		return "true"; // 중복이 아니다 => 사용가능
 	}
 	
 	
