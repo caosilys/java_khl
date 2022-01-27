@@ -24,7 +24,8 @@ public class CommantVO {
 	private String co_date;
 		
 	public void setDate() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");		
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd a KK:mm");		
 		co_date = sdf.format(co_reg_date);
 	}
 	

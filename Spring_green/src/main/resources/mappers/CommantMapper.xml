@@ -6,7 +6,9 @@
 
  	<select id="getList" resultType="kr.green.spring.vo.CommantVO">
  		select * from commant where co_bd_num = #{bd_num} and co_del = 'N'
+ 		order by co_ori_num desc, co_num asc 
  		limit #{cri.pageStart}, #{cri.perPageNum}
+ 		
  	</select>
  	
  	<select id="getTotalCount" resultType="int">

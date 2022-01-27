@@ -29,51 +29,113 @@
 		   <div class="form-control" style="min-height:300px; height:auto; width: auto; border: none" >${board.bd_content}</div>
 		</div>
 		<div class="form-group">
-			<label>첨부파일</label>
-			<c:forEach items="${fileList}" var="file">
-				<a class="form-control" href="<%=request.getContextPath()%>/board/download?fileName=${file.fi_name}">${file.fi_ori_name}</a>
-			</c:forEach>		
-		</div>
-   	<div class="form-group">
+ 			<c:if test="${board.bd_num == board.bd_ori_num && board.bd_type != '공지'}">
+   			<a href="<%=request.getContextPath()%>/board/register?bd_ori_num=${board.bd_num}"><button class="btn btn-secondary">답변</button></a>   		
+ 			</c:if>
    		<c:if test="${user.me_id == board.bd_me_id}">
    			<a href="<%=request.getContextPath()%>/board/modify?bd_num=${board.bd_num}"><button class="btn btn-outline-primary">수정</button></a>
    			<a href="<%=request.getContextPath()%>/board/delete?bd_num=${board.bd_num}"><button class="btn btn-outline-danger">삭제</button></a>
-   			<c:if test="${board.bd_num == board.bd_ori_num && board.bd_type != '공지'}">
-	   			<a href="<%=request.getContextPath()%>/board/register?bd_ori_num=${board.bd_num}"><button class="btn btn-secondary">답변</button></a>   		
-  			</c:if>
    		</c:if>
  		</div>
+		<div class="form-group">
+			<label>첨부파일</label>
+			<c:forEach items="${fileList}" var="file">
+				<a class="form-control" href="<%=request.getContextPath()%>/board/download?fileName=${file.fi_name}">${file.fi_ori_name}</a>
+			</c:forEach>				
+		</div>
+		
+		<hr>
+		<c:if test="${user != null}">
+	   	<div class="input-group main-commant-box" >
+	   		<textarea name="co_content" col="2" style="resize : none; width : 80%;" calss="form-control" ></textarea>
+	   		<div class="input-group-append">
+	   			<input type="button" class="btn btn-success ml-4" value="댓글등록">	
+	   		</div>	  		
+	   	</div>
+	   	<hr>
+   	</c:if>
+   	  	
  		<div class="form-group commant-box">
- 			
- 		
- 		
- 		
- 		</div> 		
+<!--  
+			<div class="atc-commant-box">
+ 				<input type="hidden" name="co_num" value="co_num">
+				<span name="co_me_id">작성자</span>
+				<span class="ml-2">|</span>
+				<span class="ml-2" name="co_date">작성일자</span> <br>
+				<div name="co_content">내용</div>
+				<div class="atc-commant-btn-box">
+						<input type="button" class="btn btn-sm btn-info"  name="btn-com-reply" value="답변">
+						<input type="button" class="btn btn-sm btn-warning"  name="btn-com-modify" value="수정">
+						<input type="button" class="btn btn-sm btn-danger"  name="btn-com-modify" value="삭제">
+				</div>			 								
+			</div>			
+	-->		
+		</div>		
+ 		<div class="form-group commant-pagenation-box">
+<!--   		
+ 			<ul class="pagination  justify-content-center">
+			  <li class="page-item"><a class="page-link" href="#">이전</a></li>
+			  <li class="page-item"><a class="page-link" href="#">page</a></li>
+			  <li class="page-item"><a class="page-link" href="#">다음</a></li>
+			</ul>
+-->			
+		</div>
   </div>
   <script>
 	  ajaxService.setContextPath('/spring');
 	   
 	  $(function() {
 		
-  	// 댓글 리스트와 pm을 담을 전역변수
+  	// 댓글 리스트와 pm을 담을 변수
 		  var com_list;
 		  var co_pm;
-		// 게시글 확인시 최초 실행		  
-		  readCommant(); 
-		   
-		  console.log('보여줄 댓글 목록');
-		  console.log(com_list);
-		  console.log('댓글용 페이지메이커');
-		  console.log(co_pm);
-		  		  
+		// 게시글 확인시 실행
+		showCommantForm(1);
+		    		  
 		//이벤트
+			// 댓글창의 페이지네이션버튼 클릭시 이벤트
+			$(document).on('click', '.pagination .page-link', function(){
+				var page = $(this).data('page');
+				showCommantForm(page);
+			});
+		
+			$(document).on('click', '.atc-commant-btn-box .btn', function(){
+				var btn_name = $(this).val();
+						
+				changeCommantForm($(this));
+				console.log(btn_name);
+				// 화면 변화
+				
+				
+				// 데이터 전송
+				
+													
+			});
 		
 		
+		
+	
 		//이벤트
-		//함수  
-			function readCommant() {			
-				var bd_num = ${board.bd_num};			
-				var url = '/commant/list?bd_num='+bd_num;				
+		//함수
+			function showCommantForm(page) {
+					readCommant(page); 
+					
+				  console.log('보여줄 댓글 목록');
+				  console.log(com_list);
+				  console.log('댓글용 페이지메이커');
+				  console.log(co_pm);
+				  
+				// 읽어온 commant와 pm으로 화면구성
+					var commantStr ='';
+					for(tmp of com_list) commantStr = crateCommantHtml(tmp,commantStr);	
+					$('.commant-box').html(commantStr);	
+					if(com_list.length > 0) setPagnation();
+										
+			}
+		
+			function readCommant(page) {			
+				var bd_num = ${board.bd_num};
+				var url = '/commant/list?bd_num='+bd_num+'&page='+page;				
 				function res_function(res) {				
 					com_list = res.list;
 					co_pm = res.pm;
@@ -84,6 +146,114 @@
 				ajaxService.parseAjax('get', null, url, res_function);	
 			}
 		
+			function crateCommantHtml(tmp, commantStr){
+				
+				tmp.co_num == tmp.co_ori_num ? reply = false : reply = true;
+				reply ? re_msg = 'ㄴ답변 : 	' : re_msg = '';
+				reply ? re_margin = 'ml-3' : re_margin='';
+				
+				commantStr+=	'<div class="atc-commant-box '+re_margin+'">';
+				commantStr+=		'<input type="hidden" name="co_num" value='+tmp.co_num +'>';
+				commantStr+=		'<span name="co_me_id">'+tmp.co_me_id+'</span>';
+				commantStr+=		'<span class="ml-2">|</span>';
+				commantStr+=		'<span class="ml-2" name="co_date">'+tmp.co_date+'</span> <br>';
+				
+				commantStr+=		'<div name="co_content">'+re_msg+tmp.co_content+'</div>';
+				commantStr+=		'<div class="atc-commant-btn-box">';
+				
+				//로그인 한 사람만 버튼이 보임
+				if('${user.me_id}' != ''){
+					// 답글에 답글은 추가로 답글이 달리지 않음
+					if(tmp.co_num == tmp.co_ori_num)
+					{
+						commantStr+=			'<input type="button" class="btn btn-sm btn-info"  name="btn-com-reply" value="답변">';	
+					}
+					// 로그인한 사람이 댓글 작성자일 경우에만 수정/삭베 버튼이 보임
+					if('${user.me_id}' == tmp.co_me_id){
+						commantStr+=			'<input type="button" class="btn btn-sm btn-warning ml-2"  name="btn-com-modify" value="수정">';				
+						commantStr+=			'<input type="button" class="btn btn-sm btn-danger ml-2"  name="btn-com-modify" value="삭제">';	
+					}	
+				}	
+				
+				commantStr+=		'</div>';							
+				commantStr+=	'</div>';	
+				commantStr+=	'<hr>'; 
+				
+				return commantStr;
+			}
+			
+			function setPagnation() {
+
+				co_pm.prev ? prev = '' : prev = 'disabled';	
+				co_pm.next ? next = '' : next = 'disabled';
+				
+				var pagenationStr = '';
+				pagenationStr += '<ul class="pagination  justify-content-center">';					
+				
+				pagenationStr +=  '<li class="page-item '+prev+'"><a class="page-link" data-page="'+(co_pm.criteria.page-1)+'" href="javascript:void(0);">이전</a></li>';
+				
+				for(var i = co_pm.startPage ; i <= co_pm.endPage ; i++){
+					co_pm.criteria.page == i ? act = 'active' : act ='';
+					pagenationStr +=  '<li class="page-item '+act+'"><a class="page-link" data-page="'+i+'" href="javascript:void(0);">'+i+'</a></li>';
+				}
+								
+				pagenationStr +=  '<li class="page-item '+next+'"><a class="page-link" data-page="'+(co_pm.criteria.page+1)+'" href="javascript:void(0);">다음</a></li>';
+				
+				pagenationStr +='</ul>';
+				
+				$('.commant-pagenation-box').html(pagenationStr)
+				
+			};
+			
+			
+			function changeCommantForm(btn) {
+				
+				var this_name = btn.val()
+				
+				if(this_name == '삭제') return; // 후 화면 새로고침
+				
+				// 다른 답변/수정 창 제거
+				$('.sub-commant-box').remove();
+				// 다른 답변/수정 창에서 숨겨놨던 버튼 보이기 
+				$('.atc-commant-btn-box').show();
+				// 다른 수정 창에서 숨겨놨던 댓글 내용 보이기
+				btn.parent().siblings('[name=co_content]').show();
+				// 선택된 댓글그룹의 기존 버튼 숨기기
+				btn.parent().hide();			
+				
+				var mainBtnVal = "";
+				var content ="";
+				var beforeObj;
+				
+				if(this_name == '수정'){
+					mainBtnVal = "댓글수정";
+					content = btn.parent().siblings('[name=co_content]').val();
+					beforeObj = btn.parent().siblings('br');
+										
+					btn.parent().siblings('[name=co_content]').hide();
+				}
+				
+				if(this_name == '답변'){
+					mainBtnVal = "답글등록";
+					content = "";
+					beforeObj = btn.parent().siblings('[name=co_content]');
+				}
+								
+				var changeHtmlStr = '';
+				
+				changeHtmlStr+= 	'<div class="input-group sub-commant-box" >';
+				changeHtmlStr+=			'<textarea name="co_content" col="2" style="resize : none; width : 70%;" calss="form-control" >'+content+'</textarea>';
+				changeHtmlStr+=			'<div class="input-group-append sub-commant-btn-box">';
+				changeHtmlStr+=				'<input type="button" class="btn btn-primary ml-2" value="'+mainBtnVal+'">';
+				changeHtmlStr+=				'<input type="button" class="btn btn-dark ml-2" value="취소">	';
+				changeHtmlStr+=			'</div>';	  		
+				changeHtmlStr+=		'</div>';
+				
+				beforeObj.after(changeHtmlStr);
+				
+			}
+			
+			
 		//함수
 		});
   </script>

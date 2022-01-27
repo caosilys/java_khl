@@ -281,7 +281,7 @@
 					str += '<hr>' +	
 				'</div>';
 				
-				return str
+				return str;
 			}
 			//date 타입을 string으로 변환
 			function getDateStr(date) {

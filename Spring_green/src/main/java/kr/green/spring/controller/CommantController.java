@@ -20,10 +20,10 @@ public class CommantController {
 	CommantService commantService;
 	
 	@RequestMapping(value = "/list")
-	public Map<String, Object> getList(Integer bd_num){
+	public Map<String, Object> getList(Integer bd_num, Integer page){
 		
 		// 현재페이지 1, 페이지당 표시 댓글 5개
-		Criteria cri = new Criteria(1, 5);
+		Criteria cri = new Criteria(page, 5);
 		
 		int count = commantService.getTotalCount(bd_num);		
 		

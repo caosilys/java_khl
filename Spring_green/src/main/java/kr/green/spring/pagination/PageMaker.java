@@ -32,7 +32,7 @@ public class PageMaker {
 		/* 현재 페이지메이커에 시작페이지가 1페이지면 prev가 없어야 함 */
 		prev = criteria.getPage() == 1 ? false : true;
 		/* 현재 페이지메이커에 마지막 페이지에 컨텐츠의 마지막이 포함되어 있으면 next가 없어야 함 */
-		next = criteria.getPage() == tempEndPage ? false:true;
+		next = criteria.getPage() >= tempEndPage ? false:true;
 	}
 
 	public PageMaker(int totalCount, int displayPageNum, Criteria criteria) {
