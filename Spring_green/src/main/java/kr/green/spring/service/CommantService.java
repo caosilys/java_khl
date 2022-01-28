@@ -3,7 +3,6 @@ package kr.green.spring.service;
 import java.util.List;
 
 import kr.green.spring.pagination.Criteria;
-import kr.green.spring.pagination.PageMaker;
 import kr.green.spring.vo.CommantVO;
 
 public interface CommantService {

@@ -1,9 +1,6 @@
 package kr.green.spring.vo;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;

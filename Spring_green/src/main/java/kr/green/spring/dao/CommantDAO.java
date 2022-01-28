@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import kr.green.spring.pagination.Criteria;
-import kr.green.spring.pagination.PageMaker;
+
 import kr.green.spring.vo.CommantVO;
 
 public interface CommantDAO {

@@ -2,7 +2,6 @@ package kr.green.spring.controller;
 
 import java.util.*;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
