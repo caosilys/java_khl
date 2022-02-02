@@ -28,4 +28,11 @@ public class CommantServieImp implements CommantService{
 		
 		return commantDao.getTotalCount(bd_num);
 	}
+
+	@Override
+	public String setCommant(CommantVO commant) {
+		if(commant.getCo_content().equals("")) return "false";
+		commantDao.setCommant(commant);
+		return "true";
+	}
 }

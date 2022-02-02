@@ -93,12 +93,39 @@
 		showCommantForm(1);
 		    		  
 		//이벤트
+			// main-commant-box의 댓글 등록 이벤트
+			$(document).on('click', '.main-commant-box .btn-success', function(){
+				
+				var commantStr = $('.main-commant-box [name=co_content]').val();
+				if(commantStr.trim() == ''){
+					alert('댓글을 입력하세요');
+					return;
+				}
+
+				var data = {
+					co_bd_num : '${board.bd_num}' ,
+					co_me_id : '${user.me_id}',
+					co_content : commantStr
+				};
+				
+				var url = '/commant/insert';
+
+				function res_function(res){
+					if(res){
+						console.log('정상동작');
+						showCommantForm(1);
+					}
+				};
+
+				ajaxService.parseAjax('post', data, url, res_function);
+			});
 			// 댓글창의 페이지네이션버튼 클릭시 이벤트
 			$(document).on('click', '.pagination .page-link', function(){
 				var page = $(this).data('page');
 				showCommantForm(page);
 			});
-		
+			
+			// 답변/수정/삭제버튼 이벤트
 			$(document).on('click', '.atc-commant-btn-box .btn', function(){
 				var btn_name = $(this).val();
 						
@@ -118,13 +145,7 @@
 		//이벤트
 		//함수
 			function showCommantForm(page) {
-					readCommant(page); 
-					
-				  console.log('보여줄 댓글 목록');
-				  console.log(com_list);
-				  console.log('댓글용 페이지메이커');
-				  console.log(co_pm);
-				  
+					readCommant(page); 	  
 				// 읽어온 commant와 pm으로 화면구성
 					var commantStr ='';
 					for(tmp of com_list) commantStr = crateCommantHtml(tmp,commantStr);	

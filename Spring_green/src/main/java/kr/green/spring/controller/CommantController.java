@@ -2,6 +2,7 @@ package kr.green.spring.controller;
 
 import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,15 @@ public class CommantController {
 		map.put("pm", pm);
 		
 		return map;		
+	}
+	
+	@RequestMapping(value = "/insert")
+	public String getInsert(@RequestBody CommantVO commant, HttpServletRequest request) {
+		
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		
+		if(user == null) return "false";		
+		return commantService.setCommant(commant);
 	}
 	
 	

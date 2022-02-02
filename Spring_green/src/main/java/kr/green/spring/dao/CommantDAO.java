@@ -16,4 +16,6 @@ public interface CommantDAO {
 
 	int getTotalCount(@Param("bd_num")Integer bd_num);
 
+	void setCommant(@Param("commant")CommantVO commant);
+
 }

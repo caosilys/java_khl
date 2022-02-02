@@ -11,4 +11,6 @@ public interface CommantService {
 
 	int getTotalCount(Integer bd_num);
 
+	String setCommant(CommantVO commant);
+
 }
