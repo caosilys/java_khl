@@ -8,8 +8,7 @@ pageEncoding="UTF-8"%>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>회원가입</title>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/commant.js"></script>
-	
+		
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -20,6 +19,13 @@ pageEncoding="UTF-8"%>
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<!-- 우편번호 -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/commant.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/jquery.validate.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/additional-methods.js"></script>
+	<style>
+		.error{ color : red }	
+	</style>
 
 </head>
 <body>
@@ -40,7 +46,7 @@ pageEncoding="UTF-8"%>
 			<input type="button" class="form-control" name="id_check" value="아이디 중복확인">
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control" placeholder="비밀번호" name="me_pw" value="${member.me_pw}">
+			<input type="password" class="form-control" placeholder="비밀번호" name="me_pw" id="me_pw" value="${member.me_pw}">
 		</div>
 		<div class="form-group">
 			<input type="password" class="form-control" placeholder="비밀번호확인" name="pw2">
@@ -65,6 +71,7 @@ pageEncoding="UTF-8"%>
 					<input type="radio" class="form-check-input" name="me_gender" value="여성">여성
 				</label>
 			</div>
+			<label id="me_gender-error" class="error" for="me_gender"></label>
 		</div>
 		<div class="form-group">
 			<div class="form-inline mb-2">
@@ -118,12 +125,8 @@ pageEncoding="UTF-8"%>
 		
 		$('form').submit(function(){
 			var id = $('[name=me_id]').val().trim();
-			var pw = $('[name=me_pw]').val().trim();
-			var pw2 = $('[name=pw2]').val().trim();
 			var name = $('[name=me_name]').val().trim();
 			var birth = $('[name=me_birth]').val().trim();
-			var genderObj = $('[name=me_gender]:checked');
-			var gender = genderObj.length == 0 ? '' : genderObj.val();
 			var isAgree = $('[name=agree]').is(':checked');
 			//동의에 체크되지 않으면
 			if(!isAgree){
@@ -132,41 +135,14 @@ pageEncoding="UTF-8"%>
 				return false;
 			}
 			
-			if(id == ''){
-				alert('아이디를 입력하세요.');
-				$('[name=me_id]').focus();
-				return false;
-			}
 			if(!chackidFlag){
 				alert('아이디 중복확인을 해주세요.');
-				return false;
-			}
-			
-			if(pw == ''){
-				alert('비밀번호를 입력하세요.');
-				$('[name=me_pw]').focus();
-				return false;
-			}
-			if(pw2 != pw){
-				alert('비밀번호가 일치하지 않습니다.');
-				$('[name=pw2]').focus();
-				return false;
-			}
-			if(name == ''){
-				alert('이름을 입력하세요.');
-				$('[name=me_name]').focus();
 				return false;
 			}
 			
 			if(birth == ''){
 				alert('생일을 입력하세요.');
 				$('[name=me_birth]').focus();
-				return false;
-			}
-			
-			if(gender == ''){
-				alert('성별을 선택하세요.');
-				$('[name=me_gender]').focus();
 				return false;
 			}
 			
@@ -206,8 +182,63 @@ pageEncoding="UTF-8"%>
 					// 커서를 상세주소 필드로 이동한다.
 					document.getElementById("detailAddress").focus();
 				}
-			}).open();
+			}).open();		
     }
+
+		$("form").validate({
+			rules: {
+				me_id: {
+					required : true,
+					regex : /^[A-z]\w{2,7}$/
+				},
+				me_pw: {
+					required : true,
+					regex: /^(?=\w{3,20}$)\w*(\d[A-z]|[A-z]\d)\w*$/
+				},
+				pw2: {
+					required : true,
+					equalTo : me_pw
+				},
+				me_name: {
+					required : true,
+					minlength : 2
+				},
+				me_gender: {
+					required : true
+				}
+			},
+			//규칙체크 실패시 출력될 메시지
+			messages : {
+				me_id: {
+					required : "필수로입력하세요",
+					regex : "영문자, 숫자로 이루어진 3~8자"
+				},
+				me_pw: {
+					required : "필수로입력하세요",
+					regex : "영문자, 숫자로 이루어져있으며 최소 하나이상 포함"
+				},
+				pw2: {
+					required : "필수로입력하세요",
+					equalTo : "비밀번호가 일치하지 않습니다."
+				},
+				me_name: {
+					required : "필수로입력하세요",
+					minlength : "최소 {2}글자이상이어야 합니다"
+				},
+				me_gender: {
+					required : "필수로입력하세요"
+				}
+			}
+		});	
+				
+		$.validator.addMethod(
+			"regex",
+			function(value, element, regexp) {
+					var re = new RegExp(regexp);
+					return this.optional(element) || re.test(value);
+			},
+			"Please check your input."
+		);	
 	});
 	
 
