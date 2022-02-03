@@ -17,5 +17,12 @@ public interface CommantDAO {
 	int getTotalCount(@Param("bd_num")Integer bd_num);
 
 	void setCommant(@Param("commant")CommantVO commant);
+	
+	String getOriUser(@Param("co_num")int co_num);
 
+	void modifyCommant(@Param("commant")CommantVO commant);
+
+	void deleteCommant(@Param("co_num")Integer co_num);
+	
+	
 }

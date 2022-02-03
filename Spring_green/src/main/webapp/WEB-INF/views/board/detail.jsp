@@ -97,8 +97,9 @@
 			$(document).on('click', '.main-commant-box .btn-success', function(){
 				
 				var commantStr = $('.main-commant-box [name=co_content]').val();
+
 				if(commantStr.trim() == ''){
-					alert('댓글을 입력하세요');
+					alert('내용을 입력하세요');
 					return;
 				}
 
@@ -113,12 +114,14 @@
 				function res_function(res){
 					if(res){
 						console.log('정상동작');
+						$('.main-commant-box [name=co_content]').val('');
 						showCommantForm(1);
 					}
 				};
 
 				ajaxService.parseAjax('post', data, url, res_function);
 			});
+		
 			// 댓글창의 페이지네이션버튼 클릭시 이벤트
 			$(document).on('click', '.pagination .page-link', function(){
 				var page = $(this).data('page');
@@ -127,22 +130,72 @@
 			
 			// 답변/수정/삭제버튼 이벤트
 			$(document).on('click', '.atc-commant-btn-box .btn', function(){
-				var btn_name = $(this).val();
-						
+				
+				// 화면 변화
+				var btn_name = $(this).val();						
 				changeCommantForm($(this));
 				console.log(btn_name);
-				// 화면 변화
+				
+				if(btn_name == '삭제'){
+					
+					var co_num = $(this).closest('.atc-commant-box').children('[name=co_num]').val();
+					var url = '/commant/delete?co_num='+co_num ;
+					function res_function(res) {
+						if(res){
+							alert("삭제되었습니다")
+							showCommantForm(1);
+						}
+					}
+					ajaxService.parseAjax('get', null, url, res_function);
+				}
 				
 				
-				// 데이터 전송
-				
-													
+
 			});
-		
-		
-		
+
+			// 댓글수정 / 답변등록 / 취소 버튼 이벤트
+			$(document).on('click', '.sub-commant-box .btn', function(){
+				
+				var this_name = $(this).val()
+				console.log(this_name);
+
+				if(this_name == '취소'){
+					changeCommantForm($(this));
+					return;
+				}
+
+				var commantStr = $('.sub-commant-box [name=co_content]').val();
+				if(commantStr.trim() == ''){
+					alert('내용을 입력하세요');
+					return;
+				}
+				var co_num = $(this).closest('.atc-commant-box').children('[name=co_num]').val();
+
+				var data = {
+						co_bd_num : '${board.bd_num}' ,
+						co_me_id : '${user.me_id}',
+						co_content : commantStr,
+						co_num : co_num
+					};
+
+				var url;
+				
+				if(this_name == '댓글수정')	url = '/commant/update';
+				if(this_name == '답글등록')	url = '/commant/insert';
+
+				function res_function(res){
+					if(res){
+						var page = $('.active .page-link').data('page');
+						if(this_name == '댓글수정') showCommantForm(page);
+						else showCommantForm(1);						
+					}
+				};
+
+				 ajaxService.parseAjax('post', data, url, res_function);
+			});
 	
 		//이벤트
+
 		//함수
 			function showCommantForm(page) {
 					readCommant(page); 	  
@@ -225,30 +278,32 @@
 				$('.commant-pagenation-box').html(pagenationStr)
 				
 			};
-			
-			
+				
 			function changeCommantForm(btn) {
 				
 				var this_name = btn.val()
 				
-				if(this_name == '삭제') return; // 후 화면 새로고침
+				if(this_name == '삭제') return; 
 				
 				// 다른 답변/수정 창 제거
 				$('.sub-commant-box').remove();
 				// 다른 답변/수정 창에서 숨겨놨던 버튼 보이기 
 				$('.atc-commant-btn-box').show();
 				// 다른 수정 창에서 숨겨놨던 댓글 내용 보이기
-				btn.parent().siblings('[name=co_content]').show();
+				$('.atc-commant-box [name=co_content]').show();
 				// 선택된 댓글그룹의 기존 버튼 숨기기
-				btn.parent().hide();			
+				btn.parent().hide();
+
+				if(this_name == '취소') return; 
 				
 				var mainBtnVal = "";
 				var content ="";
 				var beforeObj;
 				
+
 				if(this_name == '수정'){
 					mainBtnVal = "댓글수정";
-					content = btn.parent().siblings('[name=co_content]').val();
+					content = btn.parent().siblings('[name=co_content]').text();
 					beforeObj = btn.parent().siblings('br');
 										
 					btn.parent().siblings('[name=co_content]').hide();

@@ -42,12 +42,32 @@ public class CommantController {
 	}
 	
 	@RequestMapping(value = "/insert")
-	public String getInsert(@RequestBody CommantVO commant, HttpServletRequest request) {
+	public String postInsert(@RequestBody CommantVO commant, HttpServletRequest request) {
 		
+		System.out.println(commant);
 		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
 		
-		if(user == null) return "false";		
+		if(user == null) return "false";
 		return commantService.setCommant(commant);
+	}
+	
+	@RequestMapping(value = "/update")
+	public String postUpdate(@RequestBody CommantVO commant, HttpServletRequest request) {
+		
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");	
+		if(user == null) return "false";
+		
+		return commantService.modifyCommant(user, commant);
+	}
+	
+	@RequestMapping(value = "/delete")	
+	public String getDelete(Integer co_num, HttpServletRequest request) {
+		
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");	
+		if(user == null || co_num == null) return "false";
+		
+		
+		return commantService.deleteCommant(user, co_num);
 	}
 	
 	

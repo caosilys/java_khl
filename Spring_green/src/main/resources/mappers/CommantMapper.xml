@@ -7,8 +7,7 @@
  	<select id="getList" resultType="kr.green.spring.vo.CommantVO">
  		select * from commant where co_bd_num = #{bd_num} and co_del = 'N'
  		order by co_ori_num desc, co_num asc 
- 		limit #{cri.pageStart}, #{cri.perPageNum}
- 		
+ 		limit #{cri.pageStart}, #{cri.perPageNum} 		
  	</select>
  	
  	<select id="getTotalCount" resultType="int">
@@ -16,9 +15,29 @@
  	</select>
  	
  	<insert id="setCommant" >
- 		insert into commant (co_bd_num, co_me_id, co_ori_num, co_content)
- 		select #{commant.co_bd_num}, #{commant.co_me_id}, ifnull(max(co_num),0)+1, #{commant.co_content}
- 		from commant
+ 		<if test="commant.co_num == 0">
+	 		insert into commant (co_bd_num, co_me_id, co_ori_num, co_content)
+	 		select #{commant.co_bd_num}, #{commant.co_me_id}, ifnull(max(co_num),0)+1, #{commant.co_content}
+	 		from commant 		
+ 		</if>
+		 <if test="commant.co_num != 0">
+			insert into commant (co_bd_num, co_me_id, co_ori_num, co_content)
+			value (#{commant.co_bd_num}, #{commant.co_me_id}, #{commant.co_num}, #{commant.co_content})
+ 		</if>
  	</insert>
+ 	
+ 	<select id="getOriUser" resultType="String">
+ 		select co_me_id from commant where co_num = #{co_num}
+ 	</select>
+ 	
+ 	<update id="modifyCommant" parameterType="kr.green.spring.vo.CommantVO">
+ 		update commant set 
+ 		co_content = '[수정됨]' #{commant.co_content}, co_reg_date = now()
+ 		where co_num = #{commant.co_num}
+ 	</update>
+ 	
+ 	<update id="deleteCommant">
+ 		update commant set co_del = 'Y' where co_num = #{co_num}
+ 	</update>
  	
 </mapper>

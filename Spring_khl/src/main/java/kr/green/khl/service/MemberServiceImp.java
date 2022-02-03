@@ -33,6 +33,8 @@ public class MemberServiceImp implements MemberService{
 
 	public boolean signup(MemberVO member) {
 		
+		System.out.println(member);
+		
 		if(member == null) return false;
 		if(member.getMe_id() == null) return false;
 		if(member.getMe_pw() == null) return false;
