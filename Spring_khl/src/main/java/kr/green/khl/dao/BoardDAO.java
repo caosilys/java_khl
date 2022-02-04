@@ -30,4 +30,12 @@ public interface BoardDAO {
 	List<BoardVO> getMyBoard(@Param("user_id")String user_id);
 
 	void updateViews(@Param("bd_num")Integer bd_num);
+
+	LikesVO getLikes(@Param("likes")LikesVO likes);
+
+	void insertLikes(@Param("likes") LikesVO likes);
+
+	void updateLikes(@Param("likes")LikesVO likes);
+
+	void updateBdLikes(@Param("likes")LikesVO likes);
 }

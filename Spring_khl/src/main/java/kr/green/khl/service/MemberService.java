@@ -14,4 +14,8 @@ public interface MemberService {
 
 	String checkId(String id);
 
+	MemberVO updateMember(MemberVO input, MemberVO user);
+
+	String findMember(MemberVO member);
+
 }

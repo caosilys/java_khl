@@ -33,6 +33,7 @@
             <th>제목</th>
             <th>작성자</th>
             <th>조회수</th>
+            <th>추천/비추천</th>
             <th>작성시간</th>
           </tr>
         </thead>
@@ -48,6 +49,7 @@
 		         </c:if>
 		         <td>${board.bd_me_id}</td>
 		         <td>${board.bd_views}</td>
+		         <td>${board.bd_up} / ${board.bd_down}</td>
 		         <td>${board.bd_reg_date_str}</td>
 		  		</tr>
         </c:forEach>

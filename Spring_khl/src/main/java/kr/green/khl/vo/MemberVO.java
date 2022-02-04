@@ -18,6 +18,7 @@ public class MemberVO {
 	private String me_address;
 	private String me_phone;
 	private String me_authority;
+	private String me_email;
 	
 	public void setMe_birth(String me_birth)  {		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -28,6 +29,12 @@ public class MemberVO {
 			System.out.println("날짜정보 에러");
 			System.out.println("birth 정보 : " +  me_birth);
 		}
+	}
+	
+	public String getMe_birth_str(){
+		String strDate = "";
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		return format.format(me_birth);
 	}
 
 }

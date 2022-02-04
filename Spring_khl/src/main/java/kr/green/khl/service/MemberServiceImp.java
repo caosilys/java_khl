@@ -67,4 +67,31 @@ public class MemberServiceImp implements MemberService{
 		return "true";
 	
 	}
+
+	@Override
+	public MemberVO updateMember(MemberVO input, MemberVO user) {
+		if(input == null || user == null) return null;
+		if(input.getMe_name() == null || input.getMe_birth() == null || input.getMe_gender() == null) return null;		
+		if(input.getMe_address() == null || input.getMe_address().length() == 0) input.setMe_address(user.getMe_address());
+		if(input.getMe_pw() == null || input.getMe_pw().length() == 0) input.setMe_pw(user.getMe_pw());
+		else {
+			String encPw = passwordEncoder.encode(input.getMe_pw());
+			input.setMe_pw(encPw); 
+		}
+		input.setMe_id(user.getMe_id());
+		
+		System.out.println(input);
+		memberDao.updateMember(input);
+		
+		return memberDao.getMember(user.getMe_id());
+	}
+
+	@Override
+	public String findMember(MemberVO member) {
+		if(member == null) return "false";
+		
+		
+	
+		return "false";
+	}
 }

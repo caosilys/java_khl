@@ -42,19 +42,5 @@ public class testController {
 //		return mv;
 //	}
 	
-	@RequestMapping(value = "/mypage", method = RequestMethod.GET)	
-	public ModelAndView myPageGet(ModelAndView mv, HttpServletRequest request){
-		
-		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
-		if(user == null) {
-			mv.setViewName("/test/home");
-			System.out.println("세션이 만료되어 로그아웃되었습니다.");
-		}
-		else {
-			List<BoardVO> myBoard = boardService.getMyBoard(user.getMe_id());
-			mv.addObject("list", myBoard);		
-			mv.setViewName("/board/list");
-		}	
-		return mv;
-	}
+	
 }

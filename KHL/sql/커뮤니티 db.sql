@@ -113,3 +113,35 @@ ADD CONSTRAINT `co_me_id`
   REFERENCES `comunity`.`member` (`me_id`)
   ON DELETE CASCADE
   ON UPDATE CASCADE;
+
+-- 좋아요 테이블 추가
+
+CREATE TABLE `comunity`.`likes` (
+  `li_num` INT NOT NULL AUTO_INCREMENT,
+  `li_bd_num` INT NOT NULL,
+  `li_me_id` VARCHAR(20) NOT NULL,
+  `li_state` INT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`li_num`));
+
+ALTER TABLE `comunity`.`likes` 
+ADD INDEX `li_bd_num_idx` (`li_bd_num` ASC) VISIBLE,
+ADD INDEX `li_me_id_idx` (`li_me_id` ASC) VISIBLE;
+;
+ALTER TABLE `comunity`.`likes` 
+ADD CONSTRAINT `li_bd_num`
+  FOREIGN KEY (`li_bd_num`)
+  REFERENCES `comunity`.`board` (`bd_num`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+ADD CONSTRAINT `li_me_id`
+  FOREIGN KEY (`li_me_id`)
+  REFERENCES `comunity`.`member` (`me_id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+-- e-mail 정보 추가  
+ALTER TABLE `comunity`.`member` 
+ADD COLUMN `me_email` VARCHAR(100) NOT NULL DEFAULT '' AFTER `me_authority`;
+  
+  
+  

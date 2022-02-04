@@ -32,11 +32,13 @@ public interface BoardService {
 	
 	PageMaker setPageMaker(PageMaker pm, Integer page, String search, String type);
 	
+	void updateViews(Integer bd_num);
+
+	String setLikes(MemberVO user, LikesVO likes);
+	
+	int getLikesState(MemberVO user, BoardVO board);
+	
 	//테스트 메소드
 	List<BoardVO> getMyBoard(String user_id);
 	
-	void updateViews(Integer bd_num);
-
-	
-
 }

@@ -180,6 +180,36 @@ public class BoardServiceImp implements BoardService{
 		
 	}
 
+	@Override
+	public String setLikes(MemberVO user, LikesVO likes) {
+		
+		if(user == null || likes == null) return "fail";
+		
+		LikesVO dbLikes = boardDao.getLikes(likes);		
+		
+		if(dbLikes == null) boardDao.insertLikes(likes);
+		else boardDao.updateLikes(likes);
+		
+		boardDao.updateBdLikes(likes);
+		
+		return ""+likes.getLi_state();
+	}
+	
+	
+	@Override
+	public int getLikesState(MemberVO user, BoardVO board) {
+		if(user == null) return 0;
+		
+		LikesVO likes = new LikesVO();
+		likes.setLi_me_id(user.getMe_id());
+		likes.setLi_bd_num(board.getBd_num());
+		
+		LikesVO dblikes = boardDao.getLikes(likes);
+		
+		if(dblikes == null) return 0;
+		else return dblikes.getLi_state();
+	}
+
 
 
 

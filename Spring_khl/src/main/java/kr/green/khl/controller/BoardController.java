@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +17,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -86,14 +90,18 @@ public class BoardController {
 	
 	// 게시글 보기 
 	@RequestMapping(value="/detail")
-	public ModelAndView boardDetail(ModelAndView mv, Integer bd_num) {
+	public ModelAndView boardDetail(ModelAndView mv, Integer bd_num, HttpServletRequest request) {
 		
 		boardService.updateViews(bd_num);
 		BoardVO board = boardService.getBoard(bd_num);
 		List<FileVO> file = boardService.getFile(bd_num);
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		//해당유저의 좋아요 정보를 넣어주기
+		int likes = boardService.getLikesState(user, board);
 		
+		mv.addObject("likes", likes);
 		mv.addObject("file", file);
-		mv.addObject("board", board);		
+		mv.addObject("board", board);	
 		mv.setViewName("/board/detail");
 		return mv;
 	}
@@ -186,5 +194,14 @@ public class BoardController {
 			
 			return false;
 		}
+		
+		
+		@ResponseBody
+		@RequestMapping(value="/likes")
+		public String likesPost(@RequestBody LikesVO likes, HttpServletRequest request) {
+			MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+			return boardService.setLikes(user, likes);
+		}
+		
 				
 }

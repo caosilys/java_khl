@@ -2,6 +2,7 @@ package kr.green.khl.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -104,7 +105,43 @@ public class HomeController {
 		return memberService.checkId(id);
 	}
 	
-	// redirect / forward
+
+	@RequestMapping(value = "/mypage")	
+	public ModelAndView myPageGet(ModelAndView mv, MemberVO input, HttpServletRequest request){
+		
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		
+		if(user == null) {
+			mv.setViewName("/test/home");
+			System.out.println("세션이 만료되어 로그아웃되었습니다.");
+			return mv;
+		}
+		MemberVO new_user = memberService.updateMember(input, user);	
+		
+		mv.addObject("user", new_user);
+		mv.setViewName("/member/mypage");
+			
+		return mv;
+	}
+	
+	@RequestMapping(value = "/member/find")	
+	public ModelAndView memberFind(ModelAndView mv){
+		
+		mv.setViewName("/member/find");			
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/find/Id")
+	public String memberFindId(ModelAndView mv, @RequestBody MemberVO member){
+		
+		String findMemberId = memberService.findMember(member);
+		System.out.println(member);
+		
+		mv.setViewName("redirect:/member/find");
+			
+		return findMemberId;
+	}
 	
 	
 }

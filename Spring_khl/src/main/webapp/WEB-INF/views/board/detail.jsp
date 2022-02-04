@@ -44,6 +44,20 @@
 					<button class="btn btn-secondary float_right" style="margin-right:10px">수정</button>
 				</a>			
 			</c:if>
+			<div class="likes_form form-group mt-3"  >
+				<div class="atc_likes_form justify-content-center" style="display:flex">
+					<c:if test="${likes == 0}">
+						<button class="btn btn_li_up btn-success" data-state="1">추천</button>
+						<button class="btn btn_li_down btn-danger ml-2" data-state="-1">비추천</button>						
+					</c:if>
+					<c:if test="${likes == 1}">
+						<button class="btn btn_li_cancel btn-danger" data-state="0">추천취소</button>
+					</c:if>
+					<c:if test="${likes == -1}">
+						<button class="btn btn_li_cancel btn-success" data-state="0">비추천취소</button>
+					</c:if>
+				</div>
+			</div>
 		</c:if>
 		<c:if test="${board == null}">
 			<h1>없거나 삭제된 게시물입니다</h1>	
@@ -234,7 +248,55 @@
         commantService.parseAjax('POST', commant, url, response_funcion);
         // submitAjax(false, 'POST', commant, url, response_funcion);        
       });
-
+      
+    	// 추천기능 관련 버튼 클릭 이벤트	  
+      $(document).on('click', '.btn_li_up, .btn_li_down, .btn_li_cancel', function () {
+    	  
+    	  if( '${user}' == ''){
+    		  alert('로그인이 필요합니다');
+    		  return;
+    	  }
+    	  
+    	  var likes = {
+    			  li_bd_num : '${board.bd_num}',
+    			  li_me_id : '${user.me_id}',
+    			  li_state : $(this).data('state')    				  
+    	  }
+				
+    	  var url = '/board/likes'
+    	  
+    	  function res_function(res) {
+					console.log(res);
+    		  if(res == 'fail') {
+    			  alert('잘못된 접근입니다');
+    			  return;
+    		  }
+    		  $('.atc_likes_form').remove();    		  
+    		  var changeLikeStr = '<div class="atc_like_form justify-content-center" style="display:flex">';
+    		  			
+					if(res == 0){
+						alert('취소했습니다');
+						changeLikeStr +=	 '<button class="btn btn_li_up btn-success" data-state="1">추천</button>';
+						changeLikeStr += '<button class="btn btn_li_down btn-danger ml-2" data-state="-1">비추천</button>';
+					}
+					if(res == 1){
+						alert('추천했습니다');
+						changeLikeStr += '<button class="btn btn_li_cancel btn-danger" data-state="0">추천취소</button>';
+					}
+					if(res == -1){
+						alert('비추천했습니다');
+						changeLikeStr += '<button class="btn btn_li_cancel btn-success" data-state="0">비추천취소</button>';
+					}
+					
+					changeLikeStr += '</div>';
+					
+					$('.likes_form').html(changeLikeStr);
+				}
+    	  
+    	  commantService.parseAjax('POST', likes, url, res_function);
+    	  
+			});
+      
       // 함수
       //댓글 불러오기 (ajax 사용)
       function readCommant(co_bd_num, page) {
