@@ -143,5 +143,43 @@ ADD CONSTRAINT `li_me_id`
 ALTER TABLE `comunity`.`member` 
 ADD COLUMN `me_email` VARCHAR(100) NOT NULL DEFAULT '' AFTER `me_authority`;
   
+
+-- 카테고리 추가  
+CREATE TABLE `comunity`.`maincategory` (
+  `ma_num` INT NOT NULL AUTO_INCREMENT,
+  `ma_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ma_num`));
   
+CREATE TABLE `comunity`.`middlecategory` (
+  `mi_num` INT NOT NULL AUTO_INCREMENT,
+  `mi_name` VARCHAR(45) NOT NULL,
+  `mi_ma_num` INT NOT NULL,
+  PRIMARY KEY (`mi_num`));  
+
+ALTER TABLE `comunity`.`middlecategory` 
+ADD INDEX `mi_ma_num_idx` (`mi_ma_num` ASC) VISIBLE;
+;
+ALTER TABLE `comunity`.`middlecategory` 
+ADD CONSTRAINT `mi_ma_num`
+  FOREIGN KEY (`mi_ma_num`)
+  REFERENCES `comunity`.`maincategory` (`ma_num`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
+CREATE TABLE `comunity`.`subcategory` (
+  `su_num` INT NOT NULL AUTO_INCREMENT,
+  `su_name` VARCHAR(45) NOT NULL,
+  `su_mi_num` INT NOT NULL,
+  PRIMARY KEY (`su_num`));
+
+ALTER TABLE `comunity`.`subcategory` 
+ADD INDEX `su_mi_num_idx` (`su_mi_num` ASC) VISIBLE;
+;
+ALTER TABLE `comunity`.`subcategory` 
+ADD CONSTRAINT `su_mi_num`
+  FOREIGN KEY (`su_mi_num`)
+  REFERENCES `comunity`.`middlecategory` (`mi_num`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;  
   

@@ -39,6 +39,7 @@
 	<beans:bean id="loginInterceptor"  class="kr.green.khl.interceptor.LoginInterceptor"></beans:bean>
 	<beans:bean id="memberInterceptor"  	class="kr.green.khl.interceptor.MemberInterceptor"></beans:bean>
 	<beans:bean id="guestInterceptor"  	class="kr.green.khl.interceptor.GuestInterceptor"></beans:bean>
+	<beans:bean id="autoLoginInterceptor"  	class="kr.green.khl.interceptor.AutoLoginInterceptor"></beans:bean>
 
 
 	<!--등록된 인터셉터가 어떤 url에 동작하는지  --> 
@@ -46,6 +47,10 @@
 	  <interceptor>
 		  <mapping path="/login"/>
 		  <beans:ref bean="loginInterceptor"/>
+	 	</interceptor>
+	  <interceptor>
+		  <mapping path="/**/"/>
+		  <beans:ref bean="autoLoginInterceptor"/>
 	 	</interceptor>
 	  <interceptor>
 		  <mapping path="/board/register"/>

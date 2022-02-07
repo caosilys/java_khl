@@ -25,9 +25,11 @@
 	    <li class="nav-item">
 	      <a class="nav-link" href="<%=request.getContextPath() %>/board/list">게시글</a>
 	    </li>
+	    
 	    <li class="nav-item">
 	      <a class="nav-link" href="<%=request.getContextPath() %>/memberlist">회원정보</a>
 	    </li>
+	    
 		<c:if test="${user == null}"> 		    
 			<li class="nav-item">
 		    	<a class="nav-link" href="<%=request.getContextPath() %>/signup">회원가입</a>

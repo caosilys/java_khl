@@ -12,9 +12,9 @@ let commantService = (function(){
         type : _type,
         data : JSON.stringify(_data),
         url : this.contextPath + _url ,
-        dataType:"json",
         contentType:"application/json; charset=UTF-8",
         success : function(res){
+        	console.log(res);
           if(_funcion != null) _funcion(res);
         }
     });

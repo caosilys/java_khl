@@ -14,8 +14,15 @@ public interface MemberDAO {
 	
 	void updateMember(@Param("user")MemberVO input);
 	
-	//테스트코드
+	String findMemberId(@Param("user")MemberVO member);
+	
 	List<MemberVO> getList();
+
+	void updateAutoLogin(@Param("user")MemberVO user);
+
+	MemberVO selectMemberBySessionId(@Param("me_session_id")String me_session_id);
+
+	
 
 	
 

@@ -9,13 +9,17 @@ public interface MemberService {
 	MemberVO login(MemberVO member);
 
 	boolean signup(MemberVO member);
-	
-	List<MemberVO> getList();
 
 	String checkId(String id);
 
 	MemberVO updateMember(MemberVO input, MemberVO user);
 
-	String findMember(MemberVO member);
+	String findMemberId(MemberVO member);
+
+	String findMemberPw(MemberVO member);
+
+	void updateAutologin(MemberVO user);
+
+	MemberVO selectMemberBySessionId(String value);
 
 }

@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 import kr.green.khl.service.MemberService;
 import kr.green.khl.vo.*;
@@ -38,16 +41,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView homeget(ModelAndView mv) {		
-		/*
-		 * 화면 파일명 확장자는 여기서 선택하는게 아님
-		 * 확장자는 servlet-context.xml 에서 설정
-		 * 단, views 폴더에는 jsp만 가능
-		 * html을 화면으로 쓰려면 src/main/resources 폴더에 넣어야함
-		 * */	
+
 		mv.setViewName("/main/home");
-//		화면으로 데이터를 보낼때 addObject를 사용
-//		addObject("화면에서 사용할 이름", 데이터);
-//		mv.addObject("serverTime", "데이타");	
 		return mv;
 	}
 	
@@ -60,11 +55,13 @@ public class HomeController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginPost(ModelAndView mv, MemberVO member) {
 		
+		
 		MemberVO user = 	memberService.login(member);
 		if(user == null) {
 			mv.setViewName("redirect:/login");
 		}
 		else {
+			user.setMe_auto_login(member.getMe_auto_login());
 			mv.addObject("user",user);
 			mv.setViewName("redirect:/");
 		}
@@ -72,8 +69,30 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public ModelAndView logoutGet(ModelAndView mv, HttpServletRequest request) {
-		request.getSession().removeAttribute("user") ;
+	public ModelAndView logoutGet(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) {
+		
+		
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		
+		if(user != null) {
+			
+			request.getSession().removeAttribute("user");
+			
+			Cookie cookie = WebUtils.getCookie(request, "loginCookie");
+			if(cookie != null) {
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+				//자동 로그인 해제를 위해 세션 아이디에 none을 저장하고, 만료 시간을 현재시간으로 설정
+				user.setMe_session_id("none");
+				user.setMe_session_limit(new Date());
+				memberService.updateAutologin(user);
+			}
+		
+		}
+		
+		
+		
+		
 		mv.setViewName("redirect:/");
 		return mv;
 	}
@@ -133,14 +152,31 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/member/find/Id")
-	public String memberFindId(ModelAndView mv, @RequestBody MemberVO member){
+	public String memberFindId(@RequestBody MemberVO member){
 		
-		String findMemberId = memberService.findMember(member);
+		String findMemberId = memberService.findMemberId(member);
+		System.out.println(findMemberId);	
+		
+		return findMemberId;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/member/find/pw")
+	public String memberFindPw(@RequestBody MemberVO member){
+				
+		String findMemberPw = memberService.findMemberPw(member);
+		
+		return findMemberPw;
+	}
+	
+	// 이거 작업 해야됨
+	@ResponseBody
+	@RequestMapping(value = "/admin/upAut")
+	public String updateAuthority(@RequestBody MemberVO member){
+				
 		System.out.println(member);
 		
-		mv.setViewName("redirect:/member/find");
-			
-		return findMemberId;
+		return "true";
 	}
 	
 	

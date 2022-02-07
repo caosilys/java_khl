@@ -17,20 +17,9 @@ import kr.green.khl.vo.*;
 @Controller
 public class testController {
 	
-	@Autowired
-	MemberService memberService;
+
 	
-	@Autowired
-	BoardService boardService;
-	
-	@RequestMapping(value = "/memberlist", method = RequestMethod.GET)	
-	public ModelAndView memberListGet(ModelAndView mv){		
-		
-		List<MemberVO> userList =	memberService.getList();
-		mv.addObject("member", userList);
-		mv.setViewName("/test/memberlist");
-		return mv;
-	}
+
 	
 	
 //	@RequestMapping(value = "/memberlist", method = RequestMethod.POST)	
