@@ -2,8 +2,10 @@ package kr.green.khl.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -87,12 +89,7 @@ public class HomeController {
 				user.setMe_session_limit(new Date());
 				memberService.updateAutologin(user);
 			}
-		
 		}
-		
-		
-		
-		
 		mv.setViewName("redirect:/");
 		return mv;
 	}
@@ -177,6 +174,40 @@ public class HomeController {
 		System.out.println(member);
 		
 		return "true";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/maincategory")
+	public Map<String,Object> getMainCategory(){
+				
+		HashMap<String, Object> map = new HashMap<String, Object>();		
+		List<MainCategoryVO> list = memberService.selectMainCategory();				
+		map.put("list", list);
+		
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/middlecategory")
+	public Map<String,Object> getMiddleCategory(Integer ma_num){
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();		
+		List<MiddleCategoryVO> list = memberService.selectMiddleCategory(ma_num);				
+		map.put("list", list);
+		
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/subcategory")
+	public Map<String,Object> getsubCategory(Integer mi_num){
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();		
+		List<MiddleCategoryVO> list = memberService.selecSubCategory(mi_num);				
+		map.put("list", list);
+		
+		return map;
 	}
 	
 	

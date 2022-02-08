@@ -11,7 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.green.khl.dao.MemberDAO;
+import kr.green.khl.vo.MainCategoryVO;
 import kr.green.khl.vo.MemberVO;
+import kr.green.khl.vo.MiddleCategoryVO;
 
 @Service
 public class MemberServiceImp implements MemberService{
@@ -177,5 +179,23 @@ public class MemberServiceImp implements MemberService{
 		
 		return memberDao.selectMemberBySessionId(me_session_id);
 		
+	}
+
+	@Override
+	public List<MainCategoryVO> selectMainCategory() {
+		
+		return memberDao.selectMainCategory();
+	}
+
+	@Override
+	public List<MiddleCategoryVO> selectMiddleCategory(Integer ma_num) {
+		
+		return memberDao.selectMiddleCategory(ma_num);
+	}
+
+	@Override
+	public List<MiddleCategoryVO> selecSubCategory(Integer mi_num) {
+		
+		return memberDao.selecSubCategory(mi_num);
 	}
 }

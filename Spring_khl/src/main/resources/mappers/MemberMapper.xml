@@ -22,6 +22,9 @@
 			me_birth = #{user.me_birth},
 			me_address = #{user.me_address},
 			me_phone = #{user.me_phone}
+			<if test="user.me_authority != null">
+			, me_authority = #{user.me_authority}
+			</if>
 		where me_id = #{user.me_id}
 	</update>
 	
@@ -41,6 +44,18 @@
 	<select id="selectMemberBySessionId"  resultType="kr.green.khl.vo.MemberVO">
 		select *from member
 		where me_session_id = #{me_session_id} and me_session_limit >= now()
+	</select>
+	
+	<select id="selectMainCategory" resultType="kr.green.khl.vo.MainCategoryVO">
+		select * from maincategory
+	</select>
+	
+	<select id="selectMiddleCategory" resultType="kr.green.khl.vo.MiddleCategoryVO">
+		select * from middlecategory where mi_ma_num = #{ma_num}
+	</select>
+	
+	<select id="selecSubCategory" resultType="kr.green.khl.vo.SubCategoryVO">
+		select * from subcategory where su_mi_num = #{mi_num}
 	</select>
 	
 </mapper>

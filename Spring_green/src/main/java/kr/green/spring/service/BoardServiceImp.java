@@ -13,6 +13,7 @@ import kr.green.spring.pagination.Criteria;
 import kr.green.spring.utils.UploadFileUtils;
 import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.FileVO;
+import kr.green.spring.vo.LikesVO;
 
 @Service
 public class BoardServiceImp implements BoardService{
@@ -133,6 +134,29 @@ public class BoardServiceImp implements BoardService{
 	@Override
 	public void updateViews(Integer bd_num) {
 		boardDao.updateViews(bd_num);	
+	}
+
+	@Override
+	public Integer setLikes(LikesVO likes) {
+		if(likes == null || likes.getLi_bd_num() <= 0 || likes.getLi_me_id().equals("")) return null;
+		// likes 검색
+		LikesVO getLikes = boardDao.getLikes(likes);
+		
+		if(getLikes == null) boardDao.insertLikes(likes);
+		else boardDao.updateLikes(likes);
+		
+		boardDao.updateBdLikes(likes.getLi_bd_num());
+		
+		return likes.getLi_state();
+	}
+
+	@Override
+	public Integer getLikeState(Integer bd_num, String me_id) {
+		
+		if(bd_num == null || me_id == null) return null;	
+		Integer likeState = boardDao.getLikeState(bd_num, me_id);
+		if(likeState == null) likeState = 0;
+		return likeState;
 	}
 
 

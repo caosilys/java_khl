@@ -98,8 +98,8 @@
 					}	
 			}
 			
-//			commantService.parseAjax('post', member, '/member/find/Id', res_function);
-			submitAjax(false, 'post', member, '/member/find/Id', res_function)
+			commantService.parseAjax('post', member, '/member/find/Id', res_function);
+//			submitAjax(false, 'post', member, '/member/find/Id', res_function)
 					
 		});
 		
@@ -113,8 +113,8 @@
 			}
 			
 			function res_function(res) {
-				console.log(res)
-				if(res == 'false' || !res){
+				
+				if(res == 'false'){
 					alert("잘못된 접근입니다");
 				}
 				else{

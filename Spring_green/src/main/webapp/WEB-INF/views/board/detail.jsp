@@ -21,8 +21,8 @@
 		  <c:if test="${board.bd_up == null}">
 		  	<label>작성일 : ${board.bd_date}</label>
 		  </c:if>
-		  <c:if test="${board.bd_up != null}">
-		  	<label>최종수정 : ${board.bd_up}</label>
+		  <c:if test="${board.bd_upd != null}">
+		  	<label>최종수정 : ${board.bd_upd}</label>
 		  </c:if>
 		</div>   
     <div class="form-group">
@@ -43,7 +43,18 @@
 				<a class="form-control" href="<%=request.getContextPath()%>/board/download?fileName=${file.fi_name}">${file.fi_ori_name}</a>
 			</c:forEach>				
 		</div>
-		
+		<div class="form-group likes-form justify-content-center" style="display: flex;">
+			<c:if test="${like == 0}">
+				<button class="btn btn-primary" value="1">좋아요</button>	
+				<button class="btn btn-danger ml-2" value="-1">싫어요</button>
+			</c:if>
+			<c:if test="${like == 1}">
+				<button class="btn btn-secondary" value="0">좋아요취소</button>
+			</c:if>
+			<c:if test="${like == -1}">
+				<button class="btn btn-secondary" value="0">싫어요취소</button>
+			</c:if>
+		</div>
 		<hr>
 		<c:if test="${user != null}">
 	   	<div class="input-group main-commant-box" >
@@ -149,8 +160,6 @@
 					ajaxService.parseAjax('get', null, url, res_function);
 				}
 				
-				
-
 			});
 
 			// 댓글수정 / 답변등록 / 취소 버튼 이벤트
@@ -193,10 +202,36 @@
 
 				 ajaxService.parseAjax('post', data, url, res_function);
 			});
+		
+		// 좋아요/싫어요/좋아요취소/싫어요취소 버튼 이벤트
+		$(document).on('click', '.likes-form .btn', function () {
+						
+			var data = {
+				li_bd_num : '${board.bd_num}'  ,
+				li_me_id : '${user.me_id}',
+				li_state : $(this).val()
+			}
+			
+			var url = '/board/likes';
+			
+			function res_function(res) {
+				
+				var changeStr = "";
 	
+				if(res == 0) changeStr += '<button class="btn btn-primary" value="1">좋아요</button> <button class="btn btn-danger ml-2" value="-1">싫어요</button>';
+				if(res == 1) changeStr += '<button class="btn btn-secondary" value="0">좋아요취소</button>';
+				if(res == -1) changeStr += '<button class="btn btn-secondary" value="0">싫어요취소</button>';
+				
+				$('.likes-form').html(changeStr);
+			}			
+			
+			ajaxService.parseAjax('post', data, url, res_function);
+			
+		});
+		
 		//이벤트
 
-		//함수
+ 		//함수
 			function showCommantForm(page) {
 					readCommant(page); 	  
 				// 읽어온 commant와 pm으로 화면구성

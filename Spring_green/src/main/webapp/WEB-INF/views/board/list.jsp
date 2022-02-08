@@ -26,6 +26,7 @@
           <th>작성자</th>      
           <th>작성시간</th>
           <th>조회수</th>
+          <th>좋아요/싫어요</th>
         </tr>
       </thead>
       <tbody>
@@ -41,6 +42,7 @@
             <td>${board.bd_me_id}</td>
             <td>${board.bd_date}</td>
             <td>${board.bd_views}</td>
+            <td>${board.bd_up}  / ${board.bd_down}</td>
           </tr>
         </c:forEach>
       </tbody>

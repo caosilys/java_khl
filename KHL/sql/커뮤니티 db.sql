@@ -168,7 +168,7 @@ ADD CONSTRAINT `mi_ma_num`
 
 
 CREATE TABLE `comunity`.`subcategory` (
-  `su_num` INT NOT NULL AUTO_INCREMENT,
+  `su_num` INT NOT NULL AUTO_INCREMENT,maincategory
   `su_name` VARCHAR(45) NOT NULL,
   `su_mi_num` INT NOT NULL,
   PRIMARY KEY (`su_num`));

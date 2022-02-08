@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +26,7 @@ import kr.green.spring.pagination.PageMaker;
 import kr.green.spring.service.BoardService;
 import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.FileVO;
+import kr.green.spring.vo.LikesVO;
 import kr.green.spring.vo.MemberVO;
 
 @Controller
@@ -44,14 +46,21 @@ public class BoardController {
 		mv.addObject("pm", pm);				
 		mv.addObject("list", list);
 		mv.setViewName("/board/list");
+		
 		return mv;
 	}
 	
 	@RequestMapping(value = "/detail")
-	public ModelAndView detailGet(ModelAndView mv, Integer bd_num) {
+	public ModelAndView detailGet(ModelAndView mv, Integer bd_num, HttpServletRequest request) {
 		
 		boardService.updateViews(bd_num);
 		BoardVO board = boardService.detailGet(bd_num);
+		
+		Integer like = null;
+		MemberVO user = (MemberVO) request.getSession().getAttribute("user");
+		if(user != null) 	like = boardService.getLikeState(bd_num, user.getMe_id());
+		
+		
 		// 게시글 번호와 일치하는 첨부파일을 가져옴
 		List<FileVO> fileList = boardService.getFileList(bd_num);		
 		if(board == null) {
@@ -59,6 +68,7 @@ public class BoardController {
 			mv.setViewName("redirect:/board/list");
 		}
 		else {
+			mv.addObject("like", like);
 			mv.addObject("fileList", fileList);
 			mv.addObject("board", board);
 			mv.setViewName("/board/detail");
@@ -171,6 +181,17 @@ public class BoardController {
 	        in.close();
 	    }
 	    return entity;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/likes")
+	public Integer setLikes(ModelAndView mv, @RequestBody LikesVO likes) {
+		if(likes == null || likes.getLi_me_id().equals("") || likes.getLi_me_id() == null) return null;
+		
+		Integer like = boardService.setLikes(likes);		
+		
+		return like;
+		
 	}
 	
 	

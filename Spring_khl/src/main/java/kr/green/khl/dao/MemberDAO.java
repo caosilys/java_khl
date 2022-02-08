@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import kr.green.khl.vo.MainCategoryVO;
 import kr.green.khl.vo.MemberVO;
+import kr.green.khl.vo.MiddleCategoryVO;
 
 public interface MemberDAO {
 
@@ -21,6 +23,12 @@ public interface MemberDAO {
 	void updateAutoLogin(@Param("user")MemberVO user);
 
 	MemberVO selectMemberBySessionId(@Param("me_session_id")String me_session_id);
+
+	List<MainCategoryVO> selectMainCategory();
+
+	List<MiddleCategoryVO> selectMiddleCategory(@Param("ma_num")Integer ma_num);
+
+	List<MiddleCategoryVO> selecSubCategory(@Param("mi_num")Integer mi_num);
 
 	
 

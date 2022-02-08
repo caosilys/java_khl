@@ -194,8 +194,7 @@ public class BoardController {
 			
 			return false;
 		}
-		
-		
+				
 		@ResponseBody
 		@RequestMapping(value="/likes")
 		public String likesPost(@RequestBody LikesVO likes, HttpServletRequest request) {
