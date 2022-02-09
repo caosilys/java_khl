@@ -10,4 +10,8 @@ public interface MemberDAO {
 
 	void sighUpMember(@Param("member")MemberVO member);
 
+	void updateMember(@Param("member")MemberVO member);
+
+	String findId(@Param("member")MemberVO member);
+
 }

@@ -13,6 +13,8 @@
 		<h1>홈</h1>
 	</div>
 	
+	<!--  
+
 	<script>
 	$(function() {
 		$.ajax({
@@ -31,5 +33,6 @@
 	})
 	
 	</script>
+	-->
 </body>
 </html>

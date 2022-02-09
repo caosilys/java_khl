@@ -28,6 +28,7 @@
 	  	<a href="<%=request.getContextPath()%>/signup"><li class="list-group-item">회원가입</li></a>
 	  </c:if>
 		<c:if test="${user != null}">
+			<a href="<%=request.getContextPath()%>/mypage"><li class="list-group-item">정보수정</li></a>
 			<a href="<%=request.getContextPath()%>/logout"><li class="list-group-item">로그아웃</li></a>
 		</c:if>
 	</ul>

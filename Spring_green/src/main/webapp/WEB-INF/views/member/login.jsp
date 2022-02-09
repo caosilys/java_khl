@@ -23,15 +23,18 @@
 	      <label class="col-md-2">ID:</label>	
 		    <input type="text" class="form-control col-md-6" name="me_id">
 			</div>	
-	    <div class=" row">
+	    <div class="row">
 	    	<label class="col-md-2">PW:</label>
 			  <input type="password" class="form-control col-md-6" name="me_pw">
-	    </div>			    
+	    </div>
+	    <div class="row ml-2"><a href="<%=request.getContextPath()%>/find">아이디/비밀번호찾기</a></div>			    
     </div>
+
     <div class="_left">
     	<input type="submit" value="로그인" style="width: 100px; height: 86px">	
     </div>
-	  
-	</form>       
+	</form>
+		<br>
+		       
 </body>
 </html>

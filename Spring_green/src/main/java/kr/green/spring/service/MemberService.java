@@ -12,4 +12,10 @@ public interface MemberService {
 
 	boolean idDuplicated(String id);
 
+	MemberVO modifyMember(MemberVO user, MemberVO member);
+
+	String findId(MemberVO member);
+
+	String findPw(MemberVO member);
+
 }

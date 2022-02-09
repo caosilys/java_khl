@@ -10,4 +10,22 @@
   		insert into 	member(me_id, me_pw, me_name, me_gender, me_birth, me_address, me_phone)
 			values(#{member.me_id},#{member.me_pw},#{member.me_name},#{member.me_gender},	#{member.me_birth},#{member.me_address},#{member.me_phone})  
 	</insert>
+	<update id="updateMember">
+		update member set
+		me_name = #{member.me_name},
+		me_pw = #{member.me_pw},
+		me_gender = #{member.me_gender},
+		me_birth = #{member.me_birth},
+		me_address = #{member.me_address},
+		me_phone = #{member.me_phone},
+		me_authority = #{member.me_authority}		
+		where me_id = #{member.me_id}
+	</update>
+	
+  <select id= "findId" resultType="String"> 
+    select me_id from member 
+    where me_name = #{member.me_name} and me_email = #{member.me_email}
+    limit 1
+  </select>
+  
 </mapper>
