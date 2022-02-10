@@ -1,5 +1,7 @@
 package kr.green.spring.service;
 
+import java.util.List;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -10,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.green.spring.dao.*;
+import kr.green.spring.pagination.PageMaker;
 import kr.green.spring.vo.MemberVO;
 
 @Service
@@ -77,7 +80,48 @@ public class MemberServiceImp implements MemberService{
 		
 		return memberDao.getMember(member.getMe_id());
 	}
+	
+	
+	
+	@Override
+	public List<MemberVO> getMemberList(PageMaker pm) {
+		if(pm == null || pm.getCriteria() == null) return null;
+		return memberDao.getMemberList(pm.getCriteria());
+	}
+	
+	@Override
+	public Integer getMemberCount() {
+		
+		return memberDao.getMemberCount();
+	}
+	
 
+	@Override
+	public String changeAutority(MemberVO member, MemberVO user) {
+		MemberVO dbUser = memberDao.getMember(member.getMe_id());
+		
+		System.out.println("입력값 : "+  member);
+		System.out.println("계정 : " + user);
+		System.out.println("가져옴 : " + dbUser);
+		if(member == null || member.getMe_id() == null || member.getMe_id().length() == 0
+							   || member.getMe_authority() == null || member.getMe_authority().length() == 0
+           || user == null || !	user.getMe_authority().equals("슈퍼관리자")
+           || member.getMe_authority().equals("슈퍼관리자") ||
+           dbUser == null | dbUser.getMe_authority().equals("슈퍼관리자")) return "fail" ;
+		
+		dbUser.setMe_authority(member.getMe_authority());
+		memberDao.updateMember(dbUser);	
+		return "true";
+	}
+	
+	@Override
+	public void updateAutologin(MemberVO user) {
+
+		memberDao.updateAutologin(user);		
+	}
+	
+	
+	
 	@Override
 	public String findId(MemberVO member) {
 		
@@ -97,13 +141,17 @@ public class MemberServiceImp implements MemberService{
 		  member.getMe_email().length() == 0) return "fail";
 		
 		MemberVO getMember = memberDao.getMember(member.getMe_id());
+		
+		if(!member.getMe_email().equals(getMember.getMe_email())) return "fail";
+		
 		String newPw = createRandomPw(6);
-		
-		
-		
-		
-		return null;
-		
+		//암호화, 메일전송, 리턴값설정
+		String encPw = pwEncoder.encode(newPw);		
+		getMember.setMe_pw(encPw);
+		memberDao.updateMember(getMember);
+		if(sendNewPwToMail(getMember.getMe_email(), newPw)) 	return "true";
+		else return "fail";
+	
 	}
 	
 	private String createRandomPw(int maxsize) {
@@ -142,11 +190,17 @@ public class MemberServiceImp implements MemberService{
 	        messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
 	        messageHelper.setText(content);  // 메일 내용
 	        mailSender.send(message);
-		} catch (MessagingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public MemberVO selectMemberBySessionId(String cookie_id) {
+		// TODO Auto-generated method stub
+		return memberDao.getMemberBySessionId(cookie_id);
 	}
 
 

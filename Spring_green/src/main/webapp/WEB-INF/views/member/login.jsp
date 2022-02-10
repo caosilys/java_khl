@@ -27,7 +27,8 @@
 	    	<label class="col-md-2">PW:</label>
 			  <input type="password" class="form-control col-md-6" name="me_pw">
 	    </div>
-	    <div class="row ml-2"><a href="<%=request.getContextPath()%>/find">아이디/비밀번호찾기</a></div>			    
+	    <label class="row ml-2"><input type="checkbox" name="me_auto_login">자동로그인</label>
+	    <label class="row ml-2"><a href="<%=request.getContextPath()%>/find">아이디/비밀번호찾기</a></label>			    
     </div>
 
     <div class="_left">

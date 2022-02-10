@@ -28,4 +28,24 @@
     limit 1
   </select>
   
+  <select id="getMemberList" resultType="kr.green.spring.vo.MemberVO">
+  	select * from member where me_authority != '슈퍼관리자'
+  	limit #{cri.pageStart} , #{cri.perPageNum}
+  </select>
+  
+  <select id="getMemberCount" resultType="int">
+  	select count(*) from member
+  </select>
+  
+ 	<update id="updateAutologin">
+		update member set
+			me_session_id = #{user.me_session_id},
+			me_session_limit = #{user.me_session_limit}
+		where me_id = #{user.me_id}
+	</update>
+  
+  <select id= "getMemberBySessionId" resultType="kr.green.spring.vo.MemberVO"> 
+    select * from member where me_session_id = #{cookie_id} and me_session_limit >= now()
+  </select>
+  
 </mapper>

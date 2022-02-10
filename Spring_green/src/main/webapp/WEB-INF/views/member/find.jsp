@@ -42,8 +42,10 @@
   	</div>
  	</div>
 </div>
+<div class="spinner-border ml-5" style="display: none;"></div>
 <script>
 	$('.btn-find').click(function () {
+		
 		
 		var name = $(this).siblings().children('[name=me_name]').val();
 		var id = $(this).siblings().children('[name=me_id]').val();
@@ -58,7 +60,12 @@
 		var url = '/find/'+find;
 		
 		if(find == 'findId') parseAjax('post', data, url, res_findId);
-		if(find == 'findPw') parseAjax('post', data, url, res_findPw);	
+		if(find == 'findPw') {
+			$('.spinner-border').show();
+			setTimeout(() => {
+				parseAjax('post', data, url, res_findPw);	
+			}, 300);
+		}
 		
 	});
 	
@@ -69,6 +76,7 @@
 	};
 	
 	function res_findPw(res) {
+		$('.spinner-border').hide();
 		console.log('findPw 응답')
 	};
 	

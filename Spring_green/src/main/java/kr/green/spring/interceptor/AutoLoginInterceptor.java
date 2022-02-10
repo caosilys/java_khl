@@ -1,4 +1,4 @@
-package kr.green.khl.interceptor;
+package kr.green.spring.interceptor;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.util.WebUtils;
 
-import kr.green.khl.service.MemberService;
-import kr.green.khl.vo.MemberVO;
+import kr.green.spring.service.MemberService;
+import kr.green.spring.vo.MemberVO;
 
 public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 	
@@ -31,7 +31,8 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 			if(user != null ) {
 				session.setAttribute("user", user);
 			}
-		}		
+		}
+		
 		return true;
 	}
 	

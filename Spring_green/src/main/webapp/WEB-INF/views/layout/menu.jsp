@@ -27,6 +27,9 @@
 	  	<a href="<%=request.getContextPath()%>/login"><li class="list-group-item">로그인</li></a>
 	  	<a href="<%=request.getContextPath()%>/signup"><li class="list-group-item">회원가입</li></a>
 	  </c:if>
+	  <c:if test="${user.me_authority ==  '슈퍼관리자'}">
+	  	<a href="<%=request.getContextPath()%>/admin/modify"><li class="list-group-item">회원관리</li></a>
+	  </c:if>
 		<c:if test="${user != null}">
 			<a href="<%=request.getContextPath()%>/mypage"><li class="list-group-item">정보수정</li></a>
 			<a href="<%=request.getContextPath()%>/logout"><li class="list-group-item">로그아웃</li></a>

@@ -18,7 +18,7 @@ import kr.green.khl.vo.*;
 public class LoginInterceptor extends HandlerInterceptorAdapter{
 	
 	@Autowired
-	MemberService memberServie;
+	MemberService memberService;
 	
 	public void postHandle(
 		    HttpServletRequest request, 
@@ -30,7 +30,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		    ModelMap modelMap = modelAndView.getModelMap();
 		    MemberVO user = (MemberVO)modelMap.get("user");
 		    
-		    System.out.println(user);
 		    if(user != null) {
 		    	
 		        HttpSession session = request.getSession();
@@ -48,7 +47,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		        	
 		        	user.setMe_session_id(session.getId());
 		        	user.setMe_session_limit(session_limit);
-		        	memberServie.updateAutologin(user);
+		        	memberService.updateAutologin(user);
 		        }
 		        session.setAttribute("user", user);
 		    }
