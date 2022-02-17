@@ -17,19 +17,29 @@ import kr.green.khl.vo.*;
 @Controller
 public class testController {
 	
+	@Autowired
+	CommantService service;
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public ModelAndView testGet(ModelAndView mv, Integer num) {		
+		
+		if(num != null) {
+			System.out.println("num = " + num);
+			TestVO tv= service.getTest(num);
+		}
+		mv.setViewName("/main/test");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.POST)
+	public ModelAndView testPost(ModelAndView mv, TestVO tv) {		
+		
+		System.out.println(tv);
+		service.setTest(tv);
+		
+		mv.setViewName("/main/home");
+		return mv;
+	}
 
-	
-
-	
-	
-//	@RequestMapping(value = "/memberlist", method = RequestMethod.POST)	
-//	public ModelAndView memberListPost(ModelAndView mv){		
-//		
-//		List<MemberVO> userList =	memberService.getList();
-//		mv.addObject("member", userList);
-//		mv.setViewName("/test/memberlist");
-//		return mv;
-//	}
-	
 	
 }

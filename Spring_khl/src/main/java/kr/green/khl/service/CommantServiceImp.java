@@ -9,6 +9,7 @@ import kr.green.khl.dao.CommantDAO;
 import kr.green.khl.utils.PageMaker;
 import kr.green.khl.vo.CommantVO;
 import kr.green.khl.vo.MemberVO;
+import kr.green.khl.vo.TestVO;
 
 @Service
 public class CommantServiceImp implements CommantService{
@@ -65,6 +66,23 @@ public class CommantServiceImp implements CommantService{
 		if(dbCommant == null || !dbCommant.getCo_me_id().equals(user.getMe_id())) return "false";
 		commantDao.updateCommant(commant);		
 		return "true";
+	}
+
+	@Override
+	public void setTest(TestVO tv) {
+		
+		commantDao.setTest(tv);
+		
+	}
+
+	@Override
+	public TestVO getTest(Integer num) {
+		
+		TestVO tv = commantDao.getTest(num);
+		
+		System.out.println(tv);
+		
+		return null;
 	} 
 	
 }

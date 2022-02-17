@@ -42,4 +42,27 @@
 		update commant set co_content = '[수정됨] ' #{commant.co_content}
 		where co_num = #{commant.co_num}
 	</update>
+	
+
+	
+	<insert id="setTest">
+		insert into test (te_num, 
+		<if test="tv.Color.length > 0" > te_name1</if>
+		<if test="tv.Color.length > 1">, te_name2</if>
+		<if test="tv.Color.length >2">, te_name3</if>)
+		value(
+			#{tv.num},
+			<foreach collection="tv.Color" item="map" separator="," > 
+				'${map}'
+			</foreach>
+		);
+	</insert>
+	
+	
+	<select id="getTest" resultType="kr.green.khl.vo.TestVO">
+		select * from test
+		where te_num = #{num}
+	</select>
+	
+	
 </mapper>

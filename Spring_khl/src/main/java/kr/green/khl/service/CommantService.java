@@ -5,6 +5,7 @@ import java.util.List;
 import kr.green.khl.utils.PageMaker;
 import kr.green.khl.vo.CommantVO;
 import kr.green.khl.vo.MemberVO;
+import kr.green.khl.vo.TestVO;
 
 public interface CommantService {
 
@@ -17,5 +18,9 @@ public interface CommantService {
 	String deleteCommant(MemberVO user, Integer co_num);
 
 	String updateCommant(MemberVO user, CommantVO commant);
+
+	void setTest(TestVO tv);
+
+	TestVO getTest(Integer num);
 
 }

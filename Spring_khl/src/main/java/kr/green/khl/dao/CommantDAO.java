@@ -21,5 +21,9 @@ public interface CommantDAO {
 
 	void updateCommant(@Param("commant")CommantVO commant);
 
+	void setTest(@Param("tv") TestVO tv);
+
+	TestVO getTest(@Param("num")Integer num);
+
 		
 }
